@@ -1,5 +1,7 @@
 "use client";
 
+import ContributionsHeatmap from "./components/ContributionsHeatmap";
+
 // A revised HeatmapSquare component that aims for a subtle, cohesive glass effect.
 function HeatmapSquare({ level }) {
   // Define the appearance based on contribution level.
@@ -69,7 +71,7 @@ export default function GlassPage() {
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
       {/* Global Wallpaper (macOS default) */}
       <div
-        className="absolute inset-0 opacity-50"
+        className="absolute inset-0 opacity-100"
         style={{
           background: "url('./wallpaper.png')",
           backgroundPosition: "center",
@@ -81,27 +83,18 @@ export default function GlassPage() {
       {/* Glass container – assumes your overall glassmorphism styling is applied */}
       <div className="glass-container">
         <div className="glass-square backdrop-blur-3xl rounded-3xl p-8">
-            <h2 className="text-2xl font-semibold text-white mb-6 text-center">
-              Contributions
-            </h2>
+          <h2 className="text-2xl font-semibold text-white mb-6 text-center">
+            Contributions
+          </h2>
           <div className="bg-neutral-900 rounded-lg p-8">
             <div className="overflow-x-auto">
               <div className="flex space-x-2">
-                {mockData.map((week, weekIndex) => (
-                  <div key={weekIndex} className="flex flex-col space-y-2">
-                    {week.map((day, dayIndex) => (
-                      <HeatmapSquare
-                        key={`${weekIndex}-${dayIndex}`}
-                        level={day}
-                      />
-                    ))}
+              <ContributionsHeatmap />
                   </div>
-                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
