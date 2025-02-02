@@ -6,13 +6,13 @@ export default function GlassPage() {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage:
-            "./wallpaper.png",
+          backgroundImage: `url("/wallpaper.png")`, // Add `url()`
           backgroundPosition: "center",
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
         }}
       />
+
       <div className="glass-container">
         <div className="glass-square" />
       </div>
