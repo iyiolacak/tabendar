@@ -1,20 +1,101 @@
 "use client";
 
+// A revised HeatmapSquare component that aims for a subtle, cohesive glass effect.
+function HeatmapSquare({ level }) {
+  // Define the appearance based on contribution level.
+  // All levels use a translucent base with gentle gradients, borders, and shadows.
+  let bgClass = "";
+  let borderClass = "";
+  let shadowClass = "";
+
+  switch (level) {
+    case 0:
+      // Inactive: muted glass with very low opacity.
+      bgClass = "bg-gray-800/10";
+      borderClass = "border border-gray-700/30";
+      shadowClass = "shadow-inner";
+      break;
+    case 1:
+      // Low activity: a light, barely-there mint tint.
+      bgClass = "bg-gradient-to-br from-green-100/30 to-green-200/30";
+      borderClass = "border border-green-200/30";
+      shadowClass = "shadow-sm";
+      break;
+    case 2:
+      // Moderate: a soft, gentle mint tone.
+      bgClass = "bg-gradient-to-br from-green-200/30 to-green-300/30";
+      borderClass = "border border-green-300/30";
+      shadowClass = "shadow-md";
+      break;
+    case 3:
+      // High: a slightly deeper mint but still subtle.
+      bgClass = "bg-gradient-to-br from-green-300/30 to-green-400/30";
+      borderClass = "border border-green-400/30";
+      shadowClass = "shadow-lg";
+      break;
+    case 4:
+      // Very high: the richest tint, yet keeping the same light transparency.
+      bgClass = "bg-gradient-to-br from-green-400/30 to-green-500/30";
+      borderClass = "border border-green-500/30";
+      shadowClass = "shadow-xl";
+      break;
+    default:
+      bgClass = "bg-gray-800/10";
+      borderClass = "border border-gray-700/30";
+      shadowClass = "shadow-inner";
+  }
+
+  return (
+    <div
+      className={`relative flex items-center justify-center w-5 h-5 rounded-md overflow-hidden ${bgClass} ${borderClass} ${shadowClass} transition-all duration-200 hover:brightness-105`}
+      // Increase the blur a bit to emphasize the frosted effect.
+      style={{ backdropFilter: "blur(6px)" }}
+    >
+      {/* A very subtle highlight overlay to simulate a gentle light reflection. */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/15 via-transparent to-transparent"></div>
+    </div>
+  );
+}
+
 export default function GlassPage() {
+  // Generate mock data: 52 weeks of 7 days each (with levels 0–4).
+  const weeks = 52;
+  const daysPerWeek = 7;
+  const mockData = Array.from({ length: weeks }, () =>
+    Array.from({ length: daysPerWeek }, () => Math.floor(Math.random() * 5))
+  );
+
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+      {/* Global Wallpaper (macOS default) */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-50"
         style={{
-          backgroundImage:
-            "./wallpaper.png",
+          background: "url('./wallpaper.png')",
           backgroundPosition: "center",
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
         }}
       />
+
+      {/* Glass container – assumes your overall glassmorphism styling is applied */}
       <div className="glass-container">
-        <div className="glass-square" />
+        <div className="glass-square backdrop-blur-3xl rounded-3xl p-8">
+          <h2 className="text-2xl font-semibold text-white mb-6 text-center">
+            Contributions
+          </h2>
+          <div className="overflow-x-auto">
+            <div className="flex space-x-2">
+              {mockData.map((week, weekIndex) => (
+                <div key={weekIndex} className="flex flex-col space-y-2">
+                  {week.map((day, dayIndex) => (
+                    <HeatmapSquare key={`${weekIndex}-${dayIndex}`} level={day} />
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
