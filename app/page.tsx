@@ -1,5 +1,7 @@
 "use client";
 
+import ClockFunc from "./components/clock/Clock";
+import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
 
 // A revised HeatmapSquare component that aims for a subtle, cohesive glass effect.
@@ -73,7 +75,6 @@ export default function GlassPage() {
       <div
         className="absolute inset-0 opacity-100"
         style={{
-          background: "url('./wallpaper.png')",
           backgroundPosition: "center",
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
@@ -82,10 +83,8 @@ export default function GlassPage() {
 
       {/* Glass container – assumes your overall glassmorphism styling is applied */}
       <div className="glass-container">
+        <ClockFunc/>
         <div className="glass-square backdrop-blur-3xl rounded-3xl p-8">
-          <h2 className="text-2xl font-semibold text-white mb-6 text-center">
-            Contributions
-          </h2>
           <div className="bg-neutral-900 rounded-lg p-8">
             <div className="overflow-x-auto">
               <div className="flex space-x-2">
