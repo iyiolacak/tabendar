@@ -8,7 +8,7 @@
 body {
   margin: 0;
   padding: 0;
-  /* Dark gradient wallpaper sets a dramatic stage */
+  /* Subtle dark gradient for a modern macOS feel */
   background: linear-gradient(135deg, #161616, #2c2c2c);
   background-attachment: fixed;
 }
@@ -22,67 +22,53 @@ body {
 }
 
 /* -----------------------------------------
-   Refined Glassmorphic Window Instance for macOS UI
+   Refined Glassmorphic Window Instance
 ----------------------------------------- */
 .glass-square {
   position: relative;
-  /* Base glass background with enough opacity for substance */
-  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  /* Base glass effect */
+  background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  /*
-     Backdrop filter settings:
-     - 24px blur diffuses the busy wallpaper.
-     - Saturation at 140% delivers a lively, yet natural look.
-     - Brightness (0.9) tames overly vivid background areas.
-  */
-  backdrop-filter: blur(32px) saturate(140%) brightness(0.9);
-  -webkit-backdrop-filter: blur(32px) saturate(140%) brightness(0.9);
-  /* Outer shadow for depth and a subtle white inset glow for inner light */
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2),
-    inset 0 2px 10px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(120%) brightness(0.95);
+  -webkit-backdrop-filter: blur(20px) saturate(120%) brightness(0.95);
+  /* Soft shadow for floating effect */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
 /* -----------------------------------------
-   Enhanced Directional Highlight (Pseudo‑Element)
-   – Two layered radial gradients add a natural specular glint.
+   Subtle Specular Highlight (Reduced Shine)
 ----------------------------------------- */
 .glass-square::before {
   content: "";
   position: absolute;
   inset: 0;
   background: 
-    /* Primary highlight: strong at the top-center */ radial-gradient(
+    /* Gentle top-center highlight for realism */
+    radial-gradient(
       ellipse at top center,
-      transparent 70%
-    ),
-    /* Secondary glint: a subtle offset shine for extra sparkle */
-      radial-gradient(
-        ellipse at 80% 20%,
-        rgba(255, 255, 255, 0.25) 10%,
-        transparent 60%
-      );
+      rgba(255, 255, 255, 0.2) 10%,
+      rgba(255, 255, 255, 0.1) 30%,
+      transparent 60%
+    );
   pointer-events: none;
-  mix-blend-mode: screen;
+  mix-blend-mode: soft-light;
 }
 
 /* -----------------------------------------
-   Detail & Noise Refinement Overlay (Pseudo‑Element)
-   – A subtle gradient combined with an imperceptible noise texture.
+   Noise Refinement Overlay (For Authenticity)
 ----------------------------------------- */
 .glass-square::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.1),
-      rgba(0, 0, 0, 0.1)
-    ),
+  background: 
+    linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0.05)),
     url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVR42mNk+M+ACzAxUio3wMDA8J8gImBgYGABXxD/0ckrvQAAAABJRU5ErkJggg==");
   background-repeat: no-repeat, repeat;
   background-size: cover, auto;
-  opacity: 0.04;
+  opacity: 0.03;
   pointer-events: none;
   animation: noiseMove 8s infinite linear;
   mix-blend-mode: overlay;
@@ -92,15 +78,9 @@ body {
    Noise Animation Keyframes
 ----------------------------------------- */
 @keyframes noiseMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-3%, -3%);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-3%, -3%); }
+  100% { transform: translate(0, 0); }
 }
 
 /* -----------------------------------------
