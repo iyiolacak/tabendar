@@ -2,20 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* -----------------------------------------
+   Global Background & Reset
+----------------------------------------- */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* A modern, dark gradient background that lets the glass element shine */
+  background: linear-gradient(135deg, #161616, #2c2c2c);
+  background-attachment: fixed;
+}
+
+/* Center our component */
+.glass-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* -----------------------------------------
+   Modernized Glassmorphic Square Instance for macOS UI
+----------------------------------------- */
+.glass-square {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 24px;
+  /* Enhanced glass background: increased opacity for a pronounced yet refined look */
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Tighter blur and enhanced saturation for a crisp frosted effect */
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  /* Revised shadows: stronger outer shadow for depth, and more defined inner shadow */
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    inset 0 4px 20px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+/* -----------------------------------------
+   Directional Inner Light (Pseudo‑Element)
+   – Simulates a refined, directional reflection 
+     that evokes high‑quality polished glass.
+----------------------------------------- */
+.glass-square::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* A slightly stronger gradient to simulate a premium reflective surface */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent 70%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* -----------------------------------------
+   Dynamic Noise Overlay (Pseudo‑Element)
+   – Adds a subtle, animated noise texture for
+     a tactile, almost analog glass finish.
+----------------------------------------- */
+.glass-square::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVR42mNk+M+ACzAxUio3wMDA8J8gImBgYGABXxD/0ckrvQAAAABJRU5ErkJggg==");
+  background-repeat: repeat;
+  opacity: 0.04; /* Lowered opacity for a more subtle texture */
+  pointer-events: none;
+  animation: noiseMove 8s infinite linear; /* Extended duration for a gentle effect */
+}
+
+/* -----------------------------------------
+   Noise Animation Keyframes
+----------------------------------------- */
+@keyframes noiseMove {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-3%, -3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* -----------------------------------------
+   Respect User’s Motion Preferences
+----------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .glass-square::after {
+    animation: none;
+  }
 }
