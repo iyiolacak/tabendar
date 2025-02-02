@@ -7,7 +7,7 @@ export default function GlassPage() {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "url('https://framerusercontent.com/images/nr3SJiAakfef2UkH4zI9nNUWPOo.png')",
+            "./wallpaper.png",
           backgroundPosition: "center",
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
