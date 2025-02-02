@@ -8,12 +8,12 @@
 body {
   margin: 0;
   padding: 0;
-  /* A modern, dark gradient background that lets the glass element shine */
+  /* Dark gradient wallpaper sets a dramatic stage */
   background: linear-gradient(135deg, #161616, #2c2c2c);
   background-attachment: fixed;
 }
 
-/* Center our component */
+/* Center the glass instance */
 .glass-container {
   display: flex;
   align-items: center;
@@ -22,55 +22,62 @@ body {
 }
 
 /* -----------------------------------------
-   Modernized Glassmorphic Square Instance for macOS UI
+   Refined Glassmorphic Window Instance for macOS UI
 ----------------------------------------- */
 .glass-square {
   position: relative;
   width: 250px;
   height: 250px;
   border-radius: 24px;
-  /* Enhanced glass background: increased opacity for a pronounced yet refined look */
+  /* Base glass background with enough opacity for substance */
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  /* Tighter blur and enhanced saturation for a crisp frosted effect */
-  backdrop-filter: blur(20px) saturate(200%);
-  -webkit-backdrop-filter: blur(20px) saturate(200%);
-  /* Revised shadows: stronger outer shadow for depth, and more defined inner shadow */
+  /*
+     Backdrop filter settings:
+     - Blur diffuses the busy wallpaper.
+     - Reduced saturation (120%) prevents an over‑vibrant look.
+     - Slight brightness reduction (0.9) tames vivid background details.
+  */
+  backdrop-filter: blur(24px) saturate(120%) brightness(0.9);
+  -webkit-backdrop-filter: blur(24px) saturate(120%) brightness(0.9);
+  /* Outer shadow for overall depth and a subtle white inset glow for inner light */
   box-shadow: 
     0 12px 40px rgba(0, 0, 0, 0.2),
-    inset 0 4px 20px rgba(255, 255, 255, 0.2);
+    inset 0 2px 10px rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
 
 /* -----------------------------------------
-   Directional Inner Light (Pseudo‑Element)
-   – Simulates a refined, directional reflection 
-     that evokes high‑quality polished glass.
+   Directional Highlight (Pseudo‑Element)
+   – Uses a radial gradient to simulate natural light concentration on glass.
 ----------------------------------------- */
 .glass-square::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* A slightly stronger gradient to simulate a premium reflective surface */
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent 70%);
+  /* Radial gradient positioned at the top center creates a subtle highlight that mimics a light source */
+  background: radial-gradient(ellipse at top center, rgba(255,255,255,0.35), transparent 70%);
   pointer-events: none;
   mix-blend-mode: screen;
 }
 
 /* -----------------------------------------
-   Dynamic Noise Overlay (Pseudo‑Element)
-   – Adds a subtle, animated noise texture for
-     a tactile, almost analog glass finish.
+   Detail & Noise Refinement Overlay (Pseudo‑Element)
+   – Combines a subtle gradient and an almost imperceptible noise texture.
 ----------------------------------------- */
 .glass-square::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVR42mNk+M+ACzAxUio3wMDA8J8gImBgYGABXxD/0ckrvQAAAABJRU5ErkJggg==");
-  background-repeat: repeat;
-  opacity: 0.04; /* Lowered opacity for a more subtle texture */
+  background: 
+    linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1)),
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVR42mNk+M+ACzAxUio3wMDA8J8gImBgYGABXxD/0ckrvQAAAABJRU5ErkJggg==");
+  background-repeat: no-repeat, repeat;
+  background-size: cover, auto;
+  opacity: 0.04;
   pointer-events: none;
-  animation: noiseMove 8s infinite linear; /* Extended duration for a gentle effect */
+  animation: noiseMove 8s infinite linear;
+  mix-blend-mode: overlay;
 }
 
 /* -----------------------------------------
