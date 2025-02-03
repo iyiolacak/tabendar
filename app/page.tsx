@@ -10,7 +10,7 @@ const GlassPage: React.FC = () => {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Global Background */}
-      {!preferVideo ? (
+      {preferVideo ? (
         <video
           autoPlay
           muted
@@ -31,6 +31,11 @@ const GlassPage: React.FC = () => {
         <div className="glass-square rounded-3xl p-8">
           <ContributionsHeatmap />
         </div>
+      </div>
+      <div className="absolute bottom-3">
+        <p className="font-sans text-white/60 text-xl">
+        Beauty without depth is just decoration.
+        </p>
       </div>
     </div>
   );
