@@ -61,7 +61,7 @@ const ContributionsHeatmap: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="rounded-lg">
+      <div className="rounded-lg p-4 bg-black/70">
         <div className="flex flex-wrap gap-1.5">
           {mockData.map((week, weekIndex) => (
             <div key={weekIndex} className="flex flex-col gap-1.5">

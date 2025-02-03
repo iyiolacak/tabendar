@@ -74,7 +74,7 @@ export default function GlassPage() {
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
       {/* Global Wallpaper (macOS default) */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{
           backgroundImage:
             "url('wallpaper.png')",
