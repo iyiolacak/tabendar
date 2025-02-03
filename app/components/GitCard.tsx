@@ -73,7 +73,7 @@ const GitCard: React.FC<GitCardProps> = ({
   );
 };
 
-interface Notification {
+interface NotificationItem {
   id: string; // unique id for each notification
   title: string;
   message: string;
@@ -82,13 +82,13 @@ interface Notification {
 }
 
 interface GitNotificationCenterProps {
-  notifications: Notification[];
+  notifications: NotificationItem[];
 }
 
 const GitNotificationCenter: React.FC<GitNotificationCenterProps> = ({
   notifications: initialNotifications,
 }) => {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
 
   useEffect(() => {
     setNotifications([]); // Clear existing notifications first
