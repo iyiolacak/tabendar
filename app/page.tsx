@@ -28,7 +28,7 @@ const GlassPage: React.FC = () => {
         autoPlay
         muted
         loop
-        className="absolute inset-0 object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         src="./video.mp4"
       />
 
@@ -45,7 +45,7 @@ const GlassPage: React.FC = () => {
             <GitNotificationCenter notifications={gitNotifications}/>
           </div>
         <Clock />
-        <div className="glass-square rounded-3xl p-8 min-w-6/8">
+        <div className="glass-square rounded-3xl p-8">
           <ContributionsHeatmap />
         </div>
       </div>
