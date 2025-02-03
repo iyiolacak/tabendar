@@ -1,22 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
-import GitCard from "./components/GitCard";
-import { Flame, Laugh, CloudRain } from "lucide-react";
 import { motion } from "framer-motion";
+import GitNotificationCenter from "./components/GitCard";
+import { CloudRain, Flame, Laugh, ScrollText } from "lucide-react";
 
 const preferVideo = false;
 
-const GlassPage: React.FC = () => {
-  
-    const gitStats = [
-      { title: "Earth Villain", message: "You used LLM services 4x more today. You don’t really love your planet, do you?", icon: CloudRain },
-      { title: "Code Pyromaniac", message: "Your commit history looks like a wildfire. Ever heard of clean commits?", icon: Flame },
-      { title: "Commit Comedian", message: "Half your commit messages are memes. Are you even serious about coding?", icon: Laugh },
-      { title: "Push Philosopher", message: "You push once a week but write essays in the commit messages." }
-    ];
+const GlassPage: React.FC = () => {    
+  const gitStats = [
+    { title: "Cloud Abuser", message: "Used LLMs 4x more today. OpenAI sends their regards.", icon: CloudRain, id: 1 },
+    { title: "Code Pyromaniac", message: "Your commit history looks like a crime scene. GitHub called the cops.", icon: Flame, id: 2 },
+    { title: "Commit Clown", message: "50% of your commits are memes. The other 50% are ‘fix typo’.", icon: Laugh, id: 3 },
+    { title: "Push Poet", message: "You push once a week but each commit is a full TED Talk.", icon: ScrollText, id: 4 }
+  ];
+  const [gitNotifications, setGitNotifications] = useState(gitStats)
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
@@ -42,18 +42,11 @@ const GlassPage: React.FC = () => {
 
       {/* Main Content */}
       <div className="flex flex-col items-center gap-12 z-10 p-4">
-        <Clock />
-        <div className="glass-square rounded-3xl p-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-3 px-2">
-            {gitStats.map((stat, index) => (
-              <GitCard
-                key={index}
-                title={stat.title}
-                message={stat.message}
-                icon={stat.icon}
-              />
-            ))}
+          <div className="absolute top-4 right-4 grid grid-rows-4 gap-3 py-3 px-2">
+            <GitNotificationCenter notifications={gitNotifications} setNotifications={setGitNotifications}/>
           </div>
+        <Clock />
+        <div className="glass-square rounded-3xl p-8 min-w-6/8">
           <ContributionsHeatmap />
         </div>
       </div>
