@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { CloudRain } from "lucide-react";
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
-import GitNotificationCenter from "./components/GitCard";
+import GitNotificationCenter from "./components/GitNotifCard";
 
 // Define the notification type for clarity
 interface Notification {
@@ -98,14 +98,31 @@ const GlassPage: React.FC = () => {
                 <div className="solid-dark-square flex flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white">
                   <p className="text-xl text-white/80">You mostly coded in</p>
                   <h2 className="font-semibold text-3xl">Python</h2>
-                </div>
-                <div className="solid-dark-square flex flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white">
-                  <p className="text-xl text-white/80">
-                    Your first commit was 4017 days ago
+                  <p className="text-sm text-white/30 justify-end h-full ">
+                    Except today.
                   </p>
-                  <h2 className="font-semibold text-3xl">
-                    That&apos;s older than Rust.
-                  </h2>
+                </div>
+                <div className="relative glass-square flex border-none flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white overflow-hidden">
+                  {/* Background Image */}
+                  <img
+                    src="/nested_hearts.png"
+                    alt="Commit History"
+                    className="absolute inset-0 w-full h-full object-cover opacity-50"
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50"></div>
+
+                  {/* Text Content */}
+                  <div className="z-10 text-center">
+                    <p className="text-xl shadow-2xl">
+                      Your first commit was{" "}
+                      <span className="font-medium">4017</span> days ago
+                    </p>
+                    <h2 className="font-semibold text-3xl">
+                      That&apos;s older than Rust.
+                    </h2>
+                  </div>
                 </div>
               </div>
             </div>
