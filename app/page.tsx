@@ -1,5 +1,6 @@
 "use client";
 
+import { url } from "inspector";
 import ClockFunc from "./components/clock/Clock";
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
@@ -73,27 +74,27 @@ export default function GlassPage() {
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
       {/* Global Wallpaper (macOS default) */}
       <div
-        className="absolute inset-0 opacity-100"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
         style={{
-          backgroundPosition: "center",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
+          backgroundImage:
+            "url('wallpaper.png')",
         }}
       />
-
       {/* Glass container – assumes your overall glassmorphism styling is applied */}
-      <div className="glass-container">
-        <ClockFunc/>
-        <div className="glass-square backdrop-blur-3xl rounded-3xl p-8">
-          <div className="bg-neutral-900 rounded-lg p-8">
+      <div className="glass-container flex-col">
+        <div className="absolute top-12 p-12">
+          <ClockFunc/>
+        </div>
+        <div className="glass-square backdrop-blur-3xl rounded-3xl pt-12">
+          <div className="rounded-lg p-8">
             <div className="overflow-x-auto">
               <div className="flex space-x-2">
-              <ContributionsHeatmap />
-                  </div>
+                <ContributionsHeatmap />
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 }
