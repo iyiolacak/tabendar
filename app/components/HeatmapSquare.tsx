@@ -6,7 +6,7 @@ interface HeatmapSquareProps {
 
 const levelColors: { [key: number]: string } = {
   0: "bg-[#0a1a2f]",
-  1: "bg-[#102a44]",
+  1: "bg-[#0B2A52]",
   2: "bg-[#1e497d]",
   3: "bg-[#2d6bb2]",
   4: "bg-[#0a84ff]",

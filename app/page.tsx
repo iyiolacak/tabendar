@@ -28,7 +28,7 @@ const GlassPage: React.FC = () => {
       {/* Main Content – using flex for layout */}
       <div className="flex flex-col items-center gap-12 z-10 p-4">
         <Clock />
-        <div className="glass-square rounded-3xl p-8">
+        <div className="absolute bottom-0 glass-square rounded-3xl p-8">
           <ContributionsHeatmap />
         </div>
       </div>
