@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
 import { motion } from "framer-motion";
 import GitNotificationCenter from "./components/GitCard";
-import { CloudRain, Flame, Laugh, ScrollText } from "lucide-react";
+import { CloudRain, Laugh, ScrollText } from "lucide-react";
 
 const preferVideo = false;
 
 const GlassPage: React.FC = () => {    
-  const gitStats = [
-    { title: "Cloud Abuser", message: "Used LLMs 4x more today. OpenAI sends their regards.", icon: CloudRain, id: 1 },
-    { title: "Commit Clown", message: "50% of your commits are memes. The other 50% are ‘fix typo’.", icon: Laugh, id: 3 },
-    { title: "Push Poet", message: "You push once a week but each commit is a full TED Talk.", icon: ScrollText, id: 4 }
+  const gitNotifications = [
+    { title: "Cloud Abuser", message: "Used LLMs 4x more today. OpenAI sends their regards.", icon: CloudRain, id: "1" },
+    { title: "Commit Clown", message: "50% of your commits are memes. The other 50% are ‘fix typo’.", icon: Laugh, id: "3" },
+    { title: "Push Poet", message: "You push once a week but each commit is a full TED Talk.", icon: ScrollText, id: "4" }
   ];
-  const [gitNotifications, setGitNotifications] = useState(gitStats)
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
