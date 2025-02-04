@@ -22,7 +22,7 @@ const Background = React.memo(
     className = "",
   }: BackgroundProps) => {
     return preferVideo ? (
-      <Suspense fallback="We are loading the video, bro.">
+      <Suspense fallback={<div>Loading video…</div>}>
         <motion.video
           initial={{ opacity: 0 }}
           animate={{ opacity: videoOpacity }}
@@ -31,14 +31,14 @@ const Background = React.memo(
           muted
           loop
           playsInline
-          // Instead of absolute, we rely on the grid container to size this element.
-          className={`${className} object-cover`}
+          // This video fills its container via grid placement
+          className={`${className} object-cover w-full h-full`}
           src={videoSrc}
         />
       </Suspense>
     ) : (
       <div
-        className={`${className} bg-cover bg-center bg-no-repeat`}
+        className={`${className} bg-cover bg-center bg-no-repeat w-full h-full`}
         style={{
           backgroundImage: `url('${wallpaperSrc}')`,
           opacity: wallpaperOpacity,

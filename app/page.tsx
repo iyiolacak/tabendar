@@ -1,32 +1,33 @@
 "use client";
 
-import React, { Suspense, useMemo } from "react";
+import React, { Suspense } from "react";
 import { motion } from "framer-motion";
 import { CloudRain } from "lucide-react";
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
 import GitNotificationCenter from "./components/GitNotifCard";
-import Background from "./components/Background";
 
 // Define the notification type for clarity
 interface Notification {
   id: string;
   title: string;
   message: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | undefined;
 }
 
-// Static notifications array (using useMemo to avoid re-creation on each render)
+// Static notifications array (could be moved outside if not dynamic)
 const gitNotifications: Notification[] = [
   {
-    id: "1",
+    id: "7",
     title: "Cloud Abuser",
     message: "Used LLMs 4x more today. OpenAI sends their regards.",
     icon: CloudRain,
   },
-  // Additional notifications can go here.
+  // { id: "3", title: "Commit Clown", message: "50% of your commits are memes. The other 50% are ‘fix typo’.", icon: Laugh },
+  // { id: "4", title: "Push Poet", message: "You push once a week but each commit is a full TED Talk.", icon: ScrollText },
 ];
 
+// A separate Background component encapsulates background logic
 interface BackgroundProps {
   preferVideo: boolean;
   videoSrc?: string;
@@ -35,13 +36,39 @@ interface BackgroundProps {
   wallpaperOpacity?: number;
 }
 
+const Background = React.memo(({ preferVideo, videoSrc, wallpaperSrc, videoOpacity, wallpaperOpacity }: BackgroundProps) => {
+
+ return preferVideo ? (
+    <Suspense fallback="We are loading the video, bro.">
+    <motion.video
+      initial={{ opacity: 0 }}
+      animate={{ opacity: videoOpacity }}
+      transition={{ duration: 1 }}
+      autoPlay
+      muted
+      loop
+      playsInline // Helps performance on mobile
+      className="absolute inset-0 w-full h-full object-cover"
+      src={videoSrc}
+      
+      />
+      </Suspense>
+  ) : (
+    <div
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url('${wallpaperSrc}')`,
+        opacity: wallpaperOpacity,
+      }}
+    />
+  );
+}
+);
+Background.displayName = "Background";
 
 const GlassPage: React.FC = () => {
   // Set to false for wallpaper background; flip to true to use video.
   const preferVideo = false;
-
-  // Memoize the notifications so they don't get recreated on every render.
-  const notifications = useMemo(() => gitNotifications, []);
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
@@ -50,9 +77,9 @@ const GlassPage: React.FC = () => {
 
       {/* Main Content */}
       <main className="relative flex flex-col items-center gap-12 z-10">
-        {/* Notification Center */}
+        {/* Notification Center (absolutely positioned in the top-right) */}
         <div className="absolute top-4 right-4 grid grid-rows-4 gap-3 py-3 px-2">
-          <GitNotificationCenter notifications={notifications} />
+          <GitNotificationCenter notifications={gitNotifications} />
         </div>
 
         {/* Clock Component */}
@@ -71,16 +98,17 @@ const GlassPage: React.FC = () => {
               <div className="flex gap-4">
                 <div className="solid-dark-square flex flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white">
                   <p className="text-xl text-white/80">You mostly coded in</p>
-                  <h2 className="font-semibold text-3xl">Python</h2>
-                  <p className="text-sm text-white/30 h-full">Except today.</p>
+                  <h2 className="font-semibold text-3xl">Python*</h2>
+                  <p className="text-sm mt-3 text-white/30 ">
+                    *Except today.
+                  </p>
                 </div>
                 <div className="relative glass-square flex border-none flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white overflow-hidden">
-                  {/* Background Image (with lazy loading) */}
+                  {/* Background Image */}
                   <img
                     src="/nested_hearts.png"
                     alt="Commit History"
                     className="absolute inset-0 w-full h-full object-cover opacity-50"
-                    loading="lazy"
                   />
 
                   {/* Gradient Overlay */}
