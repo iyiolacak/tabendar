@@ -121,17 +121,21 @@ const GlassPage: React.FC = () => {
                         </div>
                       </div>
                       {
-                      <GitHubNumber
-                        number="7"
-                        randomBrightness={true}
-                        showBackground={true}
-                        withShine={true}
-                        className="flex flex-col items-center justify-center relative transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-125"
-                      />
+                        <GitHubNumber
+                          number="7"
+                          randomBrightness={true}
+                          showBackground={true}
+                          withShine={true}
+                          className="flex flex-col items-center justify-center relative transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-125"
+                        />
                       }
                     </div>
                     {/* Headline overlay */}
                   </div>
+                </div>
+
+                <div className="size-52 p-1 glass-square rounded-lg">
+                  
                 </div>
               </div>
             </div>
