@@ -6,6 +6,8 @@ import { CloudRain } from "lucide-react";
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
 import GitNotificationCenter from "./components/GitNotifCard";
+import AnalogClock from "./components/clock/LiveAnalogClock";
+import { GitHubNumber } from "./components/GithubNumber";
 
 // Define the notification type for clarity
 interface Notification {
@@ -78,7 +80,12 @@ const GlassPage: React.FC = () => {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Layer */}
-      <Background preferVideo={preferVideo} wallpaperSrc="./wallpaper.png" wallpaperOpacity={0.3} videoOpacity={0.3}/>
+      <Background
+        preferVideo={preferVideo}
+        wallpaperSrc="./wallpaper.png"
+        wallpaperOpacity={0.3}
+        videoOpacity={0.3}
+      />
 
       {/* Main Content */}
       <main className="relative flex flex-col items-center gap-12 z-10">
@@ -118,6 +125,7 @@ const GlassPage: React.FC = () => {
                   </h2>
                   <p className="text-sm mt-3 text-white/30 ">*Except today.</p>
                 </div>
+                {/* First commit x days ago Card */}
                 <div className="relative glass-square flex border-none flex-col items-center justify-center p-3 max-h-[11rem] w-fit px-12 rounded-2xl text-white overflow-hidden">
                   {/* Background Image */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -141,13 +149,31 @@ const GlassPage: React.FC = () => {
                     </h2>
                   </div>
                 </div>
+                <div className="solid-dark-square rounded-2xl min-w-[9rem] h-[10rem] flex items-center justify-center relative overflow-hidden">
+                  <div className="flex w-min">
+                    <div className="flex w-full z-20 bg-blue-600">
+                    <AnalogClock />
+                    </div>
+                    <div className="w-32">
+                    <div className="absolute inset-0 bg-red-600" />
+                    <GitHubNumber
+                      number="7"
+                      randomBrightness={true}
+                      showBackground={false}
+                      withShine={true}
+                      className="absolute inset-0 flex items-center justify-center"
+                      />
+                    <div className="relative p-3 flex flex-col text-lg text-center text-white/40">
+                      Believe it or not,
+                      <span>Your productive time is</span>
+                    </div>
+                      </div>
+                  </div>
+                </div>{" "}
               </div>
             </div>
 
             {/* Right Panel: Highlighted Metric */}
-            <div className="solid-dark-square rounded-2xl min-w-[20rem] h-[20rem] flex items-center justify-center">
-              <LiveClock />
-            </div>
           </div>
         </section>
       </main>

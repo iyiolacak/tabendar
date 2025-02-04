@@ -234,3 +234,16 @@ body {
     @apply bg-background text-foreground;
   }
 }
+@keyframes shine {
+  0% { box-shadow: 0px 0px 5px rgba(10, 132, 255, 0.4); }
+  50% { box-shadow: 0px 0px 10px rgba(10, 132, 255, 0.6); }
+  100% { box-shadow: 0px 0px 5px rgba(10, 132, 255, 0.4); }
+}
+
+.animate-shine {
+  animation: shine 2s infinite alternate ease-in-out;
+}
+.glow {
+  /* A soft blue glow */
+  box-shadow: 0 0 8px rgba(10, 132, 255, 0.4);
+}
