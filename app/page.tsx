@@ -149,25 +149,27 @@ const GlassPage: React.FC = () => {
                     </h2>
                   </div>
                 </div>
+
+                {/* Productive hour */}
                 <div className="solid-dark-square rounded-2xl min-w-[9rem] h-[10rem] flex items-center justify-center relative overflow-hidden">
                   <div className="flex w-min">
-                    <div className="flex w-full z-20 bg-blue-600">
-                    <AnalogClock />
+                    <div className="flex w-full z-20">
+                      <AnalogClock />
                     </div>
-                    <div className="w-32">
-                    <div className="absolute inset-0 bg-red-600" />
-                    <GitHubNumber
-                      number="7"
-                      randomBrightness={true}
-                      showBackground={false}
-                      withShine={true}
-                      className="absolute inset-0 flex items-center justify-center"
+                    <div className="relative w-32">
+                      <div className="absolute inset-0" />
+                      <GitHubNumber
+                        number="7"
+                        randomBrightness={true}
+                        showBackground={true}
+                        withShine={true}
+                        className="absolute inset-0 flex items-center justify-center"
                       />
-                    <div className="relative p-3 flex flex-col text-lg text-center text-white/40">
-                      Believe it or not,
-                      <span>Your productive time is</span>
-                    </div>
+                      <div className="relative p-3 flex flex-col text-lg text-center text-white/40">
+                        Believe it or not,
+                        <span>Your productive time is</span>
                       </div>
+                    </div>
                   </div>
                 </div>{" "}
               </div>

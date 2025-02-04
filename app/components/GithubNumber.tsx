@@ -113,12 +113,12 @@ const DIGIT_PATTERNS: DigitPatternsMap = {
 };
 
 const GREEN_LEVELS: GreenLevelsMap = {
-  0: "bg-[#0a1a2f]",
-  1: "bg-[#0B2A52]",
-  2: "bg-[#1e497d]",
-  3: "bg-[#2d6bb2]",
-  4: "bg-[#0a84ff]",
-  5: "bg-[#0a84ff]",
+  0: "bg-white/10",
+  1: "bg-white/30",
+  2: "bg-white/40",
+  3: "bg-white/50",
+  4: "bg-white/70",
+  5: "bg-white",
 };
 
 const getRandomBrightness = (): number => Math.floor(Math.random() * 5) + 1;
@@ -153,7 +153,7 @@ const GitHubDigit: React.FC<GitHubDigitProps> = ({
                 key={`${rowIndex}-${cellIndex}`}
                 className={`
                   w-4 h-4
-                  ${cell ? GREEN_LEVELS[squareLevel] : showBackground ? 'bg-gray-100/10' : 'bg-transparent'}
+                  ${cell ? GREEN_LEVELS[squareLevel] : showBackground ? 'bg-gray-50/5' : 'bg-transparent'}
                   rounded-sm
                   transition-shadow duration-300
                   hover:opacity-90
