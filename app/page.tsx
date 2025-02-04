@@ -48,7 +48,7 @@ const GlassPage: React.FC = () => {
       {/* Main Content */}
       {/*
        */}
-      <main className="z-20 w-full flex flex-col items-center justify-center gap-12">
+      <main className="z-20 min-w-full lg:px-28 flex flex-col items-center justify-center gap-12">
         <Clock />
 
         {/* Glass Container */}
@@ -103,10 +103,9 @@ const GlassPage: React.FC = () => {
                 </div>
 
                 {/* Productive Hour Card */}
-                <div className="bg-red-600 rounded-2xl min-w-[11rem] flex items-center justify-center relative overflow-hidden">
+                <div className="solid-dark-square pt-2 rounded-2xl min-w-[11rem] flex items-center justify-center relative overflow-hidden">
                   <div className="flex flex-col px-2">
                     <div className="flex w-full z-20">
-                      <AnalogClock />
                     </div>
                     <div className="relative w-32">
                       <div className="relative inset-0" />
@@ -118,8 +117,7 @@ const GlassPage: React.FC = () => {
                         className="relative inset-0 flex items-center justify-center"
                       />
                       <div className="relative z-50 p-3 flex flex-col text-lg text-center text-black">
-                        Believe it or not,
-                        <span>Your productive time is</span>
+                        <span>Your most productive time</span>
                       </div>
                     </div>
                   </div>
