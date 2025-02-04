@@ -6,6 +6,7 @@ import { CloudRain } from "lucide-react";
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
 import GitNotificationCenter from "./components/GitNotifCard";
+import Background from "./components/Background";
 
 // Define the notification type for clarity
 interface Notification {
@@ -34,40 +35,6 @@ interface BackgroundProps {
   wallpaperOpacity?: number;
 }
 
-// Memoized Background component to prevent unnecessary re-renders
-const Background = React.memo(
-  ({
-    preferVideo,
-    videoSrc = "./video.mp4",
-    wallpaperSrc = "wallpaper.png",
-    videoOpacity = 0.4,
-    wallpaperOpacity = 0.2,
-  }: BackgroundProps) => {
-    return preferVideo ? (
-      <Suspense fallback="We are loading the video, bro.">
-        <motion.video
-          initial={{ opacity: 0 }}
-          animate={{ opacity: videoOpacity }}
-          transition={{ duration: 1 }}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          src={videoSrc}
-        />
-      </Suspense>
-    ) : (
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('${wallpaperSrc}')`,
-          opacity: wallpaperOpacity,
-        }}
-      />
-    );
-  }
-);
 
 const GlassPage: React.FC = () => {
   // Set to false for wallpaper background; flip to true to use video.
