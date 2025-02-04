@@ -244,3 +244,24 @@ body {
 .glow {
   animation: shine 2s infinite alternate ease-in-out;
 }
+
+.glassmorphic-loading {
+  background: rgba(255, 255, 255, 0.1); /* Soft translucent white */
+  backdrop-filter: blur(3px); /* Minimal blur */
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+  animation: fade-pulse 1.5s infinite ease-in-out;
+}
+
+/* Smooth pulse animation */
+@keyframes fade-pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

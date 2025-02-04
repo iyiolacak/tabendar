@@ -1,6 +1,11 @@
 import React from "react";
 
-const BookCard = ({ title, cover }) => {
+interface BookCardProps {
+  cover: string;
+  onClick: () => void;
+}
+
+const BookCard: React.FC<BookCardProps> = ({ cover, onClick }) => {
   return (
     <div className="flex flex-col items-center">
       {/* Icon Container */}
@@ -14,13 +19,16 @@ const BookCard = ({ title, cover }) => {
             group-hover:scale-105 group-hover:-rotate-1
           "
         >
-          {/* Book Cover */}
+          {/* Book Cover (Monochrome) */}
           <div
             className="absolute inset-0 bg-cover bg-center rounded-md"
-            style={{ backgroundImage: `url(${cover})` }}
+            style={{
+              backgroundImage: `url(${cover})`,
+              filter: "grayscale(100%)", // Monochrome effect
+            }}
           ></div>
 
-          {/* Book Spine: a dark, subtle gradient with inner shadow for depth */}
+          {/* Book Spine */}
           <div
             className="
               absolute top-0 left-0 w-6 h-full 
@@ -29,7 +37,7 @@ const BookCard = ({ title, cover }) => {
             "
           ></div>
 
-          {/* Page Edge Details: layered gradients to simulate realistic page depth */}
+          {/* Page Edge Details */}
           <div className="absolute top-0 left-[6px] w-2 h-full bg-gradient-to-b from-gray-300 to-gray-200"></div>
           <div className="absolute top-0 left-[8px] w-2 h-full bg-gradient-to-b from-gray-400 to-gray-300"></div>
           <div className="absolute top-0 left-[10px] w-2 h-full bg-gradient-to-b from-gray-500 to-gray-400"></div>
@@ -43,32 +51,41 @@ const BookCard = ({ title, cover }) => {
             "
           ></div>
 
-          {/* Title Overlay with a smooth gradient */}
-          <div
+          {/* Notion Button Overlay */}
+          <button
+            onClick={onClick}
             className="
-              absolute bottom-0 w-full 
-              bg-gradient-to-t from-black/70 via-transparent to-transparent 
-              text-white text-center py-1 text-sm font-semibold
+              absolute inset-0 flex flex-col items-center justify-center
+              focus:outline-none
             "
           >
-            {title}
-          </div>
+            <div className="flex items-center flex-col justify-center ml-3">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                alt="Notion Logo"
+                className="w-10 h-10"
+              />
+              <span className="text-black backdrop-shadow-md text-xs mt-1 ml-3 font-medium">
+                Notebook
+              </span>
+            </div>
+          </button>
         </div>
       </div>
 
-      {/* Simulated Reflection Element */}
-      <div className="mt-2 w-24 h-8 relative">
-        {/* Reflected image of the book cover */}
+      {/* Little Pages Depth at the Bottom */}
+      <div className="w-24 h-8 relative">
         <div
           className="
             absolute w-full h-full bg-cover bg-center rounded-md
             transform scale-y-[-1] opacity-30 
+            filter grayscale(100%) blur(2px)
           "
           style={{
             backgroundImage: `url(${cover})`,
-            filter: "blur(2px)"
           }}
         ></div>
+        {/* Added little pages depth at the bottom */}
       </div>
     </div>
   );

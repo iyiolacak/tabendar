@@ -26,7 +26,7 @@ const Clock: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <p className="text-2xl font-medium text-white/80">{dateString}</p>
+      <p className="text-xl font-medium text-white/80 -mb-8">{dateString}</p>
       <div className="flex items-center justify-center gap-x-6">
         <h1 className="text-[11rem] font-chintzy antialiased text-white/80">
           {hours}

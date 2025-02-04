@@ -2,13 +2,13 @@
 
 import React from "react";
 import { CloudRain } from "lucide-react";
-import Background from "./components/Background";
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
 import GitNotificationCenter from "./components/GitNotifCard";
 import AnalogClock from "./components/clock/LiveAnalogClock";
 import { GitHubNumber } from "./components/GithubNumber";
 import BookCover from "./components/BookCover";
+import StickerBoard from "./components/Background";
 
 export interface Notification {
   id: string;
@@ -33,14 +33,13 @@ const GlassPage: React.FC = () => {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Layer */}
-      <Background
+      <StickerBoard
         preferVideo={preferVideo}
-        wallpaperSrc="./wallpaper.png"
+        wallpaperSrc="/wallpaper.png"  // note the leading slash!
         wallpaperOpacity={0.3}
         videoOpacity={0.3}
         className="absolute inset-0"
       />
-
       {/* Notification Center */}
       <div className="absolute top-4 right-4 grid grid-rows-4 gap-3 py-3 px-2">
         <GitNotificationCenter notifications={gitNotifications} />
@@ -49,7 +48,7 @@ const GlassPage: React.FC = () => {
       {/* Main Content */}
       {/*
        */}
-      <main className="z-20 min-w-full lg:px-28 flex flex-col items-center justify-center gap-12">
+      <main className="z-20 min-w-full lg:px-28 flex flex-col items-center justify-center mt-12 gap-12">
         <Clock />
 
         {/* Glass Container */}
@@ -69,7 +68,7 @@ const GlassPage: React.FC = () => {
               </div>
 
               <div className="flex gap-4">
-                <BookCover/>
+                <BookCover title={"INLFUENCE"} />
                 {/* Python Card */}
                 <div className="group solid-dark-square flex flex-col items-center justify-center p-3 h-[15rem] w-fit px-12 rounded-2xl text-white">
                   <div className="size-16 border border-neutral-800 rounded-lg">
@@ -107,22 +106,31 @@ const GlassPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Productive Hour Card */}
-                <div className="solid-dark-square pt-2 rounded-2xl min-w-[11rem] flex items-center justify-center relative overflow-hidden">
-                  <div className="relative w-32">
-                    <div className="relative inset-0" />
-                    <GitHubNumber
-                      number="7"
-                      randomBrightness={true}
-                      showBackground={true}
-                      withShine={true}
-                      className="relative inset-0 flex items-center justify-center"
-                    />
-                    <div className="relative z-50 p-3 flex flex-col text-lg text-center text-black">
-                      <span>Your most productive time</span>
-                    </div>
-                  </div>
-                </div>
+                <div className="solid-dark-square group rounded-2xl min-w-[12rem] flex items-center justify-center relative overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-105">
+  <div className="">
+    {/* GitHubNumber acts as the dynamic background and now centers its own content */}
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col items-center justify-center">
+        <div className="flex h-14 px-2 bg-neutral-800 rounded-2xl items-center transition-all duration-300 ease-in-out">
+          <h1 className="text-md font-bold uppercase text-white drop-shadow-xl">
+            Productive Hour
+          </h1>
+        </div>
+      </div>
+      <GitHubNumber
+        number="7"
+        randomBrightness={true}
+        showBackground={true}
+        withShine={true}
+        className="flex flex-col items-center justify-center relative transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-125"
+      />
+    </div>
+    {/* Headline overlay */}
+  </div>
+</div>
+
+
+                
               </div>
             </div>
             {/* Right Panel (if needed) */}
