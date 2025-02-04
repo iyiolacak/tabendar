@@ -19,17 +19,23 @@ const AnalogClock = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="relative w-[9rem] h-[9rem] solid-dark-square rounded-2xl p-1">
+      <div className="relative w-[10rem] h-[10rem] glass-square rounded-2xl">
         {/* Background clock image */}
         <img
           src="./clock_whited.png"
           alt="Clock face"
-          className="absolute top-0 left-0 w-full h-full"
+          className="absolute z-10 top-0 left-0 w-full h-full"
+        />
+        <video
+          className="absolute inset-0 z-0 bg-red-200 blur-sm w-full h-full opacity-40"
+          src="./clock_nest_loop.mp4"
+          loop
+          autoPlay
         />
 
         {/* Overlay with hands */}
         <svg
-          className="absolute top-0 left-0 w-full h-full"
+          className="absolute z-20 top-0 left-0 w-full h-full"
           viewBox="0 0 400 400"
         >
           {/* Hour hand */}

@@ -5,11 +5,12 @@
 /* -----------------------------------------
    Global Styles
 ----------------------------------------- */
+html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   background: linear-gradient(135deg, #161616, #2c2c2c);
-  background-attachment: fixed;
 }
 ::selection {
   background-color: #f1ea62; /* macOS default blue accent */

@@ -32,13 +32,13 @@ const Background = React.memo(
           loop
           playsInline
           // This video fills its container via grid placement
-          className={`${className} object-cover z-10 w-full h-full`}
+          className={`${className} object-cover z-10 max-w-full max-h-full`}
           src={videoSrc}
         />
       </Suspense>
     ) : (
       <div
-        className={`${className} bg-cover z-10 bg-center bg-no-repeat w-full h-full`}
+        className={`${className} z-10 bg-cover bg-center bg-no-repeat max-w-full max-h-full`}
         style={{
           backgroundImage: `url('${wallpaperSrc}')`,
           opacity: wallpaperOpacity,
