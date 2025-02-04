@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense, useMemo } from "react";
 import { motion } from "framer-motion";
 import { CloudRain } from "lucide-react";
 import Clock from "./components/clock/Clock";
@@ -15,7 +15,7 @@ interface Notification {
   icon: React.ElementType;
 }
 
-// Static notifications array (could be moved outside if not dynamic)
+// Static notifications array (using useMemo to avoid re-creation on each render)
 const gitNotifications: Notification[] = [
   {
     id: "1",
@@ -23,11 +23,9 @@ const gitNotifications: Notification[] = [
     message: "Used LLMs 4x more today. OpenAI sends their regards.",
     icon: CloudRain,
   },
-  // { id: "3", title: "Commit Clown", message: "50% of your commits are memes. The other 50% are ‘fix typo’.", icon: Laugh },
-  // { id: "4", title: "Push Poet", message: "You push once a week but each commit is a full TED Talk.", icon: ScrollText },
+  // Additional notifications can go here.
 ];
 
-// A separate Background component encapsulates background logic
 interface BackgroundProps {
   preferVideo: boolean;
   videoSrc?: string;
@@ -36,38 +34,47 @@ interface BackgroundProps {
   wallpaperOpacity?: number;
 }
 
-const Background: React.FC<BackgroundProps> = ({
-  preferVideo,
-  videoSrc = "./video.mp4",
-  wallpaperSrc = "wallpaper.png",
-  videoOpacity = 0.4,
-  wallpaperOpacity = 0.2,
-}) => {
-  return preferVideo ? (
-    <motion.video
-      initial={{ opacity: 0 }}
-      animate={{ opacity: videoOpacity }}
-      transition={{ duration: 1 }}
-      autoPlay
-      muted
-      loop
-      className="absolute inset-0 w-full h-full object-cover"
-      src={videoSrc}
-    />
-  ) : (
-    <div
-      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url('${wallpaperSrc}')`,
-        opacity: wallpaperOpacity,
-      }}
-    />
-  );
-};
+// Memoized Background component to prevent unnecessary re-renders
+const Background = React.memo(
+  ({
+    preferVideo,
+    videoSrc = "./video.mp4",
+    wallpaperSrc = "wallpaper.png",
+    videoOpacity = 0.4,
+    wallpaperOpacity = 0.2,
+  }: BackgroundProps) => {
+    return preferVideo ? (
+      <Suspense fallback="We are loading the video, bro.">
+        <motion.video
+          initial={{ opacity: 0 }}
+          animate={{ opacity: videoOpacity }}
+          transition={{ duration: 1 }}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          src={videoSrc}
+        />
+      </Suspense>
+    ) : (
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('${wallpaperSrc}')`,
+          opacity: wallpaperOpacity,
+        }}
+      />
+    );
+  }
+);
 
 const GlassPage: React.FC = () => {
   // Set to false for wallpaper background; flip to true to use video.
   const preferVideo = false;
+
+  // Memoize the notifications so they don't get recreated on every render.
+  const notifications = useMemo(() => gitNotifications, []);
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
@@ -76,9 +83,9 @@ const GlassPage: React.FC = () => {
 
       {/* Main Content */}
       <main className="relative flex flex-col items-center gap-12 z-10">
-        {/* Notification Center (absolutely positioned in the top-right) */}
+        {/* Notification Center */}
         <div className="absolute top-4 right-4 grid grid-rows-4 gap-3 py-3 px-2">
-          <GitNotificationCenter notifications={gitNotifications} />
+          <GitNotificationCenter notifications={notifications} />
         </div>
 
         {/* Clock Component */}
@@ -98,16 +105,15 @@ const GlassPage: React.FC = () => {
                 <div className="solid-dark-square flex flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white">
                   <p className="text-xl text-white/80">You mostly coded in</p>
                   <h2 className="font-semibold text-3xl">Python</h2>
-                  <p className="text-sm text-white/30 justify-end h-full ">
-                    Except today.
-                  </p>
+                  <p className="text-sm text-white/30 h-full">Except today.</p>
                 </div>
                 <div className="relative glass-square flex border-none flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white overflow-hidden">
-                  {/* Background Image */}
+                  {/* Background Image (with lazy loading) */}
                   <img
                     src="/nested_hearts.png"
                     alt="Commit History"
                     className="absolute inset-0 w-full h-full object-cover opacity-50"
+                    loading="lazy"
                   />
 
                   {/* Gradient Overlay */}

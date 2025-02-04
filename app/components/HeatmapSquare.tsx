@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 interface HeatmapSquareProps {
   level: number;
@@ -13,25 +13,14 @@ const levelColors: { [key: number]: string } = {
 };
 
 const HeatmapSquare: React.FC<HeatmapSquareProps> = ({ level }) => {
-  const [clientLevel, setClientLevel] = useState<number | null>(null);
-
-  useEffect(() => {
-    setClientLevel(level);
-  }, [level]);
-
-  if (clientLevel === null) {
-    return <div className="size-4 rounded-sm bg-[#0a1a2f]"></div>; // Placeholder until hydration is complete
-  }
-
-  const baseStyle =
-    "size-4 rounded-sm transition-all duration-200 brightness-125";
-  const colorClass = levelColors[clientLevel] || levelColors[0];
+  const baseStyle = "size-4 rounded-sm transition-all duration-200 brightness-125";
+  const colorClass = levelColors[level] || levelColors[0];
 
   return (
-    <div className={`${baseStyle} ${colorClass} hover:brightness-150 hover:scale-110 `}>
-      <span className="sr-only">{`Contribution level: ${clientLevel}`}</span>
+    <div className={`${baseStyle} ${colorClass} hover:brightness-150 hover:scale-110`}>
+      <span className="sr-only">{`Contribution level: ${level}`}</span>
     </div>
   );
 };
 
-export default HeatmapSquare;
+export default React.memo(HeatmapSquare);

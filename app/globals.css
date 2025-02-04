@@ -11,6 +11,11 @@ body {
   background: linear-gradient(135deg, #161616, #2c2c2c);
   background-attachment: fixed;
 }
+::selection {
+  background-color: #f1ea62; /* macOS default blue accent */
+  color: #221f1f; /* White text */
+}
+
 
 :root {
   --background: 0 0% 100%;
