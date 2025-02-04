@@ -78,7 +78,7 @@ const GlassPage: React.FC = () => {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Layer */}
-      <Background preferVideo={preferVideo} />
+      <Background preferVideo={preferVideo} wallpaperSrc="./wallpaper.png" wallpaperOpacity={0.3} videoOpacity={0.3}/>
 
       {/* Main Content */}
       <main className="relative flex flex-col items-center gap-12 z-10">
@@ -146,7 +146,7 @@ const GlassPage: React.FC = () => {
 
             {/* Right Panel: Highlighted Metric */}
             <div className="solid-dark-square rounded-2xl min-w-[20rem] h-[20rem] flex items-center justify-center">
-              <p className="font-chintzy text-6xl text-blue-700">4017</p>
+              <LiveClock />
             </div>
           </div>
         </section>
