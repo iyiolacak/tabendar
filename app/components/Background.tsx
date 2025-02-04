@@ -64,15 +64,12 @@ interface Sticker {
   y: number;
 }
 
-interface StickerBoardProps extends BackgroundProps {}
-
-const StickerBoard: React.FC<StickerBoardProps> = ({
+const StickerBoard: React.FC<BackgroundProps> = ({
   preferVideo,
   videoSrc,
   wallpaperSrc,
   wallpaperOpacity,
   videoOpacity,
-  className,
 }) => {
   const [stickers, setStickers] = useState<Sticker[]>([]);
   const [isDraggingOver, setIsDraggingOver] = useState(false);
@@ -161,7 +158,7 @@ const StickerBoard: React.FC<StickerBoardProps> = ({
         wallpaperSrc={wallpaperSrc}
         wallpaperOpacity={wallpaperOpacity}
         videoOpacity={videoOpacity}
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
       />
 
       {/* Drop Highlight Overlay */}
