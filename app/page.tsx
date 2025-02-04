@@ -85,11 +85,11 @@ const GlassPage: React.FC = () => {
         <Clock />
 
         {/* Glass Container */}
-        <section className="relative flex flex-col glass-square rounded-3xl p-8 gap-4">
+        <section className="relative flex flex-col glass-square rounded-3xl p-8 h-min gap-4">
           {/* Drawer Handle */}
-          <div className="absolute inset-0 w-1/5 h-2 bg-white rounded-md z-50" />
+          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-32 h-2 bg-white rounded-md z-50" />
 
-          <div className="flex w-full h-full gap-4">
+          <div className="flex w-full gap-4">
             {/* Left Panel: Contributions and Stats */}
             <div className="grid grid-rows-4 gap-4 w-max">
               <ContributionsHeatmap />
