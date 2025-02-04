@@ -153,7 +153,7 @@ const GitHubDigit: React.FC<GitHubDigitProps> = ({
                 key={`${rowIndex}-${cellIndex}`}
                 className={`
                   w-4 h-4
-                  ${cell ? GREEN_LEVELS[squareLevel] : showBackground ? 'bg-gray-50/5' : 'bg-transparent'}
+                  ${cell ? GREEN_LEVELS[squareLevel] : showBackground ? 'bg-neutral-800/25' : 'bg-transparent'}
                   rounded-sm
                   transition-shadow duration-300
                   hover:opacity-90

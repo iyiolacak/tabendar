@@ -1,23 +1,27 @@
 "use client";
 
-import React, { Suspense } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import { CloudRain } from "lucide-react";
+
+// Import our modularized Background component
+import Background from "./components/Background";
+
+// Import other components (assumed to already exist in your project)
 import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
 import GitNotificationCenter from "./components/GitNotifCard";
 import AnalogClock from "./components/clock/LiveAnalogClock";
 import { GitHubNumber } from "./components/GithubNumber";
 
-// Define the notification type for clarity
-interface Notification {
+// Define the notification type for clarity (export if needed elsewhere)
+export interface Notification {
   id: string;
   title: string;
   message: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | undefined;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
-// Static notifications array (could be moved outside if not dynamic)
+// Static notifications array (this can also be extracted if reused)
 const gitNotifications: Notification[] = [
   {
     id: "7",
@@ -25,56 +29,11 @@ const gitNotifications: Notification[] = [
     message: "Used LLMs 4x more today. OpenAI sends their regards.",
     icon: CloudRain,
   },
-  // { id: "3", title: "Commit Clown", message: "50% of your commits are memes. The other 50% are ‘fix typo’.", icon: Laugh },
-  // { id: "4", title: "Push Poet", message: "You push once a week but each commit is a full TED Talk.", icon: ScrollText },
+  // Additional notifications can be added here
 ];
 
-// A separate Background component encapsulates background logic
-interface BackgroundProps {
-  preferVideo: boolean;
-  videoSrc?: string;
-  wallpaperSrc?: string;
-  videoOpacity?: number;
-  wallpaperOpacity?: number;
-}
-
-const Background = React.memo(
-  ({
-    preferVideo,
-    videoSrc,
-    wallpaperSrc,
-    videoOpacity,
-    wallpaperOpacity,
-  }: BackgroundProps) => {
-    return preferVideo ? (
-      <Suspense fallback="We are loading the video, bro.">
-        <motion.video
-          initial={{ opacity: 0 }}
-          animate={{ opacity: videoOpacity }}
-          transition={{ duration: 1 }}
-          autoPlay
-          muted
-          loop
-          playsInline // Helps performance on mobile
-          className="absolute inset-0 w-full h-full object-cover"
-          src={videoSrc}
-        />
-      </Suspense>
-    ) : (
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('${wallpaperSrc}')`,
-          opacity: wallpaperOpacity,
-        }}
-      />
-    );
-  }
-);
-Background.displayName = "Background";
-
 const GlassPage: React.FC = () => {
-  // Set to false for wallpaper background; flip to true to use video.
+  // Set to false for wallpaper background; change to true for video background.
   const preferVideo = false;
 
   return (
@@ -85,18 +44,18 @@ const GlassPage: React.FC = () => {
         wallpaperSrc="./wallpaper.png"
         wallpaperOpacity={0.3}
         videoOpacity={0.3}
+        className="absolute inset-0"
       />
 
       {/* Main Content */}
-      <main className="relative flex flex-col items-center gap-12 z-10">
-        {/* Notification Center (absolutely positioned in the top-right) */}
+      <main className="z-20 flex flex-col items-center justify-center gap-12">
+        {" "}
+        {/* Notification Center */}
         <div className="absolute top-4 right-4 grid grid-rows-4 gap-3 py-3 px-2">
           <GitNotificationCenter notifications={gitNotifications} />
         </div>
-
         {/* Clock Component */}
         <Clock />
-
         {/* Glass Container */}
         <section className="relative flex flex-col glass-square rounded-3xl p-8 h-min gap-4">
           {/* Drawer Handle */}
@@ -108,6 +67,7 @@ const GlassPage: React.FC = () => {
               <ContributionsHeatmap />
 
               <div className="flex gap-4">
+                {/* Example Card */}
                 <div className="group solid-dark-square flex flex-col items-center justify-center p-3 h-[15rem] w-fit px-12 rounded-2xl text-white">
                   <div className="size-16 border border-neutral-800 rounded-lg">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -125,20 +85,16 @@ const GlassPage: React.FC = () => {
                   </h2>
                   <p className="text-sm mt-3 text-white/30 ">*Except today.</p>
                 </div>
-                {/* First commit x days ago Card */}
+
+                {/* First commit card */}
                 <div className="relative glass-square flex border-none flex-col items-center justify-center p-3 max-h-[11rem] w-fit px-12 rounded-2xl text-white overflow-hidden">
-                  {/* Background Image */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/nested_hearts.png"
                     alt="Commit History"
                     className="absolute inset-0 w-full h-full object-cover opacity-50"
                   />
-
-                  {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50"></div>
-
-                  {/* Text Content */}
                   <div className="z-10 text-center">
                     <p className="text-xl shadow-2xl">
                       Your first commit was{" "}
@@ -150,9 +106,15 @@ const GlassPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Productive hour */}
-                <div className="solid-dark-square rounded-2xl min-w-[9rem] h-[10rem] flex items-center justify-center relative overflow-hidden">
-                  <div className="flex w-min">
+                {/* Productive hour card */}
+                <div className="glass-square rounded-2xl min-w-[9rem] h-[10rem] flex items-center justify-center relative overflow-hidden">
+                  <div className="flex w-min py-12">
+                    <video
+                      className="bg-red-200 blur-sm w-full h-full opacity-40"
+                      src="./clock_nest_loop.mp4"
+                      loop
+                      autoPlay
+                    />
                     <div className="flex w-full z-20">
                       <AnalogClock />
                     </div>
@@ -165,17 +127,17 @@ const GlassPage: React.FC = () => {
                         withShine={true}
                         className="absolute inset-0 flex items-center justify-center"
                       />
-                      <div className="relative p-3 flex flex-col text-lg text-center text-white/40">
+                      <div className="relative z-50 p-3 flex flex-col text-lg text-center text-black">
                         Believe it or not,
                         <span>Your productive time is</span>
                       </div>
                     </div>
                   </div>
-                </div>{" "}
+                </div>
               </div>
             </div>
 
-            {/* Right Panel: Highlighted Metric */}
+            {/* Right Panel: Highlighted Metric (if any) */}
           </div>
         </section>
       </main>
