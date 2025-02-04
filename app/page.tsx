@@ -36,33 +36,38 @@ interface BackgroundProps {
   wallpaperOpacity?: number;
 }
 
-const Background = React.memo(({ preferVideo, videoSrc, wallpaperSrc, videoOpacity, wallpaperOpacity }: BackgroundProps) => {
-
- return preferVideo ? (
-    <Suspense fallback="We are loading the video, bro.">
-    <motion.video
-      initial={{ opacity: 0 }}
-      animate={{ opacity: videoOpacity }}
-      transition={{ duration: 1 }}
-      autoPlay
-      muted
-      loop
-      playsInline // Helps performance on mobile
-      className="absolute inset-0 w-full h-full object-cover"
-      src={videoSrc}
-      
-      />
+const Background = React.memo(
+  ({
+    preferVideo,
+    videoSrc,
+    wallpaperSrc,
+    videoOpacity,
+    wallpaperOpacity,
+  }: BackgroundProps) => {
+    return preferVideo ? (
+      <Suspense fallback="We are loading the video, bro.">
+        <motion.video
+          initial={{ opacity: 0 }}
+          animate={{ opacity: videoOpacity }}
+          transition={{ duration: 1 }}
+          autoPlay
+          muted
+          loop
+          playsInline // Helps performance on mobile
+          className="absolute inset-0 w-full h-full object-cover"
+          src={videoSrc}
+        />
       </Suspense>
-  ) : (
-    <div
-      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url('${wallpaperSrc}')`,
-        opacity: wallpaperOpacity,
-      }}
-    />
-  );
-}
+    ) : (
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('${wallpaperSrc}')`,
+          opacity: wallpaperOpacity,
+        }}
+      />
+    );
+  }
 );
 Background.displayName = "Background";
 
@@ -92,19 +97,30 @@ const GlassPage: React.FC = () => {
 
           <div className="flex w-full gap-4">
             {/* Left Panel: Contributions and Stats */}
-            <div className="grid grid-rows-4 gap-4 w-max">
+            <div className="grid grid-rows-4 gap-x-4 w-max">
               <ContributionsHeatmap />
 
               <div className="flex gap-4">
-                <div className="solid-dark-square flex flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white">
-                  <p className="text-xl text-white/80">You mostly coded in</p>
-                  <h2 className="font-semibold text-3xl">Python*</h2>
-                  <p className="text-sm mt-3 text-white/30 ">
-                    *Except today.
+                <div className="group solid-dark-square flex flex-col items-center justify-center p-3 h-[15rem] w-fit px-12 rounded-2xl text-white">
+                  <div className="size-16 border border-neutral-800 rounded-lg">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/python_mono.png"
+                      alt="python_monochrome"
+                      className="w-full h-full object-contain rounded-lg"
+                    />
+                  </div>
+                  <p className="text-xl text-white/80 mb-1 mt-3">
+                    You mostly coded in
                   </p>
+                  <h2 className="font-semibold text-2xl transition-colors group-hover:text-black group-hover:bg-[#f1ea62]">
+                    Python*
+                  </h2>
+                  <p className="text-sm mt-3 text-white/30 ">*Except today.</p>
                 </div>
-                <div className="relative glass-square flex border-none flex-col items-center justify-center p-3 min-h-[11rem] w-fit px-12 rounded-2xl text-white overflow-hidden">
+                <div className="relative glass-square flex border-none flex-col items-center justify-center p-3 max-h-[11rem] w-fit px-12 rounded-2xl text-white overflow-hidden">
                   {/* Background Image */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/nested_hearts.png"
                     alt="Commit History"
