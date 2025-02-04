@@ -8,6 +8,7 @@ import ContributionsHeatmap from "./components/ContributionsHeatmap";
 import GitNotificationCenter from "./components/GitNotifCard";
 import AnalogClock from "./components/clock/LiveAnalogClock";
 import { GitHubNumber } from "./components/GithubNumber";
+import BookCover from "./components/BookCover";
 
 export interface Notification {
   id: string;
@@ -30,7 +31,7 @@ const GlassPage: React.FC = () => {
   const preferVideo = false;
 
   return (
-    <div className="relative bg-blue-700/40 min-h-screen w-full flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Layer */}
       <Background
         preferVideo={preferVideo}
@@ -61,11 +62,15 @@ const GlassPage: React.FC = () => {
 
           <div className="flex w-full gap-4">
             {/* Left Panel: Contributions and Stats */}
-            <div className="grid grid-rows-1 mb-4 min-w-content">
-              <ContributionsHeatmap />
+            <div className="grid grid-rows-1 mb-4 gap-y-3 h-full min-w-content">
+              <div className="flex flex-row gap-x-4 h-full">
+                <ContributionsHeatmap />
+                <AnalogClock />
+              </div>
 
               <div className="flex gap-4">
-                {/* Example Card */}
+                <BookCover/>
+                {/* Python Card */}
                 <div className="group solid-dark-square flex flex-col items-center justify-center p-3 h-[15rem] w-fit px-12 rounded-2xl text-white">
                   <div className="size-16 border border-neutral-800 rounded-lg">
                     <img
@@ -104,21 +109,17 @@ const GlassPage: React.FC = () => {
 
                 {/* Productive Hour Card */}
                 <div className="solid-dark-square pt-2 rounded-2xl min-w-[11rem] flex items-center justify-center relative overflow-hidden">
-                  <div className="flex flex-col px-2">
-                    <div className="flex w-full z-20">
-                    </div>
-                    <div className="relative w-32">
-                      <div className="relative inset-0" />
-                      <GitHubNumber
-                        number="7"
-                        randomBrightness={true}
-                        showBackground={true}
-                        withShine={true}
-                        className="relative inset-0 flex items-center justify-center"
-                      />
-                      <div className="relative z-50 p-3 flex flex-col text-lg text-center text-black">
-                        <span>Your most productive time</span>
-                      </div>
+                  <div className="relative w-32">
+                    <div className="relative inset-0" />
+                    <GitHubNumber
+                      number="7"
+                      randomBrightness={true}
+                      showBackground={true}
+                      withShine={true}
+                      className="relative inset-0 flex items-center justify-center"
+                    />
+                    <div className="relative z-50 p-3 flex flex-col text-lg text-center text-black">
+                      <span>Your most productive time</span>
                     </div>
                   </div>
                 </div>

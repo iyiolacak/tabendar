@@ -16,19 +16,19 @@ const AnalogClock = () => {
   return (
     // Remove min-h-screen here so the clock is only as large as needed.
     <div className="flex items-center justify-center">
-      <div className="relative w-[10rem] h-[10rem] glass-square rounded-2xl">
+      <div className="relative w-[10rem] h-full solid-dark-square rounded-2xl">
         {/* Background clock image */}
         <img
           src="./clock_whited.png"
           alt="Clock face"
           className="absolute z-10 top-0 left-0 w-full h-full object-cover shadow-2xl shadow-black"
         />
-        <video
+        {/* <video
           className="absolute inset-0 z-0 bg-red-200 blur-sm w-full h-full opacity-40"
           src="./clock_nest_loop.mp4"
           loop
           muted
-        />
+        /> */}
 
         {/* Overlay with hands */}
         <svg
