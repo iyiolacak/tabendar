@@ -179,7 +179,7 @@ const StickerBoard: React.FC<StickerBoardProps> = ({
             key={sticker.id}
             src={sticker.src}
             alt="sticker"
-            className="absolute cursor-move z-10"
+            className="absolute cursor-move z-50"
             drag
             dragConstraints={boardRef}
             dragElastic={0.1}
