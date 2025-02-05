@@ -16,7 +16,7 @@ const levelColors: { [key: number]: string } = {
 
 const HeatmapSquare: React.FC<HeatmapSquareProps> = ({ level, isLoading }) => {
   const baseStyle =
-    "size-4 rounded-sm transition-all duration-500 brightness-125";
+    "size-4 rounded-sm transition-all brightness-125";
 
   const colorClass = isLoading ? levelColors[99] : levelColors[level];  // Corrected line
 

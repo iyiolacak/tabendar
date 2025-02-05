@@ -17,7 +17,6 @@ body {
   color: #221f1f; /* White text */
 }
 
-
 :root {
   --background: 0 0% 100%;
   --foreground: 0 0% 3.9%;
@@ -80,6 +79,7 @@ body {
     font-style: normal;
   }
 }
+
 /* -----------------------------------------
    Layout Containers
 ----------------------------------------- */
@@ -87,9 +87,6 @@ body {
   @apply flex items-center justify-center min-h-screen;
 }
 
-/*
-  Solid Window Instance
-*/
 /* -----------------------------------------
    Solid Dark Window
 ----------------------------------------- */
@@ -102,9 +99,7 @@ body {
   overflow: hidden;
 }
 
-/* -----------------------------------------
-   Directional Highlight (Edges Effect)
------------------------------------------ */
+/* Directional Highlight (Edges Effect) */
 .solid-dark-square::before {
   content: "";
   position: absolute;
@@ -119,9 +114,7 @@ body {
   mix-blend-mode: screen;
 }
 
-/* -----------------------------------------
-   Noise Overlay (Subtle Texture)
------------------------------------------ */
+/* Noise Overlay (Subtle Texture)
 .solid-dark-square::after {
   content: "";
   position: absolute;
@@ -138,7 +131,7 @@ body {
   pointer-events: none;
   animation: noiseMove 8s infinite linear;
   mix-blend-mode: overlay;
-}
+} */
 
 /* -----------------------------------------
    Glassmorphic Window
@@ -147,30 +140,14 @@ body {
   position: relative;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(24px) saturate(140%) brightness(0.9);
-  -webkit-backdrop-filter: blur(32px) saturate(140%) brightness(0.9);
+  backdrop-filter: blur(12px) saturate(140%) brightness(0.9); /* Reduced blur for optimization */
+  -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(0.9);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2),
     inset 0 0px 2px rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
 
-/*
- Glass Square Card, Accent
-*/
-.glass-square-accent {
-  position: relative;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(24px) saturate(140%) brightness(0.9);
-  -webkit-backdrop-filter: blur(32px) saturate(140%) brightness(0.9);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2),
-    inset 0 0px 2px rgba(255, 255, 255, 0.2);
-  overflow: hidden;
-}
-
-/* -----------------------------------------
-   Directional Highlight
------------------------------------------ */
+/* Directional Highlight */
 .glass-square::before {
   content: "";
   position: absolute;
@@ -185,9 +162,8 @@ body {
   mix-blend-mode: screen;
 }
 
-/* -----------------------------------------
-   Noise Overlay
------------------------------------------ */
+/* Noise Overlay (Commented out for performance) */
+/*
 .glass-square::after {
   content: "";
   position: absolute;
@@ -205,19 +181,8 @@ body {
   animation: noiseMove 8s infinite linear;
   mix-blend-mode: overlay;
 }
+*/
 
-/* -----------------------------------------
-   Noise Animation
------------------------------------------ */
-@keyframes noiseMove {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-3%, -3%);
-  }
-}
 
 /* -----------------------------------------
    Accessibility: Reduced Motion
@@ -227,14 +192,10 @@ body {
     animation: none;
   }
 }
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
+
+/* -----------------------------------------
+   Shine Effect (Simplified) 
+----------------------------------------- */
 @keyframes shine {
   0% { box-shadow: 0px 0px 5px rgba(238, 238, 239, 0.1); }
   50% { box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2); }
@@ -245,13 +206,6 @@ body {
   animation: shine 2s infinite alternate ease-in-out;
 }
 
-.glassmorphic-loading {
-  background: rgba(255, 255, 255, 0.1); /* Soft translucent white */
-  backdrop-filter: blur(3px); /* Minimal blur */
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
-  animation: fade-pulse 1.5s infinite ease-in-out;
-}
 
 /* Smooth pulse animation */
 @keyframes fade-pulse {

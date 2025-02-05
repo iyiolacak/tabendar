@@ -8,7 +8,7 @@ import GitNotificationCenter from "./components/GitNotifCard";
 import AnalogClock from "./components/clock/LiveAnalogClock";
 import { GitHubNumber } from "./components/GithubNumber";
 import BookCover from "./components/BookCover";
-import StickerBoard from "./components/Background";
+import StickerBoard from "./components/StickerBoard";
 
 export interface Notification {
   id: string;
@@ -33,7 +33,7 @@ const GlassPage: React.FC = () => {
       {/* Background Layer */}
       <StickerBoard
         preferVideo={false}
-        wallpaperSrc="/wallpaper.png" // note the leading slash!
+        wallpaperSrc="/wallpaper.png"
         wallpaperOpacity={0.3}
         videoOpacity={0.3}
         className="absolute inset-0"
@@ -46,7 +46,7 @@ const GlassPage: React.FC = () => {
       {/* Main Content */}
       {/*
        */}
-      <main className="z-20 min-w-full lg:px-28 flex flex-col items-center justify-center mt-12 gap-12">
+      <main className="z-[999] min-w-full lg:px-28 flex flex-col items-center justify-center mt-12 gap-12">
         <Clock />
 
         {/* Glass Container */}
@@ -120,23 +120,19 @@ const GlassPage: React.FC = () => {
                           </h1>
                         </div>
                       </div>
-                      {
-                        <GitHubNumber
-                          number="7"
-                          randomBrightness={true}
-                          showBackground={true}
-                          withShine={true}
-                          className="flex flex-col items-center justify-center relative transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-125"
-                        />
-                      }
+                      <GitHubNumber
+                        number="7"
+                        randomBrightness={true}
+                        showBackground={true}
+                        withShine={true}
+                        className="flex flex-col items-center justify-center relative transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-125"
+                      />
                     </div>
                     {/* Headline overlay */}
                   </div>
                 </div>
 
-                <div className="size-52 p-1 glass-square rounded-lg">
-                  
-                </div>
+                <div className="size-52 p-1 glass-square rounded-lg"></div>
               </div>
             </div>
             {/* Right Panel (if needed) */}
