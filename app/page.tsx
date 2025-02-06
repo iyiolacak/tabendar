@@ -29,15 +29,12 @@ const gitNotifications: Notification[] = [
 
 const GlassPage: React.FC = () => {
   return (
-    
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Layer */}
       <StickerBoard
-        preferVideo={false}
         wallpaperSrc="/wallpaper.png"
-        wallpaperOpacity={0.3}
-        videoOpacity={0.3}
-        className="absolute inset-0"
+        wallpaperOpacity={0.4}
+        videoOpacity={0.4}
       />
       {/* Notification Center */}
       <div className="absolute top-4 right-4 grid grid-rows-4 gap-3 py-3 px-2">
@@ -47,7 +44,7 @@ const GlassPage: React.FC = () => {
       {/* Main Content */}
       {/*
        */}
-      <main className="z-[999] min-w-full lg:px-28 flex flex-col items-center justify-center mt-12 gap-12">
+      <main className=" min-w-full lg:px-28 flex flex-col items-center justify-center mt-12 gap-12">
         <Clock />
 
         {/* Glass Container */}
@@ -56,7 +53,7 @@ const GlassPage: React.FC = () => {
                      rounded-3xl px-4 py-3 gap-4 overflow-auto"
         >
           {/* Drawer Handle */}
-          <div className="w-48 h-2 bg-white rounded-md z-50" />
+          <div className="w-48 h-2 bg-white rounded-md" />
 
           <div className="flex w-full gap-4">
             {/* Left Panel: Contributions and Stats */}
