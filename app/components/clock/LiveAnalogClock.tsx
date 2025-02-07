@@ -10,8 +10,10 @@ const AnalogClock = () => {
 
   // Calculate hand angles
   const secondAngle = (time.getSeconds() * 360) / 60;
-  const minuteAngle = (time.getMinutes() * 360) / 60 + (time.getSeconds() * 6) / 60;
-  const hourAngle = ((time.getHours() % 12) * 360) / 12 + (time.getMinutes() * 30) / 60;
+  const minuteAngle =
+    (time.getMinutes() * 360) / 60 + (time.getSeconds() * 6) / 60;
+  const hourAngle =
+    ((time.getHours() % 12) * 360) / 12 + (time.getMinutes() * 30) / 60;
 
   return (
     // Remove min-h-screen here so the clock is only as large as needed.
@@ -45,6 +47,9 @@ const AnalogClock = () => {
             strokeWidth="11"
             strokeLinecap="round"
             transform={`rotate(${hourAngle}, 200, 200)`}
+            style={{
+              filter: "drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5))",
+            }}
           />
 
           {/* Minute hand */}
@@ -53,10 +58,13 @@ const AnalogClock = () => {
             y1="200"
             x2="200"
             y2="100"
-            stroke="black"
+            stroke="gray"
             strokeWidth="9"
             strokeLinecap="round"
             transform={`rotate(${minuteAngle}, 200, 200)`}
+            style={{
+              filter: "drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.4))",
+            }}
           />
 
           {/* Second hand */}
@@ -65,10 +73,13 @@ const AnalogClock = () => {
             y1="200"
             x2="200"
             y2="90"
-            stroke="black"
+            stroke="gray"
             strokeWidth="6"
             strokeLinecap="round"
             transform={`rotate(${secondAngle}, 200, 200)`}
+            style={{
+              filter: "drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.3))",
+            }}
           />
 
           {/* Center dot */}

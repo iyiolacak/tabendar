@@ -6,13 +6,13 @@ interface HeatmapSquareProps {
 }
 
 const levelColors: { [key: number]: string } = {
-  99: "bg-[#24262B]",  // Loading state color
-  0: "bg-[#0a1a2f]",
-  1: "bg-[#0B2A52]",
-  2: "bg-[#1e497d]",
-  3: "bg-[#2d6bb2]",
-  4: "bg-[#0a84ff]",
-};
+  99: "bg-[#0a84ff]",    // Loading state color
+  0: "bg-[#0a1a2f]",     // Darkest shade
+  1: "bg-[#1a3b6d]",     // Darker shade
+  2: "bg-[#2a63a2]",     // Mid-tone
+  3: "bg-[#3a8bdb]",     // Lighter shade
+  4: "bg-[#4aa2ff]",     // Light
+}
 
 const HeatmapSquare: React.FC<HeatmapSquareProps> = ({ level, isLoading }) => {
   const baseStyle =

@@ -8,7 +8,7 @@ import GitNotificationCenter from "./components/GitNotifCard";
 import AnalogClock from "./components/clock/LiveAnalogClock";
 import { GitHubNumber } from "./components/GithubNumber";
 import BookCover from "./components/BookCover";
-import StickerBoard from "./components/StickerBoard";
+import { AnimatePresence, motion } from "framer-motion";
 
 export interface Notification {
   id: string;
@@ -31,16 +31,30 @@ const GlassPage: React.FC = () => {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Layer */}
-      <StickerBoard
-        wallpaperSrc="/wallpaper.png"
-        wallpaperOpacity={0.4}
-        videoOpacity={0.4}
-      />
+      {/* Show a background color or placeholder until the image is loaded */}
+      {/* Background Layer with placeholder until the image loads */}
+      <AnimatePresence>
+        {/* Image with cinematic animation */}
+        <motion.img
+          key="./wallpaper_monochrome.png"
+          src="./wallpaper_monochrome.png"
+          alt="wallpaper"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 25,
+            duration: 0.5, // Slow cinematic effect
+          }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>{" "}
       {/* Notification Center */}
       <div className="absolute top-4 right-4 grid grid-rows-4 gap-3 py-3 px-2">
         <GitNotificationCenter notifications={gitNotifications} />
       </div>
-
       {/* Main Content */}
       {/*
        */}
@@ -106,7 +120,18 @@ const GlassPage: React.FC = () => {
                     </h2>
                   </div>
                 </div>
+{/*}
+                  <div className="relative w-[17rem] h-[17rem] border-2 border-gray-900 rounded-xl overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 rounded-xl" />
+                    <img
+                      src="luxury_watch.png"
+                      alt="luxurious men watch"
+                      className="absolute inset-0 w-full h-full object-cover scale-150 object-center"
+                    />
+                  </div>
+                  */}
 
+                  
                 <div className="solid-dark-square group rounded-2xl min-w-[12rem] flex items-center justify-center relative overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-105">
                   <div className="">
                     {/* GitHubNumber acts as the dynamic background and now centers its own content */}
@@ -129,15 +154,12 @@ const GlassPage: React.FC = () => {
                     {/* Headline overlay */}
                   </div>
                 </div>
-
-                <div className="size-52 p-1 glass-square rounded-lg"></div>
               </div>
             </div>
             {/* Right Panel (if needed) */}
           </div>
         </section>
       </main>
-
       <footer className="w-full flex justify-center">
         {/* Footer content here */}
       </footer>
