@@ -9,6 +9,13 @@ interface BookCardProps {
   easterEggProbability?: number; // Optional probability for triggering an Easter egg
 }
 
+/**
+Reusable book widget component
+@param displayValue:
+@param cover:
+@param onClick:
+@param easterEggProbability
+**/ 
 const BookCard: React.FC<BookCardProps> = ({
   displayValue,
   cover,
