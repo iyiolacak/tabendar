@@ -1,23 +1,37 @@
 import React from "react";
+import useEasterEgg from "../hooks/useEasterEgg";
+import { cn } from "@/lib/utils";
 
 interface BookCardProps {
   cover: string;
   onClick: () => void;
+  easterEggProbability?: number; // Optional probability for the Easter egg (default is 0.1)
 }
 
-const BookCard: React.FC<BookCardProps> = ({ cover, onClick }) => {
+const BookCard: React.FC<BookCardProps> = ({
+  cover,
+  onClick,
+  easterEggProbability = 0.1,
+}) => {
+  // Use the custom hook with the given probability
+  const { showEasterEgg, handleGiveItAChance } =
+    useEasterEgg(easterEggProbability);
+
   return (
     <div className="flex flex-col items-center">
       {/* Icon Container */}
-      <div className="relative w-24 h-32 flex items-center justify-center group">
+      <div
+        className="relative w-24 h-32 flex items-center justify-center group"
+        onMouseEnter={handleGiveItAChance} // Trigger hover event to check for Easter egg
+      >
         <div
-          className="
-            relative w-full h-full bg-gray-100 
-            shadow-[0_10px_20px_rgba(0,0,0,0.25)]
-            rounded-md overflow-hidden 
-            transform transition-transform duration-300
-            group-hover:scale-105 group-hover:-rotate-1
-          "
+          className={cn(
+            "relative w-full h-full bg-gray-100 " +
+              "shadow-[0_10px_20px_rgba(0,0,0,0.25)] " +
+              "rounded-md overflow-hidden " +
+              "transform transition-transform duration-300 " +
+              "group-hover:scale-105 group-hover:-rotate-1"
+          )}
         >
           {/* Book Cover (Monochrome) */}
           <div
@@ -65,7 +79,7 @@ const BookCard: React.FC<BookCardProps> = ({ cover, onClick }) => {
                 className="w-10 h-10"
               />
               <span className="text-black backdrop-shadow-md text-xs mt-1 ml-3 font-medium">
-                Notebook
+                {showEasterEgg ? "Obsidian!" : "Notebook"}
               </span>
             </div>
           </button>

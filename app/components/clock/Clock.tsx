@@ -70,7 +70,7 @@ const Clock: React.FC = () => {
     <div className="flex flex-col items-center">
       <div className="flex flex-col items-center z-30">
         <p className="text-xl font-medium text-white/85 -mb-8">{dateString}</p>
-        <div className="flex items-center justify-center gap-x-16 w-[32rem]">
+        <div className="flex items-center justify-center gap-x-20">
           {/* Render hours with individual digit animations */}
           <span className="flex w-32">
             {hoursStr.split("").map((digit, i) => (
