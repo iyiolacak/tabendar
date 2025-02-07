@@ -56,8 +56,7 @@ const BookCard: React.FC<BookCardProps> = ({ cover, onClick }) => {
             onClick={onClick}
             className="
               absolute inset-0 flex flex-col items-center justify-center
-              focus:outline-none
-            "
+              focus:outline-none"
           >
             <div className="flex items-center flex-col justify-center ml-3">
               <img

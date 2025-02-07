@@ -10,13 +10,6 @@ import Drawer from "./components/main-drawer/Drawer";
 const GlassPage: React.FC = () => {
   return (
     <div>
-      {/* Background Layer */}
-      {/* Show a background color or placeholder until the image is loaded */}
-      {/* Background Layer with placeholder until the image loads */}
-      {/* Notification Center */}
-      {/* Main Content */}
-      {/*
-       */}       
       <Drawer>
 
         {/* Glass Container */}
