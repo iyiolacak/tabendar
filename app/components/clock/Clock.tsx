@@ -56,6 +56,8 @@ const Clock: React.FC = () => {
   );
   const minuteDigits = minutesStr.split("");
 
+  const hourDigits = hoursStr.split("")
+
   const dateString = useMemo(
     () =>
       new Intl.DateTimeFormat("en-US", {
@@ -73,14 +75,27 @@ const Clock: React.FC = () => {
         <div className="flex items-center justify-center gap-x-20">
           {/* Render hours with individual digit animations */}
           <span className="flex w-32">
-            {hoursStr.split("").map((digit, i) => (
-              // Note: Added overflow-visible so the Y-axis motion isn’t clipped.
-              <span key={i} className="w-min text-center overflow-visible">
-                <AnimatedDigit
-                  index={i}
-                  digit={digit}
-                  className="text-[11rem] font-chintzy antialiased text-white/70"
-                />
+          {hourDigits.map((digit, i) => (
+              <span
+                className="inline-flex justify-center overflow-visible"
+                key={i}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={digit}
+                    initial={{ y: 30, opacity: 0, filter: "blur(8px)" }}
+                    animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                    exit={{ y: -30, opacity: 0, filter: "blur(8px)" }}
+                    transition={{
+                      y: { type: "spring", stiffness: 170, damping: 26 },
+                      opacity: { duration: 0.2, ease: "easeInOut" },
+                      filter: { duration: 0.3, ease: [0.33, 1, 0.68, 1] },
+                    }}
+                    className="relative text-[11rem] font-chintzy antialiased text-white/70"
+                  >
+                    {digit}
+                  </motion.span>
+                </AnimatePresence>
               </span>
             ))}
           </span>
