@@ -2,6 +2,7 @@
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import React from "react";
+import Clock from "./clock/Clock"; // Import the Clock component
 
 const Wallpaper = () => {
   return (
@@ -21,6 +22,7 @@ const Wallpaper = () => {
         }}
         className="absolute z-0 inset-0 w-full h-full object-cover"
       />
+      <Clock />
     </AnimatePresence>
   );
 };
