@@ -1,14 +1,10 @@
 "use client";
 
 import React from "react";
-import { CloudRain } from "lucide-react";
-import Clock from "./components/clock/Clock";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
-import GitNotificationCenter from "./components/GitNotifCard";
 import AnalogClock from "./components/clock/LiveAnalogClock";
 import { GitHubNumber } from "./components/GithubNumber";
 import BookCover from "./components/BookCover";
-import { AnimatePresence, motion } from "framer-motion";
 import Drawer from "./components/main-drawer/Drawer";
 
 const GlassPage: React.FC = () => {

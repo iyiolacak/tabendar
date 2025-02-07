@@ -33,16 +33,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TooltipProvider>
-          <StickerBoardWrapper>
             <NotificationsProvider />
             <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
               <div className="flex flex-col">
-                <Clock />
               <Wallpaper />
                 {children}
               </div>
             </div>
-          </StickerBoardWrapper>
         </TooltipProvider>
       </body>
     </html>

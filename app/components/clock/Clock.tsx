@@ -69,8 +69,8 @@ const Clock: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col items-center z-30">
-        <p className="text-xl font-medium text-white/80 -mb-8">{dateString}</p>
-        <div className="flex items-center justify-center gap-x-16">
+        <p className="text-xl font-medium text-white/85 -mb-8">{dateString}</p>
+        <div className="flex items-center justify-center gap-x-16 w-[32rem]">
           {/* Render hours with individual digit animations */}
           <span className="flex w-32">
             {hoursStr.split("").map((digit, i) => (
@@ -79,17 +79,17 @@ const Clock: React.FC = () => {
                 <AnimatedDigit
                   index={i}
                   digit={digit}
-                  className="text-[11rem] font-chintzy antialiased text-white/60"
+                  className="text-[11rem] font-chintzy antialiased text-white/70"
                 />
               </span>
             ))}
           </span>
           {/* Render seconds (used here for testing) with individual digit animations */}
-          <span className="flex w-32">
+          <span className="flex w-min">
             {/* Use inline-flex with overflow-visible to allow Y-axis animation */}
             {minuteDigits.map((digit, i) => (
               <span
-                className="w-min inline-flex justify-center overflow-visible"
+                className="inline-flex justify-center overflow-visible"
                 key={i}
               >
                 <AnimatePresence mode="wait">
@@ -103,7 +103,7 @@ const Clock: React.FC = () => {
                       opacity: { duration: 0.2, ease: "easeInOut" },
                       filter: { duration: 0.3, ease: [0.33, 1, 0.68, 1] },
                     }}
-                    className="relative text-[11rem] font-chintzy antialiased text-white/60"
+                    className="relative text-[11rem] font-chintzy antialiased text-white/70"
                   >
                     {digit}
                   </motion.span>
