@@ -36,10 +36,10 @@ export default function RootLayout({
           <StickerBoardWrapper>
             <NotificationsProvider />
             <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-              <Wallpaper />
               <div className="flex flex-col">
-              <Clock />
-              {children}
+                <Clock />
+              <Wallpaper />
+                {children}
               </div>
             </div>
           </StickerBoardWrapper>

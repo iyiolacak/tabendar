@@ -19,7 +19,7 @@ const Wallpaper = () => {
           damping: 25,
           duration: 0.5,
         }}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute z-0 inset-0 w-full h-full object-cover"
       />
     </AnimatePresence>
   );
