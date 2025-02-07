@@ -9,63 +9,21 @@ import AnalogClock from "./components/clock/LiveAnalogClock";
 import { GitHubNumber } from "./components/GithubNumber";
 import BookCover from "./components/BookCover";
 import { AnimatePresence, motion } from "framer-motion";
-
-export interface Notification {
-  id: string;
-  title: string;
-  message: string;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-}
-
-const gitNotifications: Notification[] = [
-  {
-    id: "7",
-    title: "Cloud Abuser",
-    message: "Used LLMs 4x more today. OpenAI sends their regards.",
-    icon: CloudRain,
-  },
-  // Additional notifications can be added here
-];
+import Drawer from "./components/main-drawer/Drawer";
 
 const GlassPage: React.FC = () => {
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+    <div>
       {/* Background Layer */}
       {/* Show a background color or placeholder until the image is loaded */}
       {/* Background Layer with placeholder until the image loads */}
-      <AnimatePresence>
-        {/* Image with cinematic animation */}
-        <motion.img
-          key="./wallpaper_monochrome.png"
-          src="./wallpaper_monochrome.png"
-          alt="wallpaper"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            damping: 25,
-            duration: 0.5, // Slow cinematic effect
-          }}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </AnimatePresence>{" "}
       {/* Notification Center */}
-      <div className="absolute top-4 right-4 grid grid-rows-4 gap-3 py-3 px-2">
-        <GitNotificationCenter notifications={gitNotifications} />
-      </div>
       {/* Main Content */}
       {/*
-       */}
-      <main className=" min-w-full lg:px-28 flex flex-col items-center justify-center mt-12 gap-12">
-        <Clock />
+       */}       
+      <Drawer>
 
         {/* Glass Container */}
-        <section
-          className="w-full h-full flex flex-col items-center justify-center glass-square 
-                     rounded-3xl px-4 py-3 gap-4 overflow-auto"
-        >
           {/* Drawer Handle */}
           <div className="w-48 h-2 bg-white rounded-md" />
 
@@ -120,18 +78,9 @@ const GlassPage: React.FC = () => {
                     </h2>
                   </div>
                 </div>
-{/*}
-                  <div className="relative w-[17rem] h-[17rem] border-2 border-gray-900 rounded-xl overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 rounded-xl" />
-                    <img
-                      src="luxury_watch.png"
-                      alt="luxurious men watch"
-                      className="absolute inset-0 w-full h-full object-cover scale-150 object-center"
-                    />
-                  </div>
-                  */}
 
-                  
+                <div className="relative w-[14rem] h-[14rem] glass-square rounded-lg group"></div>
+
                 <div className="solid-dark-square group rounded-2xl min-w-[12rem] flex items-center justify-center relative overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-105">
                   <div className="">
                     {/* GitHubNumber acts as the dynamic background and now centers its own content */}
@@ -158,8 +107,7 @@ const GlassPage: React.FC = () => {
             </div>
             {/* Right Panel (if needed) */}
           </div>
-        </section>
-      </main>
+      </Drawer>
       <footer className="w-full flex justify-center">
         {/* Footer content here */}
       </footer>

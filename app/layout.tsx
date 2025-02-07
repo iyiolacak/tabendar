@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import StickerBoardWrapper from "./components/StickerBoard";
+import { Clock } from "lucide-react";
+import NotificationsProvider from "./components/NotificationsProvider";
+import Wallpaper from "./components/Wallpaper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +33,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TooltipProvider>
-          <StickerBoardWrapper>{children}</StickerBoardWrapper>
+          <StickerBoardWrapper>
+            <NotificationsProvider />
+            <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+              <Wallpaper />
+              <div className="flex flex-col">
+              <Clock />
+              {children}
+              </div>
+            </div>
+          </StickerBoardWrapper>
         </TooltipProvider>
       </body>
     </html>
