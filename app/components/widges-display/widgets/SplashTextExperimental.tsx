@@ -3,7 +3,7 @@ import "@fontsource/press-start-2p"; // Open-source Press Start 2P font
 
 export default function SplashTextExperimental() {
   return (
-    <div className="absolute z-40 ml-24 mt-3 flex items-center justify-center h-20 w-full">
+    <div className="hidden absolute z-40 ml-24 mt-3 flex items-center justify-center h-20 w-full">
       {/* Shadow text layer */}
       <div
         className="absolute"
