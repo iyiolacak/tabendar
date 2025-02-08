@@ -4,32 +4,27 @@ import HeatmapSquare from "./HeatmapSquare";
 const WEEKS = 52;
 const DAYS_PER_WEEK = 7;
 
+// app/components/ContributionsHeatmap.tsx
+// Fix memoization and data generation
 const ContributionsHeatmap: React.FC = () => {
-  const [mockData, setMockData] = useState<number[][] | null>(null);
-
-  const generateMockData = useMemo(() => {
-    return Array.from({ length: WEEKS }, (_, weekIndex) =>
-      Array.from({ length: DAYS_PER_WEEK }, (_, dayIndex) => {
-        const noise = Math.random() * 1.5;
-        const dayPattern = Math.sin(((dayIndex + 1) / (DAYS_PER_WEEK + 1)) * Math.PI);
-        const midYearPeak = Math.exp(-Math.pow((weekIndex - 26) / 6, 2));
-        const yearEndPeak = Math.exp(-Math.pow((weekIndex - 50) / 3, 2));
-        const seasonalPattern = midYearPeak + yearEndPeak;
-        const isWeekend = dayIndex === 0 || dayIndex === 6;
-        const weekendAdjustment = isWeekend ? Math.random() < 0.15 ? 2 : -0.5 : 0;
-        const burstWeek = Math.random() < 0.1 ? 1 + Math.random() * 2 : 0;
-        const level = dayPattern * seasonalPattern * 2 + noise + weekendAdjustment + burstWeek;
-        return Math.max(0, Math.min(4, Math.floor(level)));
-      })
-    );
-  }, []);
+  const [mockData, setMockData] = useState<number[][]>(() => 
+    Array(WEEKS).fill(Array(DAYS_PER_WEEK).fill(99))
+  );
 
   useEffect(() => {
-    setTimeout(() => {
-      setMockData(generateMockData); // Use memoized data generation
-    }, 1000); // Simulated delay
-  }, [generateMockData]);
-
+    const generateData = () => {
+      const data = Array.from({ length: WEEKS }, (_, weekIndex) =>
+        Array.from({ length: DAYS_PER_WEEK }, () => {
+          // Simplified calculation
+          return Math.floor(Math.random() * 5);
+        })
+      );
+      setMockData(data);
+    };
+    
+    const timer = setTimeout(generateData, 1000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className="flex items-center justify-center">
       <div className="rounded-xl solid-dark-square p-4">

@@ -11,10 +11,10 @@ const Digit = React.memo(({ digit }: { digit: string }) => (
     transition={{
       y: { type: "spring", stiffness: 170, damping: 26 },
       opacity: { duration: 0.2 },
-      filter: { duration: 0.3 }
+      filter: { duration: 0.3 },
     }}
     className="relative text-[11rem] font-chintzy text-white/70"
-    style={{ willChange: 'transform, opacity, filter' }}
+    style={{ willChange: "transform, opacity, filter" }}
   >
     {digit}
   </motion.span>
@@ -36,7 +36,6 @@ const TimeBlock = React.memo(({ digits }: { digits: string[] }) => (
       <span
         className="inline-flex justify-center overflow-visible"
         key={`${digit}-${i}`}
-        style={{ width: "8rem" }}
       >
         <AnimatePresence mode="wait">
           <Digit digit={digit} />
@@ -60,7 +59,7 @@ const Clock: React.FC = () => {
   const [hoursStr, minutesStr, dateString] = useMemo(() => {
     const today = new Date(time);
     today.setHours(0, 0, 0, 0);
-    
+
     return [
       time.getHours().toString().padStart(2, "0"),
       time.getMinutes().toString().padStart(2, "0"),
@@ -79,7 +78,7 @@ const Clock: React.FC = () => {
     <div className="flex flex-col items-center">
       <div className="flex flex-col items-center z-30">
         <p className="text-xl font-medium text-white/85 -mb-8">{dateString}</p>
-        <div className="flex items-center justify-center gap-x-3">
+        <div className="flex items-center justify-center gap-x-10">
           <TimeBlock digits={hourDigits} />
           <TimeBlock digits={minuteDigits} />
         </div>
