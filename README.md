@@ -3,20 +3,17 @@
 
 **Your new tab is yours, again.**  
 
-Most new tab extensions? Just pretty wallpapers. **Tabendar** is built different.  
+It’s a **fully customizable, open-source** new tab experience so in other words, create a vibe that sparks joy every time you Ctrl+T
 
-It’s a **fully customizable, open-source** new tab experience where **you’re in control**.  
-- Want a **clean productivity dashboard**? Done.  
-- Want to **track your GitHub streaks**? Easy.  
-- Want to **stick books, posters, or random things on your new tab just for the vibe?** Hell yeah.  
+Tabendar is Different
 
-### **🔹 What Makes Tabendar Different?**  
-Unlike other new tabs that give you **zero** control, **Tabendar makes customization actually easy.**  
-- **See your work in action** – Track your **GitHub streaks** and productivity hours.  
-- **Turn your new tab into a mood** – Add **stickers, posters, books, or widgets** to make it feel like your own space.  
-- **Visualize your progress** – Read a book? Log 10 pages, and it reflects on your **heatmap**.  
-- **Zero config headache** – Everything is **drag, drop, customize**(if not yet, it's meant to be and I am and welcomed contributors are working hard towards that mission!). No complicated setup.  
-- **Built for devs, artists, and anyone who wants their browser to feel like home.**  
+Unlike other new tab extensions that leave you with zero control, and a search bar that you'll never use, Tabendar lets you have fun while staying productive.
+
+- Track your GitHub streaks – Keep an eye on your code progress right from your new tab.
+- Make it your personal space – Pin your favorite stickers, books, posters, and widgets.
+- Track your progress – Log your book pages, and watch them appear on your heatmap.
+- Zero config headache – Drag, drop, customize. Simple.
+- Built for developers, artists, students, or anyone who just wants their browser to feel like home.
 
 Tabendar isn’t just another tab extension. **It’s your space.**  
 
@@ -38,21 +35,31 @@ Tabendar isn’t just another tab extension. **It’s your space.**
 
 ---
 
-## 🎨 **Customization (Make It Yours)**  
+Running locally
+```bash
+# Clone the repo
+git clone https://github.com/yourusername/Tabendar.git
+
+# Install dependencies
+npm install
+
+# Start local dev server
+npm run dev
+```
+Start tweaking code and look at your simulated new tab at `localhost:3000`.
+
+## **Customization (Make It Yours)**  
 Tabendar is built to be **your** space. **Here’s what you can do:**  
-✅ **Track Productivity** – Your new tab actually reflects what you do.  
-✅ **Add Stickers & Posters** – Pin things to your new tab for aesthetic or reminders(we'll have a very good library of stickers!).  
-✅ **Bookshelf Mode** – Show off the books you’re reading.  
-✅ **GitHub Streak Tracking** – See your commits & keep the momentum going.  
-✅ **Vibe Mode** – No widgets, just a clean, personal space.  
-✅ **Easy Customization** – Drag, drop, tweak.  
+ **Track Productivity** – Your new tab actually reflects what you do.  
+ **Add Stickers, Album Covers & Posters** – Pin things to your new tab for aesthetic or reminders(we'll have a very good library of stickers!).  
+ **Bookshelf Mode** – Show off the books you’re reading.  
+ **GitHub Streak Tracking** – See your commits & keep the momentum going.  
+ **Vibe Mode** – No widgets, just a clean, personal space.  
+ **Easy Customization** – Drag, drop, tweak.  
 
 **Your new tab = your rules.**  
 
 ---
-
-## 🔥 **Why Tabendar?**  
-The usual **new tab replacements** either give you **a pretty background, or some random widgets**. That’s cool, but **why not both?**  
 
 Tabendar is for people who:  
 - **Want more than just a wallpaper** – but still want **their new tab to feel aesthetic.**  
@@ -86,17 +93,21 @@ _**Your new tab, the way it should be.**_
 
 ---
 
-## 💬 **Join the Community**  
-- Follow on Twitter [@BogulD54597](https://twitter.com/https://x.com/BogulD54597) for updates  
+##  **Join the Community**  
+- Follow on Twitter [@BogulD54597](https://x.com/BogulD54597) for updates  
 - Join the **Tabendar Discord** (coming soon)  
 
 ---
 
-## ⚡ **Final Thoughts**  
-Tabendar started as a way to **make my own browser experience better.** Now it’s open-source so **everyone can use it.**  
+##  **How Tabendar Project Started and Final Thoughts**  
+One day, I installed a new Linux distro, and the default Firefox browser gave me a shiny white blank page. It’s like my new tab was an empty canvas, but I didn’t want to just look at it forever. I wanted to make it mine. After months of ignoring it, I said no more and Tabendar was born. Your new tab, your vibe, your productivity, ... whatever PRs are welcomed!
 
 No tracking. No bloat. Just **your space, your way.**  
 
-If that sounds like something you’d use, **give it a shot.**  
+### Note From the Creator
 
-🔥 **Make your browser your own today and feel free again.**  
+Tabendar is my love letter to everyone who wants their tools to feel like home. it's about creating a digital space that makes you smile when you Ctrl+T.
+
+Make it weird. Make it wonderful. Make it yours.
+
+Now go stick some anime cats on your GitHub stats. 🐾
