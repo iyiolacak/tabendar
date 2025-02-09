@@ -1,6 +1,5 @@
 # Tabendar  
-![License](https://img.shields.io/badge/License-MIT-green) ![Launch Countdown](https://img.shields.io/badge/status-launch%20soon-blue) ![GitHub Sponsors](https://img.shields.io/github/sponsors/iyiolacak) [![GitHub Stars](https://img.shields.io/github/stars/iyiolacak/Tabendar?label=Stars&logo=github&style=flat-square)](https://github.com/iyiolacak/Tabendar/stargazers)  
-[![Last Commit](https://img.shields.io/github/last-commit/iyiolacak/Tabendar?label=last%20commit&logo=git&style=flat-square)](https://github.com/iyiolacak/Tabendar/commits)  
+![License](https://img.shields.io/badge/License-MIT-green) ![Launch Countdown](https://img.shields.io/badge/status-launch%20soon-purple) ![GitHub Sponsors](https://img.shields.io/github/sponsors/iyiolacak) [![GitHub Stars](https://img.shields.io/github/stars/iyiolacak/Tabendar?label=Stars&logo=github&style=flat-square)](https://github.com/iyiolacak/Tabendar/stargazers) [![Last Commit](https://img.shields.io/github/last-commit/iyiolacak/Tabendar?label=last%20commit&logo=git&style=flat-square)](https://github.com/iyiolacak/Tabendar/commits) [![GitHub Issues](https://img.shields.io/github/issues/iyiolacak/Tabendar?label=issues&logo=github&style=flat-square)](https://github.com/iyiolacak/Tabendar/issues) 
  
 
 **Your new tab is yours, again.**  
@@ -18,6 +17,12 @@ Unlike other new tab extensions that leave you with zero control, and a search b
 - Built for developers, artists, students, or anyone who just wants their browser to feel like home.
 
 Tabendar isn’t just another tab extension. **It’s your space.**  
+
+---
+
+## 📸 **Screenshots**  
+![2025-02-07_12-30](https://github.com/user-attachments/assets/a7586663-6a17-467d-b3e1-15d74009ef52)
+
 
 ---
 
@@ -87,14 +92,7 @@ Wanna help build Tabendar? Here’s how:
 2. **Make your changes**  
 3. **Submit a pull request**  
 
-If you have an idea, feature request, or just wanna help, feel free to drop an issue or PR.  
-
----
-
-## 📸 **Screenshots**  
-_**Your new tab, the way it should be.**_  
-![2025-02-07_12-30](https://github.com/user-attachments/assets/a7586663-6a17-467d-b3e1-15d74009ef52)
-
+If you have an idea, feature request, or just wanna help, feel free to drop an issue or PR. ![Contributors Badge](https://img.shields.io/badge/Looking%20for%20Contributors-yellow?style=square)
 ---
 
 ##  **Join the Community**  
@@ -114,4 +112,4 @@ Tabendar is my love letter to everyone who wants their tools to feel like home. 
 
 Make it weird. Make it wonderful. Make it yours.
 
-Now go stick some anime cats on your GitHub stats. 🐾
+Now go stick some anime cats on your GitHub stats.
