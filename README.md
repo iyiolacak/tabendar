@@ -1,5 +1,7 @@
-![License](https://img.shields.io/badge/License-MIT-green)
 # Tabendar  
+![Launch Countdown](https://img.shields.io/badge/status-launch%20soon%20%F0%9F%9A%80%20preparing%20for%20takeoff-blue) ![License](https://img.shields.io/badge/License-MIT-green) ![GitHub Sponsors](https://img.shields.io/github/sponsors/iyiolacak) [![GitHub Stars](https://img.shields.io/github/stars/iyiolacak/Tabendar?label=Stars&logo=github&style=flat-square)](https://github.com/iyiolacak/Tabendar/stargazers)  
+[![Last Commit](https://img.shields.io/github/last-commit/iyiolacak/Tabendar?label=last commit&logo=git&style=flat-square)](https://github.com/iyiolacak/Tabendar/commits)  
+ 
 
 **Your new tab is yours, again.**  
 
@@ -47,6 +49,7 @@ npm install
 npm run dev
 ```
 Start tweaking code and look at your simulated new tab at `localhost:3000`.
+[![Next.js](https://img.shields.io/badge/Next.js-15.1-000?logo=next.js&style=flat-square)](https://nextjs.org)  [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&style=flat-square)](https://react.dev)  [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-3178C6?logo=typescript&style=flat-square)](https://www.typescriptlang.org) [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css&style=flat-square)](https://tailwindcss.com)  
 
 ## **Customization (Make It Yours)**  
 Tabendar is built to be **your** space. **Here’s what you can do:**  
