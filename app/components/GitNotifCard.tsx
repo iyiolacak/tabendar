@@ -11,7 +11,10 @@ import {
 } from "@/components/ui/tooltip";
 
 // Map icon names to actual components
-const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
+const iconMap: Record<
+  string,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
   CloudRain,
   // Add other mappings as needed
 };
