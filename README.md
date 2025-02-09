@@ -38,7 +38,7 @@ Tabendar isn’t just another tab extension. **It’s your space.**
 Running locally
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/Tabendar.git
+git clone https://github.com/iyiolacak/Tabendar.git
 
 # Install dependencies
 npm install
