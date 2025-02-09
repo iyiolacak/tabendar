@@ -1,7 +1,9 @@
 "use client";
-import { cn } from "@/lib/utils";
+
 import React, { useEffect, useState } from "react";
 import { z } from "zod";
+import { cn } from "@/lib/utils"; // Assuming you have a utility for class merging
+
 interface GithubUsernameFormProps {
   onUsernameSubmit: (username: string) => void; // Callback for when the username is submitted
   initialUsername?: string | null; // Potentially preload the username if it exists in local storage.
@@ -20,10 +22,10 @@ const UsernameEntryForm: React.FC<GithubUsernameFormProps> = ({
   initialUsername,
 }) => {
   const [username, setUsername] = useState<string>(initialUsername || ""); // Start with an empty string
-
   const [error, setError] = useState<string | undefined>(undefined); // State for Zod errors
+
   useEffect(() => {
-    if (typeof window !== undefined) {
+    if (typeof window !== "undefined") {
       const storedUsername = localStorage.getItem("githubUsername");
       if (storedUsername) {
         setUsername(storedUsername);
