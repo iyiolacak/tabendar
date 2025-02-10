@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const UsernameGate = ({ children }: { children: React.ReactNode }) => {
-  const [hasUsername, setHasUsername] = useState(false);
+  const [hasUsername, setHasUsername] = useState(
+    () => !!localStorage.getItem("githubUsername")
+  );
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -84,7 +86,7 @@ const UsernameGate = ({ children }: { children: React.ReactNode }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-xl bg-black/80"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
         >
           <motion.div
             initial={{ scale: 0.95, y: 20 }}
