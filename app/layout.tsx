@@ -28,7 +28,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <body
@@ -36,16 +35,14 @@ export default function RootLayout({
       >
         <TooltipProvider>
           <UsernameGate>
-          <div>
-          </div>
             <NotificationsProvider />
             <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
               <div className="flex flex-col">
-              <Wallpaper />
+                <Wallpaper />
                 {children}
               </div>
             </div>
-            </UsernameGate>
+          </UsernameGate>
         </TooltipProvider>
       </body>
     </html>

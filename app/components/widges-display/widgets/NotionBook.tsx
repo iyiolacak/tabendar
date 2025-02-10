@@ -1,4 +1,5 @@
-import React from 'react'
+// /app/components/widges-display/widgets/NotionBook.tsx
+import React, { useState } from "react";
 
 const NotionBook = () => {
     const [showAlternative, setShowAlternative] = useState<boolean>(false);
@@ -7,11 +8,17 @@ const NotionBook = () => {
     const handleHover = () => {
         if (isItTime) {
             setShowAlternative(true);
-        } else setShowAlternative(false);
-    }
-  return (
-    <div></div>
-  )
-}
+        } else {
+            setShowAlternative(false);
+        }
+    };
 
-export default NotionBook
+    return (
+        <div onMouseEnter={handleHover}>
+          {/* Render something based on showAlternative */}
+          {showAlternative ? "Obsidian Mode" : "Notion Mode"}
+        </div>
+    );
+};
+
+export default NotionBook;

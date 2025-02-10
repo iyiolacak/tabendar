@@ -7,13 +7,20 @@ import { fetcher } from "@/lib/utils";
 const WEEKS = 52;
 const DAYS_PER_WEEK = 7;
 
-const url = `https://www.github.com/api/${localStorage.getItem(
-  "githubUsername"
-)}`;
+const [username, setUsername] = useState<string | null>(null);
+
+useEffect(() => {
+  const storedUsername = localStorage.getItem("githubUsername");
+  setUsername(storedUsername);
+}, [username]);
+
+const url = username
+  ? `https://api.github.com/${localStorage.getItem("githubUsername")}`
+  : null;
 
 const ContributionsHeatmap: React.FC = () => {
   const { data, error } = useSWR(url, fetcher);
-  console.log(data ?? error)
+  console.log(data ?? error);
   return (
     <div className="flex items-center justify-center">
       <div className="rounded-xl solid-dark-square p-4">
