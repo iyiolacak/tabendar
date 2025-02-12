@@ -11,7 +11,7 @@ export const fetcher = async <T>(...args: Parameters<typeof fetch>): Promise<T |
     if(!res.ok) {
       throw new Error(`HTTP Error! Status: ${res.status}`)
     }
-    return res.json() as Promise<T>;
+    return res.json() as T;
   } catch (err) {
     console.error(err);
   }

@@ -55,7 +55,7 @@ const ContributionsHeatmap: React.FC = () => {
     <div className="flex items-center justify-center">
       <div className="rounded-xl solid-dark-square p-4">
         <div className="flex min-h-full gap-2">
-          {data !== undefined ? <div className="p-12 bg-blue-700">data.contributions</div> : "not loaded"}
+          {data !== undefined ? <div className="p-12 bg-blue-700"></div> : "not loaded"}
 {/*             <div key={`${weekIndex}`} className="flex flex-col gap-2">
                 <HeatmapSquare
                   key={`${weekIndex}-${dayIndex}`}
