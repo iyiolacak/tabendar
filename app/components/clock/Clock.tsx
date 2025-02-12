@@ -13,7 +13,7 @@ const Digit = React.memo(({ digit }: { digit: string }) => (
       opacity: { duration: 0.2 },
       filter: { duration: 0.3 },
     }}
-    className="relative text-[11rem] font-chintzy text-white/70"
+    className="relative text-[11rem] font-chintzy text-white/80 cursor-default select-none"
     style={{ willChange: "transform, opacity, filter" }}
   >
     {digit}
@@ -26,7 +26,7 @@ Digit.displayName = "Digit";
  * `TimeBlock` is a memoized functional component that renders a series of digits.
  * Each digit is wrapped in a span with specific styling and an animation presence.
  *
- * @param {string[]} props.digits - An array of digit strings to be displayed.
+ * @param {string[]} props.digits An array of digit strings to be displayed.
  *
  * @returns {JSX.Element} A JSX element containing the rendered digits.
  */
