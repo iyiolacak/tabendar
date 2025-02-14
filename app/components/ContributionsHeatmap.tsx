@@ -6,64 +6,75 @@ import { fetcher } from "@/lib/utils";
 
 const WEEKS = 52;
 const DAYS_PER_WEEK = 7;
+
 type Contributions = {
   date: string; // YYYY-MM-DD
   count: number;
   level: number;
-}
-interface Data {
-  total: Record<string, number>
-  contributions: Contributions
+};
 
+interface Data {
+  total: Record<string, number>;
+  contributions: Contributions[];
 }
+
 const ContributionsHeatmap: React.FC = () => {
   const [username, setUsername] = useState<string | null>(null);
 
+  // Load username from localStorage on mount
   useEffect(() => {
     const storedUsername = localStorage.getItem("githubUsername");
     setUsername(storedUsername);
   }, []);
 
+  // Construct URL for fetching data based on the username
   const url = username
-    ? `https://github-contributions-api.jogruber.de/v4/${username}`
+    ? `https://github-contributions-api.jogruber.de/v4/${username}?format=nested`
     : null;
-  console.log("url is: ", url);
 
   const { data, isLoading, error } = useSWR<Data>(url, fetcher);
-  console.log(username);
-  console.log("your damn data is ", data);
+
+  // Error handling
   if (error) {
     console.error("Error fetching data:", error);
+    return (
+      <div className="p-64 bg-yellow-500">
+        An unexpected error occurred.
+      </div>
+    );
   }
 
+  // Handle loading state
+  if (isLoading) {
+    return <div className="p-64 bg-gray-100">Loading...</div>;
+  }
+
+  // Handle missing username
   if (username === null) {
     return (
-      <div className="p-64 bg-red-600">Enter a github username please.</div>
+      <div className="p-64 bg-red-600">Please enter a GitHub username.</div>
     );
   }
-  if (isLoading) {
-    return (
-      <div className="p-64 bg-gray-100">Loading.</div>
-    );
+
+  // Handle no data or empty data state
+  if (!data || !data.contributions.length) {
+    return <div className="p-64 bg-gray-200">No data available.</div>;
   }
-  if (error) {
-    return (
-      <div className="p-64 bg-yellow-500">An unexpected error occured.</div>
-    );
-  }
+
   return (
     <div className="flex items-center justify-center">
       <div className="rounded-xl solid-dark-square p-4">
         <div className="flex min-h-full gap-2">
-          {data !== undefined ? <div className="p-12 bg-blue-700"></div> : "not loaded"}
-{/*             <div key={`${weekIndex}`} className="flex flex-col gap-2">
-                <HeatmapSquare
-                  key={`${weekIndex}-${dayIndex}`}
-                  level={level}
-                  isLoading={data === null}
-                />
+          {/* Display heatmap squares */}
+          {data.contributions.map((contribution, index) => (
+            <div key={index} className="flex flex-col gap-2">
+              <HeatmapSquare
+                level={contribution.level}
+                isLoading={false} // Assuming no loading state for each square
+              />
             </div>
- */}        </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -58,11 +58,11 @@ const GlassPage: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50"></div>
                   <div className="z-10 text-center">
-                    <p className="text-xl shadow-2xl">
+                    <p className="text-xl">
                       Your first commit was{" "}
                       <span className="font-medium">4017</span> days ago
                     </p>
-                    <h2 className="font-semibold text-3xl">
+                    <h2 className="font-semibold text-3xl drop-shadow-sm">
                       That&apos;s older than Rust.
                     </h2>
                   </div>

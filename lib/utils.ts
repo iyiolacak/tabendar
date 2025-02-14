@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const fetcher = async <T>(...args: Parameters<typeof fetch>): Promise<T | undefined> => {
+export const fetcher = async <T>(...args: Parameters<typeof fetch>): Promise<T> => {
   try {
     const res = await fetch(...args);
     if(!res.ok) {
@@ -14,6 +14,7 @@ export const fetcher = async <T>(...args: Parameters<typeof fetch>): Promise<T |
     return res.json() as T;
   } catch (err) {
     console.error(err);
+    throw err
   }
 
 }
