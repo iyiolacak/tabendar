@@ -113,3 +113,4 @@ Tabendar is my love letter to everyone who wants their tools to feel like home. 
 Make it weird. Make it wonderful. Make it yours.
 
 Now go stick some anime cats on your GitHub stats.
+![background_removed_image_masAEAepS7e1ytawzXH2BA](https://github.com/user-attachments/assets/151e283d-0fb0-4019-b426-535020bcb066)
