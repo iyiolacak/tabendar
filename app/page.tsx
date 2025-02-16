@@ -26,6 +26,7 @@ const GlassPage: React.FC = () => {
 
               <div className="flex gap-4">
                 <BookCover
+                displayValue="Notion"
                   cover=""
                   onClick={() =>
                     console.log("I think you should go Notion manually.")
