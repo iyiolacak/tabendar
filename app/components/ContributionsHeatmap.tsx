@@ -7,7 +7,7 @@ import { fetcher } from "@/lib/utils";
 const WEEKS = 52;
 const DAYS_PER_WEEK = 7;
 
-type Contributions = {
+type DayContribution = {
   date: string; // YYYY-MM-DD
   count: number;
   level: number;
@@ -15,10 +15,22 @@ type Contributions = {
 
 interface Data {
   total: Record<string, number>;
-  contributions: Contributions[];
+  contributions: {
+    [year: string]: {
+      [month: string]: {
+        [day: string]: DayContribution;
+      };
+    };
+  };
 }
 
-const ContributionsHeatmap: React.FC = () => {
+interface ContributionsHeatmapProps {
+  year: number;
+}
+
+const ContributionsHeatmap: React.FC<ContributionsHeatmapProps> = ({
+  year,
+}) => {
   const [username, setUsername] = useState<string | null>(null);
 
   // Load username from localStorage on mount
@@ -38,9 +50,7 @@ const ContributionsHeatmap: React.FC = () => {
   if (error) {
     console.error("Error fetching data:", error);
     return (
-      <div className="p-64 bg-yellow-500">
-        An unexpected error occurred.
-      </div>
+      <div className="p-64 bg-yellow-500">An unexpected error occurred.</div>
     );
   }
 
@@ -57,21 +67,51 @@ const ContributionsHeatmap: React.FC = () => {
   }
 
   // Handle no data or empty data state
-  if (!data || !data.contributions.length) {
-    return <div className="p-64 bg-gray-200">No data available.</div>;
+  if (!data || !data.contributions || !data.contributions[year]) {
+    return (
+      <div className="p-64 bg-gray-200">No data available for this year.</div>
+    );
+  }
+
+  // Get contributions for the selected year
+  const contributionsByYear = data.contributions[year];
+
+  // Flatten the contributions by iterating through months and days
+  const flattenedContributions = Object.values(contributionsByYear).flatMap(
+    (month) => Object.values(month)
+  );
+
+  // Padding for any missing days in the grid
+  const totalDaysInYear = 365;
+  const paddingDays = totalDaysInYear - flattenedContributions.length;
+  const paddedContributions = [
+    ...Array(paddingDays).fill({ level: 0, date: "" }),
+    ...flattenedContributions,
+  ];
+
+  // Group contributions into weeks (52 weeks x 7 days)
+  const weeks = [];
+  for (let i = 0; i < WEEKS; i++) {
+    weeks.push(paddedContributions.slice(i * DAYS_PER_WEEK, (i + 1) * DAYS_PER_WEEK));
   }
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="rounded-xl solid-dark-square p-4">
-        <div className="flex min-h-full gap-2">
-          {/* Display heatmap squares */}
-          {data.contributions.map((contribution, index) => (
-            <div key={index} className="flex flex-col gap-2">
-              <HeatmapSquare
-                level={contribution.level}
-                isLoading={false} // Assuming no loading state for each square
-              />
+    <div className="flex items-center justify-center py-8">
+      <div className="rounded-xl p-4 bg-white shadow-lg w-full">
+        {/* Grid for the yearly calendar */}
+        <div className="grid grid-rows-7 grid-flow-col gap-[3px] flex-1">
+          {/* Render the 7 days of the week (Sun-Sat) */}
+          {Array.from({ length: 7 }).map((_, dayIndex) => (
+            <div key={dayIndex} className="flex gap-[3px]">
+              {/* Loop through each week and display contributions for the specific day */}
+              {weeks.map((week, weekIndex) => (
+                <HeatmapSquare
+                  key={weekIndex}
+                  level={week[dayIndex].level}
+                  isLoading={false}
+                  date={week[dayIndex].date}
+                />
+              ))}
             </div>
           ))}
         </div>

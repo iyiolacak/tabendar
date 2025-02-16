@@ -20,7 +20,7 @@ const GlassPage: React.FC = () => {
             {/* Left Panel: Contributions and Stats */}
             <div className="grid grid-rows-1 mb-4 gap-y-3 h-full min-w-content">
               <div className="flex flex-row gap-x-4 h-full">
-                <ContributionsHeatmap />
+                <ContributionsHeatmap year={2025} />
                 <AnalogClock />
               </div>
 
