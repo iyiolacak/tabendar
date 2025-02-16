@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import React from "react";
 import Clock from "./clock/Clock"; // Import the Clock component
-import SplashTextExperimental from "./widges-display/widgets/SplashTextExperimental";
+import SplashTextExperimental from "./widgets-display/widgets/SplashTextExperimental";
 
 const Wallpaper = () => {
   return (

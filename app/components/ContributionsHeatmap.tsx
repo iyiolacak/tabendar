@@ -97,12 +97,12 @@ const ContributionsHeatmap: React.FC<ContributionsHeatmapProps> = ({
 
   return (
     <div className="flex items-center justify-center py-8">
-      <div className="rounded-xl p-4 bg-white shadow-lg w-full">
+      <div className="rounded-xl p-4 solid-dark-square shadow-lg w-full">
         {/* Grid for the yearly calendar */}
-        <div className="grid grid-rows-7 grid-flow-col gap-[3px] flex-1">
+        <div className="grid grid-rows-7 grid-flow-col gap-1.5 flex-1">
           {/* Render the 7 days of the week (Sun-Sat) */}
           {Array.from({ length: 7 }).map((_, dayIndex) => (
-            <div key={dayIndex} className="flex gap-[3px]">
+            <div key={dayIndex} className="flex gap-1.5">
               {/* Loop through each week and display contributions for the specific day */}
               {weeks.map((week, weekIndex) => (
                 <HeatmapSquare
