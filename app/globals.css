@@ -18,6 +18,7 @@ body {
 }
 
 :root {
+  --base-unit: 2.5rem;
   --background: 0 0% 100%;
   --foreground: 0 0% 3.9%;
   --card: 0 0% 100%;
@@ -79,6 +80,22 @@ body {
     font-style: normal;
   }
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 40px);
+  gap: 40px;
+  grid-auto-flow: dense;
+}
+.col-span-1 {
+  grid-column-end: span 3;
+} /* 120px */
+.col-span-2 {
+  grid-column-end: span 4;
+} /* 160px */
+.col-span-3 {
+  grid-column-end: span 7;
+} /* 280px */
 
 /* -----------------------------------------
    Layout Containers
@@ -183,7 +200,6 @@ body {
 }
 */
 
-
 /* -----------------------------------------
    Accessibility: Reduced Motion
 ----------------------------------------- */
@@ -197,15 +213,20 @@ body {
    Shine Effect (Simplified) 
 ----------------------------------------- */
 @keyframes shine {
-  0% { box-shadow: 0px 0px 5px rgba(238, 238, 239, 0.1); }
-  50% { box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2); }
-  100% { box-shadow: 0px 0px 5px rgba(233, 236, 238, 0.1); }
+  0% {
+    box-shadow: 0px 0px 5px rgba(238, 238, 239, 0.1);
+  }
+  50% {
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0px 0px 5px rgba(233, 236, 238, 0.1);
+  }
 }
 
 .glow {
   animation: shine 2s infinite alternate ease-in-out;
 }
-
 
 /* Smooth pulse animation */
 @keyframes fade-pulse {
@@ -223,7 +244,7 @@ body {
   position: relative;
   width: 400px;
   height: 400px;
-  background: url('/luxury_watch_empty.jpg') no-repeat center center;
+  background: url("/luxury_watch_empty.jpg") no-repeat center center;
   background-size: cover;
 }
 .hand {

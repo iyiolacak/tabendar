@@ -7,28 +7,28 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-    <button className="absolute top-0 px-12 py-12" onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
-      Open drawer for testing purposes.
-    </button>
-    <AnimatePresence mode="wait">
-      <motion.div
-      key={isDrawerOpen}
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
-      exit={{ y: 100}}
-        className={cn("visible min-w-full z-30 lg:px-28 flex flex-col items-center justify-center mt-12 gap-12", {
-          "hidden ":!isDrawerOpen
-        })}
-      >
-        <div
-          className="
-      w-full h-full flex flex-col items-center justify-center glass-square
-      rounded-[64px] px-8 py-3 gap-4 overflow-auto"
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={isDrawerOpen}
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          exit={{ y: 100 }}
+          className={cn(
+            "visible min-w-full z-30 lg:px-28 flex flex-col items-center justify-center mt-12 gap-12",
+            {
+              "hidden ": !isDrawerOpen,
+            }
+          )}
         >
-          {children}
-        </div>
-      </motion.div>
-    </AnimatePresence>
+          <div
+            className="
+      w-full h-full flex flex-col items-center justify-center glass-square
+      rounded-[64px] px-8 py-3 gap-4 overflow-auto bg-red-600 z-40"
+          >
+            {children}
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 };

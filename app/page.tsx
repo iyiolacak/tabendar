@@ -27,14 +27,8 @@ const GlassPage: React.FC = () => {
       <Drawer>
         {/* Glass Container */}
         <DrawerHandler />
-        <div
-          ref={drawerRef}
-          className="grid grid-rows-3 grid-cols-3 h-[840px] w-full grid-flow-col-dense gap-4"
-        >
-          <SquareWidget>
-          </SquareWidget>
-          <HorizontalWidget>
-          </HorizontalWidget>
+        <div className="grid-container h-full w-full">
+          
         </div>
       </Drawer>
       <footer className="w-full flex justify-center">
