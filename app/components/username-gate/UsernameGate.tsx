@@ -116,12 +116,12 @@ const UsernameGate = ({ children }: { children: React.ReactNode }) => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-3xl font-bold text-white mb-2"
               >
-                Welcome to Tabendar
+                Welcome.
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-white/60 text-sm"
+                className="text-white/60 text-md"
               >
                 Personalize your new tab experience
               </motion.p>
@@ -138,7 +138,7 @@ const UsernameGate = ({ children }: { children: React.ReactNode }) => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="GitHub username"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
+                    className="w-full px-4 py-3 bg-white/5 border text-lg2 border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
                     autoFocus
                   />
                 </motion.div>
@@ -154,11 +154,9 @@ const UsernameGate = ({ children }: { children: React.ReactNode }) => {
                 )}
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <button
                 disabled={isLoading}
-                className="w-full py-3 bg-white/90 text-black font-medium rounded-lg flex items-center justify-center gap-2 hover:bg-white transition-colors"
+                className="w-full py-3 bg-white/90 text-black font-medium rounded-lg flex items-center justify-center gap-2 hover:bg-white active:scale-[0.97] transition-all"
               >
                 {isLoading ? (
                   <>
@@ -172,18 +170,14 @@ const UsernameGate = ({ children }: { children: React.ReactNode }) => {
                 ) : (
                   "Continue →"
                 )}
-              </motion.button>
+              </button>
             </form>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center text-white/50 text-xs mt-6"
-            >
+            <p className="text-center text-white/50 text-xs mt-6">
               We&apos;ll use this to display your GitHub activity.
               <br />
               You can change it later in settings.
-            </motion.p>
+            </p>
           </motion.div>
         </motion.div>
       )}

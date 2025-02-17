@@ -11,10 +11,11 @@ import NestedHeartsCard from "./components/widgets-display/NestedHeartsCard";
 import ProductiveHourCard from "./components/widgets-display/widgets/ProductiveHourCard";
 import DrawerHandler from "./components/main-drawer/DrawerHandler";
 import { createSwapy } from "swapy";
+import SquareWidget from "./components/widgets-display/widget-card-instances,/SquareWidget";
+import HorizontalWidget from "./components/widgets-display/widget-card-instances,/HorizontalWidget.ts";
 
 const GlassPage: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (drawerRef.current) {
       createSwapy(drawerRef.current, { animation: "spring" });
@@ -22,30 +23,18 @@ const GlassPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-screen bg-red-600 z-40 flex flex-col flex-grow">
+    <div className="w-screen z-40 flex flex-col flex-grow">
       <Drawer>
         {/* Glass Container */}
         <DrawerHandler />
         <div
           ref={drawerRef}
-          className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4"
+          className="grid grid-rows-3 grid-cols-3 h-[840px] w-full grid-flow-col-dense gap-4"
         >
-          {/* Slot A */}
-          <div data-swapy-slot="a" className="w-96 h-32">
-            {/* Item A */}
-            <div
-              data-swapy-item="a"
-              className="bg-purple-300 w-full h-full"
-            ></div>
-          </div>
-          {/* Slot B */}
-          <div data-swapy-slot="b" className="w-96 h-32">
-            {/* Item B */}
-            <div
-              data-swapy-item="b"
-              className="bg-slate-500 w-full h-full"
-            ></div>
-          </div>
+          <SquareWidget>
+          </SquareWidget>
+          <HorizontalWidget>
+          </HorizontalWidget>
         </div>
       </Drawer>
       <footer className="w-full flex justify-center">
@@ -58,7 +47,7 @@ const GlassPage: React.FC = () => {
 export default GlassPage;
 
 {
-  /* <ContributionsHeatmap year={2025} />
+  /*
 <AnalogClock />
 <PythonCard />
 <NestedHeartsCard />
