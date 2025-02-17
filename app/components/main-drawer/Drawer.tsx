@@ -18,7 +18,7 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
             {
               "hidden ": !isDrawerOpen,
             }
-          )}""
+          )}
         >
           <div
             className="
