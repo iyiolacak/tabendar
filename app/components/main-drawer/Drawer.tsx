@@ -18,12 +18,12 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
             {
               "hidden ": !isDrawerOpen,
             }
-          )}
+          )}""
         >
           <div
             className="
       w-full h-full flex flex-col items-center justify-center glass-square
-      rounded-[64px] px-8 py-3 gap-4 overflow-auto bg-red-600 z-40"
+      rounded-[64px] px-8 py-3 gap-4 overflow-auto"
           >
             {children}
           </div>

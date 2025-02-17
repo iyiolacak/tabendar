@@ -84,22 +84,11 @@ body {
 /* Updated grid configuration */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 40px;
-  grid-auto-flow: dense;
-  grid-auto-rows: minmax(280px, auto);
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 280px); /* 280px wide columns */
+  grid-template-rows: repeat(auto-fill, 280px); /* 280px high rows */
+  gap: 16px; /* 40px gap between rows and columns */
 }
 
-/* Widget size classes */
-.col-span-3 { grid-column-end: span 3; }  /* 120px + 2 gaps */
-.col-span-4 { grid-column-end: span 4; }  /* 160px + 3 gaps */
-.col-span-7 { grid-column-end: span 7; }  /* 280px + 6 gaps */
-.col-span-14 { grid-column-end: span 14; } /* 560px + 13 gaps */
-
-.row-span-3 { grid-row-end: span 3; }
-.row-span-4 { grid-row-end: span 4; }
-.row-span-7 { grid-row-end: span 7; }
 /* -----------------------------------------
    Layout Containers
 ----------------------------------------- */
