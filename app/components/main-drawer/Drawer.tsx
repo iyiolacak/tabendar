@@ -19,10 +19,16 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
               "hidden ": !isDrawerOpen,
             }
           )}
-        >
+          >
+          {/**
+          *
+          * If width is 1920px, then keep the drawer width to some point. 
+          * If smaller than that(which means browser window is shrinked), then make drawer width fixed but smaller and take off one widget.
+          *
+          */}
           <div
             className="
-      w-full h-full flex flex-col items-center justify-center glass-square
+            w-full h-full flex flex-col items-center justify-center glass-square
       rounded-[64px] px-8 py-3 gap-4 overflow-auto"
           >
             {children}

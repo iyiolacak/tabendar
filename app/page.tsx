@@ -29,11 +29,14 @@ const GlassPage: React.FC = () => {
         <DrawerHandler />
         <div className="grid-container grid-flow-row h-screen w-full">
           <SquareWidget />
-          <SquareWidget />
           <HorizontalWidget />
           <SquareWidget />
           <SquareWidget />
+          <HorizontalWidget />
           <SquareWidget />
+          <HorizontalWidget />
+          <HorizontalWidget />
+
           <SquareWidget />
         </div>
       </Drawer>
