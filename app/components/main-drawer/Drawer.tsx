@@ -16,8 +16,8 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
         >
           <div
             className="
-             h-full w-4/6 flex flex-col items-center justify-center glass-square
-      rounded-[64px] px-8 py-3 gap-4 overflow-auto"
+             h-full items-center justify-center glass-square
+      rounded-[64px] px-8 py-3 gap-4 overflow-auto grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)]"
           >
             {children}
           </div>

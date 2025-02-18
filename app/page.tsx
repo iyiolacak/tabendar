@@ -47,28 +47,16 @@ const GlassPage: React.FC = () => {
     <div className="w-screen z-40 flex flex-col flex-grow">
       <Drawer>
         {/* Glass Container */}
-        <DrawerHandler />
-        <div
-          ref={gridContainerRef}
-          className="grid"
-          style={{
-            gridTemplateColumns: `repeat(${gridColumns}, 280px)`,
-            gap: "16px",
-            /*             backgroundColor: "#000",
-             */ width: `${gridColumns * 280 + (gridColumns - 1) * 16}px`,
-          }}
-        >
           <SquareWidget />
           <HorizontalWidget />
           <SquareWidget />
           <SquareWidget />
-          <HorizontalWidget />
           <SquareWidget />
+          <HorizontalWidget />
           <HorizontalWidget />
           <HorizontalWidget />
 
           <SquareWidget />
-        </div>
       </Drawer>
     </div>
   );
