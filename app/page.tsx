@@ -21,42 +21,45 @@ const GlassPage: React.FC = () => {
       createSwapy(drawerRef.current, { animation: "spring" });
     }
   }, []);
+  type widgetLayoutValue = "S" | "V" | "H";
+  const widgetsLayout: widgetLayoutValue[][] = [
+    ["S", "S", "V", "H"],
+    ["H", "S", "V", "H"],
+  ];
 
-  const gridContainerRef = useRef<HTMLDivElement>(null);
-  const [gridColumns, setGridColumns] = useState(1);
-
-  useEffect(() => {
-    const parentElement = gridContainerRef.current?.parentElement;
-    if (!parentElement) return;
-
-    const updateGrid = () => {
-      const containerWidth = parentElement.clientWidth;
-      const gap = 16;
-      const columnWidth = 280;
-      const columns = Math.floor((containerWidth + gap) / (columnWidth + gap));
-      setGridColumns(Math.max(1, columns));
-    };
-
-    updateGrid();
-    const resizeObserver = new ResizeObserver(updateGrid);
-    resizeObserver.observe(parentElement);
-    return () => resizeObserver.disconnect();
-  }, []);
+  const widgetsLayoutSingleArr: widgetLayoutValue[] = [
+    "S",
+    "S",
+    "V",
+    "H",
+    "H",
+    "S",
+    "V",
+    "H",
+  ];
 
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       <Drawer>
-        {/* Glass Container */}
-          <SquareWidget />
-          <OrientationWidget />
-          <SquareWidget />
-          <SquareWidget />
-          <SquareWidget />
-          <OrientationWidget />
-          <OrientationWidget />
-          <OrientationWidget />
-
-          <SquareWidget />
+        z
+        <div className="min-w-full grid grid-flow-col h-full">
+          {widgetsLayout.map((row, rowIndex) => (
+            <div key={rowIndex} className="w-full h-full grid bg-red-600">
+              {row.map((widget, colIndex) => {
+                switch (widget) {
+                  case "H":
+                    return <OrientationWidget direction="horizontal" />;
+                  case "V":
+                    return <OrientationWidget direction="vertical" />;
+                  case "S":
+                    return <SquareWidget />;
+                  default:
+                    return null;
+                }
+              })}
+            </div>
+          ))}
+        </div>
       </Drawer>
     </div>
   );

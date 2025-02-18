@@ -6,7 +6,7 @@ const OrientationWidget = ({
   direction = "horizontal",
 }: {
   children?: React.ReactNode;
-  direction: "horizontal" | "vertical";
+  direction?: "horizontal" | "vertical";
 }) => {
   return (
     <div

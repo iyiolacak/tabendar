@@ -21,7 +21,7 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
             <div
               className="
               px-8 pt-4 gap-4 overflow-auto
-              grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)]"
+              grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)] bg-purple-200/40"
             >
               {children}
             </div>
