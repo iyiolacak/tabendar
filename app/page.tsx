@@ -54,7 +54,8 @@ const GlassPage: React.FC = () => {
           style={{
             gridTemplateColumns: `repeat(${gridColumns}, 280px)`,
             gap: "16px",
-            width: `${gridColumns * 280 + (gridColumns - 1) * 16}px`,
+            /*             backgroundColor: "#000",
+             */ width: `${gridColumns * 280 + (gridColumns - 1) * 16}px`,
           }}
         >
           <SquareWidget />
@@ -69,9 +70,6 @@ const GlassPage: React.FC = () => {
           <SquareWidget />
         </div>
       </Drawer>
-      <footer className="w-full flex justify-center">
-        {/* Footer content here */}
-      </footer>
     </div>
   );
 };
