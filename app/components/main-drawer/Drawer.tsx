@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
+import DrawerHandler from "./DrawerHandler";
 
 const Drawer = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -11,15 +12,21 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
           animate={{ y: 0 }}
           exit={{ y: 100 }}
           className={cn(
-            "visible z-30 w-full flex flex-col items-center justify-center  gap-12",
+            "visible z-30 w-full flex flex-col items-center justify-center  gap-12"
           )}
         >
           <div
             className="
-             h-full items-center justify-center glass-square
-      rounded-[64px] px-8 py-3 gap-4 overflow-auto grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)]"
+            glass-square h-full rounded-[64px]
+            flex flex-col items-center justify-center pt-4"
           >
-            {children}
+            <DrawerHandler />
+            <div
+              className="            px-8 pt-4 gap-4 overflow-auto
+            grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)]"
+            >
+              {children}
+            </div>
           </div>
         </motion.div>
       </AnimatePresence>
