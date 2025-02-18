@@ -12,7 +12,7 @@ import ProductiveHourCard from "./components/widgets-display/widgets/ProductiveH
 import DrawerHandler from "./components/main-drawer/DrawerHandler";
 import { createSwapy } from "swapy";
 import SquareWidget from "./components/widgets-display/widget-card-instances,/SquareWidget";
-import HorizontalWidget from "./components/widgets-display/widget-card-instances,/HorizontalWidget.ts";
+import OrientationWidget from "./components/widgets-display/widget-card-instances,/HorizontalWidget.ts";
 
 const GlassPage: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -48,13 +48,13 @@ const GlassPage: React.FC = () => {
       <Drawer>
         {/* Glass Container */}
           <SquareWidget />
-          <HorizontalWidget />
+          <OrientationWidget />
           <SquareWidget />
           <SquareWidget />
           <SquareWidget />
-          <HorizontalWidget />
-          <HorizontalWidget />
-          <HorizontalWidget />
+          <OrientationWidget />
+          <OrientationWidget />
+          <OrientationWidget />
 
           <SquareWidget />
       </Drawer>

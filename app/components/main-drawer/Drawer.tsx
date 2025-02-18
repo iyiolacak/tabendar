@@ -8,9 +8,6 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
     <>
       <AnimatePresence mode="wait">
         <motion.div
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          exit={{ y: 100 }}
           className={cn(
             "visible z-30 w-full flex flex-col items-center justify-center  gap-12"
           )}
@@ -22,8 +19,9 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
           >
             <DrawerHandler />
             <div
-              className="            px-8 pt-4 gap-4 overflow-auto
-            grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)]"
+              className="
+              px-8 pt-4 gap-4 overflow-auto
+              grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)]"
             >
               {children}
             </div>

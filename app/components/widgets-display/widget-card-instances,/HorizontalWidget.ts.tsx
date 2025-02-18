@@ -1,8 +1,20 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
-const HorizontalWidget = ({ children }: { children?: React.ReactNode }) => {
+const OrientationWidget = ({
+  children,
+  direction = "horizontal",
+}: {
+  children?: React.ReactNode;
+  direction: "horizontal" | "vertical";
+}) => {
   return (
-    <div className="solid-dark-square rounded-[48px] h-full row-span-1 col-span-2 min-w-max">
+    <div
+      className={cn("solid-dark-square rounded-[48px] h-full min-w-max", {
+        "row-span-2 col-span-1": direction === "vertical",
+        "row-span-1 col-span-2": direction === "horizontal"
+      })}
+    >
       {children ?? (
         <div className="w-full h-full items-center justify-center flex">
           <p className="text-white text-center text-xl">
@@ -15,4 +27,4 @@ const HorizontalWidget = ({ children }: { children?: React.ReactNode }) => {
   );
 };
 
-export default HorizontalWidget;
+export default OrientationWidget;
