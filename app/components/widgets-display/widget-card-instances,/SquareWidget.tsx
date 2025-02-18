@@ -1,7 +1,4 @@
 import React from "react";
-const SquareWidgetContent = () => {
-  return <div>Assume some cards here.</div>;
-};
 const SquareWidget = ({ children }: { children?: React.ReactNode }) => {
   return (
     <div className="solid-dark-square rounded-[48px] aspect-square w-[280px]">

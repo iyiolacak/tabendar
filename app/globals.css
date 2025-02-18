@@ -84,7 +84,7 @@ body {
 /* Updated grid configuration */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 280px); /* 280px wide columns */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 280px wide columns */
   grid-template-rows: repeat(auto-fill, 280px); /* 280px high rows */
   gap: 16px; /* 40px gap between rows and columns */
 }
@@ -103,7 +103,7 @@ body {
   position: relative;
   background: #1a1a1a; /* Solid Dark Background */
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3),
+  box-shadow: 5 8px 15px rgba(0, 0, 0, 0.5),
     inset 0 0px 2px rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
