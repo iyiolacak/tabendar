@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import ContributionsHeatmap from "./components/ContributionsHeatmap";
 import AnalogClock from "./components/clock/LiveAnalogClock";
 import { GitHubNumber } from "./components/GithubNumber";
@@ -22,12 +22,41 @@ const GlassPage: React.FC = () => {
     }
   }, []);
 
+  const gridContainerRef = useRef<HTMLDivElement>(null);
+  const [gridColumns, setGridColumns] = useState(1);
+
+  useEffect(() => {
+    const parentElement = gridContainerRef.current?.parentElement;
+    if (!parentElement) return;
+
+    const updateGrid = () => {
+      const containerWidth = parentElement.clientWidth;
+      const gap = 16;
+      const columnWidth = 280;
+      const columns = Math.floor((containerWidth + gap) / (columnWidth + gap));
+      setGridColumns(Math.max(1, columns));
+    };
+
+    updateGrid();
+    const resizeObserver = new ResizeObserver(updateGrid);
+    resizeObserver.observe(parentElement);
+    return () => resizeObserver.disconnect();
+  }, []);
+
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       <Drawer>
         {/* Glass Container */}
         <DrawerHandler />
-        <div className="grid-container grid-flow-row h-screen w-full">
+        <div
+          ref={gridContainerRef}
+          className="grid"
+          style={{
+            gridTemplateColumns: `repeat(${gridColumns}, 280px)`,
+            gap: "16px",
+            width: `${gridColumns * 280 + (gridColumns - 1) * 16}px`,
+          }}
+        >
           <SquareWidget />
           <HorizontalWidget />
           <SquareWidget />

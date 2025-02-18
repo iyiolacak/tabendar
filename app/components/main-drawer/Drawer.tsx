@@ -16,7 +16,7 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
         >
           <div
             className="
-             w-[calc(100vw-80px)] h-full flex flex-col items-center justify-center glass-square
+             h-full w-5/6 flex flex-col items-center justify-center glass-square
       rounded-[64px] px-8 py-3 gap-4 overflow-auto"
           >
             {children}

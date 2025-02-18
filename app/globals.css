@@ -82,11 +82,49 @@ body {
 }
 
 /* Updated grid configuration */
+/* Base Grid Layout (default for 1920px and large screens) */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 280px wide columns */
-  grid-template-rows: repeat(auto-fill, 280px); /* 280px high rows */
-  gap: 16px; /* 40px gap between rows and columns */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  justify-items: center; /* Center items horizontally */
+}
+
+/* At 1920px screens, you get a grid with 7 columns (280px + 16px gap) */
+@media (min-width: 1920px) {
+  .grid-container {
+    grid-template-columns: repeat(7, 280px); /* 7 columns of 280px each */
+  }
+}
+
+/* Adjust for smaller screen sizes (e.g., 1500px wide) */
+@media (max-width: 1500px) {
+  .grid-container {
+    grid-template-columns: repeat(6, 280px); /* 6 columns */
+  }
+}
+
+/* Even smaller screens or tablets (e.g., 1200px wide) */
+@media (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: repeat(5, 280px); /* 5 columns */
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 900px) {
+  .grid-container {
+    grid-template-columns: repeat(4, 280px); /* 4 columns */
+  }
+}
+
+/* Extremely small screens (e.g., portrait phone) */
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 280px); /* 3 columns */
+  }
 }
 
 /* -----------------------------------------
@@ -103,8 +141,12 @@ body {
   position: relative;
   background: #1a1a1a; /* Solid Dark Background */
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 5 8px 15px rgba(0, 0, 0, 0.5),
-    inset 0 0px 2px rgba(255, 255, 255, 0.1);
+  box-shadow:
+    /* Extended outer shadow (drawn first to be behind) */ 0 16px
+      60px rgba(0, 0, 0, 0.25),
+    /* Standard outer drop shadow */ 0 12px 40px rgba(0, 0, 0, 0.3),
+    /* Top inner white highlight */ inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    /* Bottom inner dark shadow */ inset 0 -1px 0 rgba(255, 255, 255, 0.05);
   overflow: hidden;
 }
 
