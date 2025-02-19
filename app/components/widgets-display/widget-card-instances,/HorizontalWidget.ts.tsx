@@ -6,7 +6,7 @@ const OrientationWidget = ({
   direction = "horizontal",
 }: {
   children?: React.ReactNode;
-  direction?: "horizontal" | "vertical";
+  direction?: "horizontal" | "vertical" | "square";
 }) => {
   const randomNumber = Math.random()*100;
   return (
@@ -14,6 +14,7 @@ const OrientationWidget = ({
       className={cn("solid-dark-square rounded-[48px] h-full min-w-max", {
         "row-span-2 col-span-1": direction === "vertical",
         "row-span-1 col-span-2": direction === "horizontal",
+        "row-span-1 col-span-1 aspect-square": direction === "square"
       })}
     >
       {children ?? (

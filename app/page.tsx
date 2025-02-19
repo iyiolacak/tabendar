@@ -19,7 +19,9 @@ const GlassPage: React.FC = () => {
 
   useEffect(() => {
     if (drawerRef.current) {
-      const swapyInstance = createSwapy(drawerRef.current, { animation: "spring" });
+      const swapyInstance = createSwapy(drawerRef.current, {
+        animation: "spring",
+      });
       console.log("found the ref user.");
 
       // Event listener for swap actions
@@ -44,7 +46,6 @@ const GlassPage: React.FC = () => {
             key={widgetIdx}
             data-swapy-item={`${widgetIdx}-item`}
             direction="horizontal"
-            drag
           />
         );
       case "V":
@@ -53,15 +54,14 @@ const GlassPage: React.FC = () => {
             key={widgetIdx}
             data-swapy-item={`${widgetIdx}-item`}
             direction="vertical"
-            drag
           />
         );
       case "S":
         return (
-          <SquareWidget
+          <OrientationWidget
             key={widgetIdx}
             data-swapy-item={`${widgetIdx}-item`}
-            drag
+            direction="square"
           />
         );
       default:
