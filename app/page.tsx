@@ -54,10 +54,13 @@ const GlassPage: React.FC = () => {
     "V",
   ];
   const columnsPerRow = 6;
-  const [widgetLayout, setWidgetLayout] = useState<WidgetLayoutValue[]>(widgetsLayout);
+  const [widgetLayout, setWidgetLayout] =
+    useState<WidgetLayoutValue[]>(widgetsLayout);
+  const [warnings, setWarnings] = useState<string[]>([]);
+
   useEffect(() => {
     validateLayout(widgetLayout);
-  }, [widgetLayout])
+  }, [widgetLayout]);
 
   const validateLayout = (layout: WidgetLayoutValue[]) => {
     let columnIndexTracker: number = 0;
@@ -65,20 +68,40 @@ const GlassPage: React.FC = () => {
     let warningMessages: string[] = [];
 
     layout.forEach((widget, index) => {
-      const isLastInRow = columnIndexTracker === columnsPerRow - 1
+      const isLastInRow = columnIndexTracker === columnsPerRow - 1;
       const isHorizontal = widget === "H";
 
-      if(isHorizontal && isLastInRow) {
-        warningMessages.push(`Warning: "H" widget cannot be placed at index ${index} (row ${rowIdx + 1}, column ${columnIndexTracker + 1}) because it spans 2 columns.`);
+      if (isHorizontal && isLastInRow) {
+        warningMessages.push(
+          `Warning: Horizontal widget cannot be placed at index ${index} (row ${
+            rowIdx + 1
+          }, column ${columnIndexTracker + 1}) because it spans 2 columns.`
+        );
       }
-    }})
-  }
+
+      if (columnIndexTracker >= columnsPerRow) {
+        columnIndexTracker = 0;
+        rowIdx++;
+      }
+    });
+    setWarnings(warningMessages);
+  };
 
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       <Drawer>
         {widgetsLayout.map((widget, widgetIdx) =>
           renderWidgets(widget, widgetIdx)
+        )}
+
+        {warnings.length > 0 && (
+          <div>
+            <ul>
+              {warnings.map((warning, index) => (
+                <li key={index}>{warning}</li>
+              ))}
+            </ul>
+          </div>
         )}
       </Drawer>
     </div>
