@@ -16,9 +16,21 @@ import OrientationWidget from "./components/widgets-display/widget-card-instance
 
 const GlassPage: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (drawerRef.current) {
-      createSwapy(drawerRef.current, { animation: "spring" });
+      const swapyInstance = createSwapy(drawerRef.current, { animation: "spring" });
+      console.log("found the ref user.");
+
+      // Event listener for swap actions
+      swapyInstance.onSwap((event) => {
+        console.log("swap", event);
+      });
+
+      return () => {
+        // Clean up Swapy instance
+        swapyInstance.destroy();
+      };
     }
   }, []);
 
@@ -27,11 +39,31 @@ const GlassPage: React.FC = () => {
   const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: any) => {
     switch (widget) {
       case "H":
-        return <OrientationWidget key={widgetIdx} direction="horizontal" />;
+        return (
+          <OrientationWidget
+            key={widgetIdx}
+            data-swapy-item={`${widgetIdx}-item`}
+            direction="horizontal"
+            drag
+          />
+        );
       case "V":
-        return <OrientationWidget key={widgetIdx} direction="vertical" />;
+        return (
+          <OrientationWidget
+            key={widgetIdx}
+            data-swapy-item={`${widgetIdx}-item`}
+            direction="vertical"
+            drag
+          />
+        );
       case "S":
-        return <SquareWidget key={widgetIdx} />;
+        return (
+          <SquareWidget
+            key={widgetIdx}
+            data-swapy-item={`${widgetIdx}-item`}
+            drag
+          />
+        );
       default:
         return null;
     }
@@ -47,13 +79,6 @@ const GlassPage: React.FC = () => {
     "V",
     "V",
   ];
-
-  /*
-   * No horizontal widget start can come to the very end at all as "H" widgets cover two column spans and you cannot fit 7 spans in a 6 columns grid so it'd just skip another line.
-   * In other words, in such case; horizontal widget requires two spans, and there's only one column left in that row
-   *
-   * Each row is 6 column span(specified in the `<Drawer>` component className).
-   */
 
   const columnsPerRow = 6;
   const [widgetLayout, setWidgetLayout] =
@@ -75,9 +100,11 @@ const GlassPage: React.FC = () => {
 
       if (isHorizontal && isLastInRow) {
         warningMessages.push(
-          `Warning: Horizontal widget cannot be placed at index ${index} (row ${
-            rowIdx + 1
-          }, column ${columnIndexTracker + 1}) because it spans 2 columns.`
+          `Warning: Horizontal widget cannot be placed at index ${
+            index + 1
+          } (row ${rowIdx + 1}, column ${
+            columnIndexTracker + 1
+          }) because it spans 2 columns.`
         );
       }
       if (widget === "H") {
@@ -108,7 +135,7 @@ const GlassPage: React.FC = () => {
         </div>
       )}
 
-      <Drawer>
+      <Drawer ref={drawerRef}>
         {widgetsLayout.map((widget, widgetIdx) =>
           renderWidgets(widget, widgetIdx)
         )}
@@ -118,11 +145,3 @@ const GlassPage: React.FC = () => {
 };
 
 export default GlassPage;
-
-{
-  /*
-<AnalogClock />
-<NestedHeartsCard />
-  <ProductiveHourCard />
- */
-}

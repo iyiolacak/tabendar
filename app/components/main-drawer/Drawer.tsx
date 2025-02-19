@@ -1,9 +1,12 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { forwardRef, Ref } from "react";
 import DrawerHandler from "./DrawerHandler";
 
-const Drawer = ({ children }: { children: React.ReactNode }) => {
+type DrawerProps = {
+  children: React.ReactNode;
+};
+const Drawer = forwardRef<HTMLDivElement, DrawerProps>(({ children }, ref) => {
   return (
     <>
       <AnimatePresence mode="wait">
@@ -22,6 +25,8 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
               className="
               px-8 pt-4 gap-4 overflow-auto
               grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)]"
+              ref={ref}
+              data-swapy-slot={`slot`}
             >
               {children}
             </div>
@@ -30,6 +35,8 @@ const Drawer = ({ children }: { children: React.ReactNode }) => {
       </AnimatePresence>
     </>
   );
-};
+});
+
+Drawer.displayName = "Drawer";
 
 export default Drawer;
