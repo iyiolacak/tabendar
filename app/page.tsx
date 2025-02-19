@@ -24,8 +24,22 @@ const GlassPage: React.FC = () => {
 
   type WidgetLayoutValue = "S" | "V" | "H";
 
+  const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: any) => {
+    switch (widget) {
+      case "H":
+        return <OrientationWidget key={widgetIdx} direction="horizontal" />;
+      case "V":
+        return <OrientationWidget key={widgetIdx} direction="vertical" />;
+      case "S":
+        return <SquareWidget key={widgetIdx} />;
+      default:
+        return null;
+    }
+  };
+
   /*
    * No horizontal widget start can come to the very end at all as "H" widgets cover two column spans and you cannot fit 7 spans in a 6 columns grid so it'd just skip another line.
+   * In other words, in such case; horizontal widget requires two spans, and there's only one column left in that row
    *
    * Each row is 6 column span(specified in the `<Drawer>` component className).
    */
@@ -39,23 +53,33 @@ const GlassPage: React.FC = () => {
     "V",
     "V",
   ];
+  const columnsPerRow = 6;
+  const [widgetLayout, setWidgetLayout] = useState<WidgetLayoutValue[]>(widgetsLayout);
+  useEffect(() => {
+    validateLayout(widgetLayout);
+  }, [widgetLayout])
+
+  const validateLayout = (layout: WidgetLayoutValue[]) => {
+    let columnIndexTracker: number = 0;
+    let rowIdx: number = 0;
+    let warningMessages: string[] = [];
+
+    layout.forEach((widget, index) => {
+      const isLastInRow = columnIndexTracker === columnsPerRow - 1
+      const isHorizontal = widget === "H";
+
+      if(isHorizontal && isLastInRow) {
+        warningMessages.push(`Warning: "H" widget cannot be placed at index ${index} (row ${rowIdx + 1}, column ${columnIndexTracker + 1}) because it spans 2 columns.`);
+      }
+    }})
+  }
+
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       <Drawer>
-        {widgetsLayout.map((widget, widgetIdx) => {
-          switch (widget) {
-            case "H":
-              return (
-                <OrientationWidget key={widgetIdx} direction="horizontal" />
-              );
-            case "V":
-              return <OrientationWidget key={widgetIdx} direction="vertical" />;
-            case "S":
-              return <SquareWidget key={widgetIdx} />;
-            default:
-              return null;
-          }
-        })}
+        {widgetsLayout.map((widget, widgetIdx) =>
+          renderWidgets(widget, widgetIdx)
+        )}
       </Drawer>
     </div>
   );
