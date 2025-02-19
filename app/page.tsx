@@ -21,25 +21,28 @@ const GlassPage: React.FC = () => {
       createSwapy(drawerRef.current, { animation: "spring" });
     }
   }, []);
-  type widgetLayoutValue = "S" | "V" | "H";
-  /*   const widgetsLayout: widgetLayoutValue[][] = [
-    ["S", "S", "V", "H"],
-    ["H", "S", "V", "H"],
-  ];
- */
-  const widgetsLayoutSingleArr: widgetLayoutValue[] = [
-    "S", // col: 1, row: 1
-    "S", // col: 1, row: 1
-    "H", // col: 1, row: 2
-    "S", // col: 1, row: 1
-    "V", // col: 2, row: 1
-    "H", // col: 1, row: 2
-  ];
 
+  type WidgetLayoutValue = "S" | "V" | "H";
+
+  /*
+   * No horizontal widget start can come to the very end at all as "H" widgets cover two column spans and you cannot fit 7 spans in a 6 columns grid so it'd just skip another line.
+   *
+   * Each row is 6 column span(specified in the `<Drawer>` component className).
+   */
+  const widgetsLayout: WidgetLayoutValue[] = [
+    "S",
+    "S",
+    "V",
+    "H",
+    "H",
+    "S",
+    "V",
+    "V",
+  ];
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       <Drawer>
-        {widgetsLayoutSingleArr.map((widget, widgetIdx) => {
+        {widgetsLayout.map((widget, widgetIdx) => {
           switch (widget) {
             case "H":
               return (
@@ -63,7 +66,6 @@ export default GlassPage;
 {
   /*
 <AnalogClock />
-<PythonCard />
 <NestedHeartsCard />
   <ProductiveHourCard />
  */
