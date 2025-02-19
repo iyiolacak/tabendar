@@ -106,7 +106,7 @@ const ContributionsHeatmap: React.FC<ContributionsHeatmapProps> = ({
               {/* Loop through each week and display contributions for the specific day */}
               {weeks.map((week, weekIndex) => (
                 <HeatmapSquare
-                  key={weekIndex}
+                  key={`${weekIndex}-${dayIndex}`}
                   level={week[dayIndex].level}
                   isLoading={false}
                   date={week[dayIndex].date}

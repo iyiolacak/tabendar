@@ -39,6 +39,7 @@ const GlassPage: React.FC = () => {
 
   const handleAddWidget = (newWidget: WidgetLayoutValue) => {
     setWidgetLayout((prevLayout) => [...prevLayout, newWidget]);
+    console.log(widgetLayout)
   };
 
   const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: any) => {
@@ -130,7 +131,7 @@ const GlassPage: React.FC = () => {
       )}
 
       <Drawer ref={drawerRef} onAddWidget={handleAddWidget}>
-        {widgetsLayout.map((widget, widgetIdx) =>
+        {widgetLayout.map((widget, widgetIdx) =>
           renderWidgets(widget, widgetIdx)
         )}
       </Drawer>
