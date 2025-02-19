@@ -22,44 +22,37 @@ const GlassPage: React.FC = () => {
     }
   }, []);
   type widgetLayoutValue = "S" | "V" | "H";
-  const widgetsLayout: widgetLayoutValue[][] = [
+  /*   const widgetsLayout: widgetLayoutValue[][] = [
     ["S", "S", "V", "H"],
     ["H", "S", "V", "H"],
   ];
-
+ */
   const widgetsLayoutSingleArr: widgetLayoutValue[] = [
-    "S",
-    "S",
-    "V",
-    "H",
-    "H",
-    "S",
-    "V",
-    "H",
+    "S", // col: 1, row: 1
+    "S", // col: 1, row: 1
+    "H", // col: 1, row: 2
+    "S", // col: 1, row: 1
+    "V", // col: 2, row: 1
+    "H", // col: 1, row: 2
   ];
 
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       <Drawer>
-        z
-        <div className="min-w-full grid grid-flow-col h-full">
-          {widgetsLayout.map((row, rowIndex) => (
-            <div key={rowIndex} className="w-full h-full grid bg-red-600">
-              {row.map((widget, colIndex) => {
-                switch (widget) {
-                  case "H":
-                    return <OrientationWidget direction="horizontal" />;
-                  case "V":
-                    return <OrientationWidget direction="vertical" />;
-                  case "S":
-                    return <SquareWidget />;
-                  default:
-                    return null;
-                }
-              })}
-            </div>
-          ))}
-        </div>
+        {widgetsLayoutSingleArr.map((widget, widgetIdx) => {
+          switch (widget) {
+            case "H":
+              return (
+                <OrientationWidget key={widgetIdx} direction="horizontal" />
+              );
+            case "V":
+              return <OrientationWidget key={widgetIdx} direction="vertical" />;
+            case "S":
+              return <SquareWidget key={widgetIdx} />;
+            default:
+              return null;
+          }
+        })}
       </Drawer>
     </div>
   );
