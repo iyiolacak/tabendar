@@ -13,6 +13,7 @@ import DrawerHandler from "./components/main-drawer/DrawerHandler";
 import { createSwapy } from "swapy";
 import SquareWidget from "./components/widgets-display/widget-card-instances,/SquareWidget";
 import OrientationWidget from "./components/widgets-display/widget-card-instances,/HorizontalWidget.ts";
+import { WidgetLayoutValue } from "./types/types";
 
 const GlassPage: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -36,7 +37,9 @@ const GlassPage: React.FC = () => {
     }
   }, []);
 
-  type WidgetLayoutValue = "S" | "V" | "H";
+  const handleAddWidget = (newWidget: WidgetLayoutValue) => {
+    setWidgetLayout((prevLayout) => [...prevLayout, newWidget]);
+  };
 
   const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: any) => {
     switch (widget) {
@@ -69,16 +72,7 @@ const GlassPage: React.FC = () => {
     }
   };
 
-  const widgetsLayout: WidgetLayoutValue[] = [
-    "S",
-    "H",
-    "V",
-    "H",
-    "H",
-    "S",
-    "V",
-    "V",
-  ];
+  const widgetsLayout: WidgetLayoutValue[] = [];
 
   const columnsPerRow = 6;
   const [widgetLayout, setWidgetLayout] =
@@ -135,7 +129,7 @@ const GlassPage: React.FC = () => {
         </div>
       )}
 
-      <Drawer ref={drawerRef}>
+      <Drawer ref={drawerRef} onAddWidget={handleAddWidget}>
         {widgetsLayout.map((widget, widgetIdx) =>
           renderWidgets(widget, widgetIdx)
         )}
