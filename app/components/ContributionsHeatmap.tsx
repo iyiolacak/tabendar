@@ -90,7 +90,7 @@ const ContributionsHeatmap: React.FC<ContributionsHeatmapProps> = ({
   ];
 
   // Group contributions into weeks (52 weeks x 7 days)
-  const weeks = [];
+  const weeks: DayContribution[][] = [];
   for (let i = 0; i < WEEKS; i++) {
     weeks.push(paddedContributions.slice(i * DAYS_PER_WEEK, (i + 1) * DAYS_PER_WEEK));
   }
