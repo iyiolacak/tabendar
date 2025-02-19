@@ -37,12 +37,7 @@ const GlassPage: React.FC = () => {
     }
   };
 
-  /*
-   * No horizontal widget start can come to the very end at all as "H" widgets cover two column spans and you cannot fit 7 spans in a 6 columns grid so it'd just skip another line.
-   * In other words, in such case; horizontal widget requires two spans, and there's only one column left in that row
-   *
-   * Each row is 6 column span(specified in the `<Drawer>` component className).
-   */
+
   const widgetsLayout: WidgetLayoutValue[] = [
     "S",
     "S",
@@ -53,6 +48,15 @@ const GlassPage: React.FC = () => {
     "V",
     "V",
   ];
+
+  
+  /*
+   * No horizontal widget start can come to the very end at all as "H" widgets cover two column spans and you cannot fit 7 spans in a 6 columns grid so it'd just skip another line.
+   * In other words, in such case; horizontal widget requires two spans, and there's only one column left in that row
+   *
+   * Each row is 6 column span(specified in the `<Drawer>` component className).
+   */
+  
   const columnsPerRow = 6;
   const [widgetLayout, setWidgetLayout] =
     useState<WidgetLayoutValue[]>(widgetsLayout);
