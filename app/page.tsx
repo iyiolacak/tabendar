@@ -37,10 +37,9 @@ const GlassPage: React.FC = () => {
     }
   };
 
-
   const widgetsLayout: WidgetLayoutValue[] = [
     "S",
-    "S",
+    "H",
     "V",
     "H",
     "H",
@@ -49,14 +48,13 @@ const GlassPage: React.FC = () => {
     "V",
   ];
 
-  
   /*
    * No horizontal widget start can come to the very end at all as "H" widgets cover two column spans and you cannot fit 7 spans in a 6 columns grid so it'd just skip another line.
    * In other words, in such case; horizontal widget requires two spans, and there's only one column left in that row
    *
    * Each row is 6 column span(specified in the `<Drawer>` component className).
    */
-  
+
   const columnsPerRow = 6;
   const [widgetLayout, setWidgetLayout] =
     useState<WidgetLayoutValue[]>(widgetsLayout);
@@ -69,7 +67,7 @@ const GlassPage: React.FC = () => {
   const validateLayout = (layout: WidgetLayoutValue[]) => {
     let columnIndexTracker: number = 0;
     let rowIdx: number = 0;
-    let warningMessages: string[] = [];
+    const warningMessages: string[] = [];
 
     layout.forEach((widget, index) => {
       const isLastInRow = columnIndexTracker === columnsPerRow - 1;
@@ -82,6 +80,11 @@ const GlassPage: React.FC = () => {
           }, column ${columnIndexTracker + 1}) because it spans 2 columns.`
         );
       }
+      if (widget === "H") {
+        columnIndexTracker += 2;
+      } else {
+        columnIndexTracker += 1;
+      }
 
       if (columnIndexTracker >= columnsPerRow) {
         columnIndexTracker = 0;
@@ -93,19 +96,21 @@ const GlassPage: React.FC = () => {
 
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
+      {warnings.length > 0 && (
+        <div>
+          <ul className="bg-red-700 p-3 text-white">
+            {warnings.map((warning, index) => (
+              <li className="text-xl text-white" key={index}>
+                {warning}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <Drawer>
         {widgetsLayout.map((widget, widgetIdx) =>
           renderWidgets(widget, widgetIdx)
-        )}
-
-        {warnings.length > 0 && (
-          <div>
-            <ul>
-              {warnings.map((warning, index) => (
-                <li key={index}>{warning}</li>
-              ))}
-            </ul>
-          </div>
         )}
       </Drawer>
     </div>
