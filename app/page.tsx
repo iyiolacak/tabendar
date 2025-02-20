@@ -75,14 +75,17 @@ const GlassPage: React.FC = () => {
   useEffect(() => {
     validateLayout(widgetLayout);
   }, [widgetLayout]);
+  
+  const [currentGridLayout, setCurrentGridLayout] = useState<
+    [Record<"column", number>, Record<"row", number>]
+  >([{ column: 0 }, { row: 0 }]);
 
   const validateLayout = (layout: WidgetLayoutValue[]) => {
-    let columnIndexTracker: number = 0;
     let rowIdx: number = 0;
     const warningMessages: string[] = [];
 
     layout.forEach((widget, index) => {
-      const isLastInRow = columnIndexTracker === columnsPerRow - 1;
+      const isLastInRow = currentGridLayout[0] === columnsPerRow - 1;
       const isHorizontal = widget === "H";
 
       if (isHorizontal && isLastInRow) {
@@ -90,38 +93,41 @@ const GlassPage: React.FC = () => {
           `Warning: Horizontal widget cannot be placed at index ${
             index + 1
           } (row ${rowIdx + 1}, column ${
-            columnIndexTracker + 1
+            currentGridLayout + 1
           }) because it spans 2 columns.`
         );
       }
       if (widget === "H") {
-        columnIndexTracker += 2;
+        setCurrentGridLayout(currentGridLayout + 2);
       } else {
-        columnIndexTracker += 1;
+        setCurrentGridLayout(currentGridLayout + 1);
       }
 
-      if (columnIndexTracker >= columnsPerRow) {
-        columnIndexTracker = 0;
+      if (currentGridLayout >= columnsPerRow) {
+        setCurrentGridLayout(0);
         rowIdx++;
       }
     });
     setWarnings(warningMessages);
   };
 
-  const fillGridWithEmpty = () => {
-    return Array.from({ length: colsPerRow * rows }).map((cell, index) => {
+  const fillGrid = () => {
+    return Array.from({ length: columnsPerRow }).map((cell, index) => {
       return (
         <div key={index} data-swapy-slot={index}>
-          <OrientationWidget direction="square" itemId={index} />
+          <OrientationWidget
+            key={widgetIdx}
+            itemId={widgetIdx}
+            direction="horizontal"
+          />
         </div>
       );
     });
   };
 
-  const colsPerRow = 6;
-  const rows = 3;
   // 18
-  const fillAmount = columnIndexTracker - columnsPerRow
+
+  const fillAmount = columnIndexTracker - columnsPerRow;
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       {warnings.length > 0 && (
@@ -137,7 +143,7 @@ const GlassPage: React.FC = () => {
       )}
 
       <Drawer ref={drawerRef} onAddWidget={handleAddWidget}>
-        {fillGridWithEmpty()}
+        {fillGrid()}
       </Drawer>
     </div>
   );
