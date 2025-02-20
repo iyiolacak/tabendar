@@ -1,18 +1,9 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import ContributionsHeatmap from "./components/ContributionsHeatmap";
-import AnalogClock from "./components/clock/LiveAnalogClock";
-import { GitHubNumber } from "./components/GithubNumber";
-import BookCover from "./components/BookCover";
 import Drawer from "./components/main-drawer/Drawer";
-import PythonCard from "./components/widgets-display/PythonCard";
-import NestedHeartsCard from "./components/widgets-display/NestedHeartsCard";
-import ProductiveHourCard from "./components/widgets-display/widgets/ProductiveHourCard";
-import DrawerHandler from "./components/main-drawer/DrawerHandler";
 import { createSwapy } from "swapy";
-import SquareWidget from "./components/widgets-display/widget-card-instances,/SquareWidget";
-import OrientationWidget from "./components/widgets-display/widget-card-instances,/HorizontalWidget.ts";
+import OrientationWidget from "./components/widgets-display/widget-card-instances,/WidgetInstance";
 import { WidgetLayoutValue } from "./types/types";
 
 const GlassPage: React.FC = () => {
@@ -39,7 +30,7 @@ const GlassPage: React.FC = () => {
 
   const handleAddWidget = (newWidget: WidgetLayoutValue) => {
     setWidgetLayout((prevLayout) => [...prevLayout, newWidget]);
-    console.log(widgetLayout)
+    console.log(widgetLayout);
   };
 
   const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: any) => {
@@ -73,7 +64,18 @@ const GlassPage: React.FC = () => {
     }
   };
 
-  const widgetsLayout: WidgetLayoutValue[] = [];
+  const widgetsLayout: WidgetLayoutValue[] = [
+    "H",
+    "S",
+    "S",
+    "V",
+    "H",
+    "V",
+    "S",
+    "S",
+    "H",
+
+  ];
 
   const columnsPerRow = 6;
   const [widgetLayout, setWidgetLayout] =

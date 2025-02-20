@@ -165,25 +165,6 @@ body {
   mix-blend-mode: screen;
 }
 
-/* Noise Overlay (Subtle Texture)
-.solid-dark-square::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.05),
-      rgba(0, 0, 0, 0.05)
-    ),
-    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVR42mNk+M+ACzAxUio3wMDA8J8gImBgYGABXxD/0ckrvQAAAABJRU5ErkJggg==");
-  background-repeat: no-repeat, repeat;
-  background-size: cover, auto;
-  opacity: 0.02;
-  pointer-events: none;
-  animation: noiseMove 8s infinite linear;
-  mix-blend-mode: overlay;
-} */
-
 /* -----------------------------------------
    Glassmorphic Window
 ----------------------------------------- */
@@ -191,48 +172,14 @@ body {
   position: relative;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px) saturate(140%) brightness(0.9); /* Reduced blur for optimization */
-  -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(0.9);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2),
-    inset 0 0px 2px rgba(255, 255, 255, 0.2);
-  overflow: hidden;
+  will-change: transform, opacity ;
+  transform: translateZ(0); /* Forces GPU acceleration */
+
+  backdrop-filter: blur(12px) saturate(120%) brightness(0.9); /* Reduced blur for performance */
+  -webkit-backdrop-filter: blur(12px) saturate(120%) brightness(0.9); /* Fallback for Safari */
+    overflow: hidden;
 }
 
-/* Directional Highlight */
-.glass-square::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at top center, transparent 70%),
-    radial-gradient(
-      ellipse at 80% 20%,
-      rgba(255, 255, 255, 0.25) 10%,
-      transparent 60%
-    );
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-/* Noise Overlay (Commented out for performance) */
-/*
-.glass-square::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.1),
-      rgba(0, 0, 0, 0.1)
-    ),
-    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVR42mNk+M+ACzAxUio3wMDA8J8gImBgYGABXxD/0ckrvQAAAABJRU5ErkJggg==");
-  background-repeat: no-repeat, repeat;
-  background-size: cover, auto;
-  opacity: 0.04;
-  pointer-events: none;
-  animation: noiseMove 8s infinite linear;
-  mix-blend-mode: overlay;
-}
-*/
 
 /* -----------------------------------------
    Accessibility: Reduced Motion

@@ -14,8 +14,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>(({ children, onAddWidget 
   }
   return (
     <>
-      <AnimatePresence mode="wait">
-        <motion.div
+        <div
           className={cn(
             "visible z-30 w-full flex flex-col items-center justify-center  gap-12"
           )}
@@ -41,8 +40,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>(({ children, onAddWidget 
               {children}
             </div>
           </div>
-        </motion.div>
-      </AnimatePresence>
+        </div>
     </>
   );
 });
