@@ -34,13 +34,13 @@ const GlassPage: React.FC = () => {
     console.log(widgetLayout);
   };
 
-  const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: any) => {
+  const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: number) => {
     switch (widget) {
       case "H":
         return (
           <OrientationWidget
             key={widgetIdx}
-            data-swapy-item={`${widgetIdx}-item`}
+            itemId={widgetIdx}
             direction="horizontal"
           />
         );
@@ -48,7 +48,7 @@ const GlassPage: React.FC = () => {
         return (
           <OrientationWidget
             key={widgetIdx}
-            data-swapy-item={`${widgetIdx}-item`}
+            itemId={widgetIdx}
             direction="vertical"
           />
         );
@@ -56,7 +56,7 @@ const GlassPage: React.FC = () => {
         return (
           <OrientationWidget
             key={widgetIdx}
-            data-swapy-item={`${widgetIdx}-item`}
+            itemId={widgetIdx}
             direction="square"
           />
         );
@@ -120,6 +120,8 @@ const GlassPage: React.FC = () => {
 
   const colsPerRow = 6;
   const rows = 3;
+  // 18
+  const fillAmount = columnIndexTracker - columnsPerRow
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       {warnings.length > 0 && (
