@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Memoized digit component to prevent unnecessary re-renders
-const Digit = React.memo(({ digit }: { digit: string }) => (
+const Digit = React.memo(({ digit, i }: { digit: string; i: any }) => (
   <motion.span
     key={digit}
     initial={{ y: 30, opacity: 0, filter: "blur(8px)" }}
@@ -11,7 +11,7 @@ const Digit = React.memo(({ digit }: { digit: string }) => (
     transition={{
       y: { type: "spring", stiffness: 170, damping: 26 },
       opacity: { duration: 0.2 },
-      filter: { duration: 0.3 },
+      filter: { duration: i * 0.3 },
     }}
     className="relative text-[11rem] font-chintzy text-white/80 cursor-default select-none"
     style={{ willChange: "transform, opacity, filter" }}
@@ -38,7 +38,7 @@ const TimeBlock = React.memo(({ digits }: { digits: string[] }) => (
         key={`${digit}-${i}`}
       >
         <AnimatePresence mode="wait">
-          <Digit digit={digit} />
+          <Digit digit={digit} i={i} />
         </AnimatePresence>
       </span>
     ))}

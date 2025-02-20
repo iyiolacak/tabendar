@@ -13,8 +13,9 @@ const GlassPage: React.FC = () => {
     if (drawerRef.current) {
       const swapyInstance = createSwapy(drawerRef.current, {
         animation: "spring",
+        manualSwap: true,
       });
-      console.log("found the ref user.");
+      console.log("swapy ref is current.");
 
       // Event listener for swap actions
       swapyInstance.onSwap((event) => {
@@ -33,7 +34,7 @@ const GlassPage: React.FC = () => {
     console.log(widgetLayout);
   };
 
-  const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: number) => {
+  const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: any) => {
     switch (widget) {
       case "H":
         return (
@@ -64,18 +65,7 @@ const GlassPage: React.FC = () => {
     }
   };
 
-  const widgetsLayout: WidgetLayoutValue[] = [
-    "H",
-    "S",
-    "S",
-    "V",
-    "H",
-    "V",
-    "S",
-    "S",
-    "H",
-
-  ];
+  const widgetsLayout: WidgetLayoutValue[] = ["H", "S", "S"];
 
   const columnsPerRow = 6;
   const [widgetLayout, setWidgetLayout] =
@@ -118,6 +108,18 @@ const GlassPage: React.FC = () => {
     setWarnings(warningMessages);
   };
 
+  const fillGridWithEmpty = () => {
+    return Array.from({ length: colsPerRow * rows }).map((cell, index) => {
+      return (
+        <div key={index} data-swapy-slot={index}>
+          <OrientationWidget direction="square" itemId={index} />
+        </div>
+      );
+    });
+  };
+
+  const colsPerRow = 6;
+  const rows = 3;
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       {warnings.length > 0 && (
@@ -133,9 +135,7 @@ const GlassPage: React.FC = () => {
       )}
 
       <Drawer ref={drawerRef} onAddWidget={handleAddWidget}>
-        {widgetLayout.map((widget, widgetIdx) =>
-          renderWidgets(widget, widgetIdx)
-        )}
+        {fillGridWithEmpty()}
       </Drawer>
     </div>
   );
