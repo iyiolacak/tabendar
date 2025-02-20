@@ -33,7 +33,7 @@ const GlassPage: React.FC = () => {
     console.log(widgetLayout);
   };
 
-  const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: any) => {
+  const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: number) => {
     switch (widget) {
       case "H":
         return (

@@ -172,7 +172,7 @@ body {
   position: relative;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  will-change: transform, opacity ;
+  will-change: transform, opacity;
   transform: translateZ(0); /* Forces GPU acceleration */
 
   backdrop-filter: blur(12px) saturate(120%) brightness(0.9); /* Reduced blur for performance */

@@ -1,5 +1,5 @@
 import React from "react";
-import { GitHubNumber } from "../../GithubNumber";
+import { GitHubNumber } from "./GithubNumber";
 
 const ProductiveHourCard = () => {
   return (
