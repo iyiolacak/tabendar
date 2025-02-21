@@ -27,6 +27,7 @@ Tabendar isn’t just another tab extension. **It’s your space.**
 ---
 
 ## 🛠 **How to Install**  
+### Do NOT Install Yet — Project is still on development
 ### 🔹 Chrome  
 1. Download the latest release from [Releases](https://github.com/iyiolacak/Tabendar/releases).  
 2. Go to `chrome://extensions/`.  
