@@ -5,6 +5,7 @@ import Drawer from "./components/main-drawer/Drawer";
 import { createSwapy } from "swapy";
 import OrientationWidget from "./components/widgets-display/widget-card-instances,/WidgetInstance";
 import { Widget, WidgetsLayout } from "./types/types";
+import { placeWidget } from "./hooks/useValidateLayout";
 
 const WidgetManager: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -68,8 +69,7 @@ const WidgetManager: React.FC = () => {
   const widgetsLayout: Widget[] = ["H", "S", "S"];
 
   const columnsPerRow = 6;
-  const [widgetLayout, setWidgetLayout] =
-    useState<Widget[]>(widgetsLayout);
+  const [widgetLayout, setWidgetLayout] = useState<Widget[]>(widgetsLayout);
   const [warnings, setWarnings] = useState<string[]>([]);
 
   useEffect(() => {
@@ -82,6 +82,14 @@ const WidgetManager: React.FC = () => {
   });
 
   const [warningMessages, setWarningMessages] = useState<string[]>([]);
+  
+  const warnCannotFit = (index: number, rowIdx: number) =>
+    setWarningMessages((prev) => [
+      ...prev,
+      `Warning: Horizontal widget cannot be placed at index ${index + 1} (row ${
+        rowIdx + 1
+      }, column ${column + 1}) because it spans 2 columns.`,
+    ]);
 
   const { column, row } = currentGridLayout;
   const validateLayout = (layout: Widget[]) => {
@@ -92,15 +100,9 @@ const WidgetManager: React.FC = () => {
       const isHorizontal = widget === "H";
 
       if (isHorizontal && isLastInRow) {
-        setWarningMessages((prev) => [
-          ...prev,
-          `Warning: Horizontal widget cannot be placed at index ${
-            index + 1
-          } (row ${rowIdx + 1}, column ${
-            column + 1
-          }) because it spans 2 columns.`,
-        ]);
+        warnCannotFit(index, rowIdx);
       }
+
       if (widget === "H") {
         setCurrentGridLayout((prev) => ({ ...prev, column: prev.column + 2 }));
       } else {

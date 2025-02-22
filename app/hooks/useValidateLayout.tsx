@@ -14,31 +14,56 @@ let widgetsMappedLayout: (WidgetOrientation | null)[][] = [
   [null, null, null, null, null, null],
 ];
 
-const placeWidget = (layout: WidgetsLayout, widget: Widget) => {
-  
+export const placeWidget = (
+  layout: WidgetsLayout,
+  widget: Widget,
+  placeAtX: number,
+  placeAtY: number
+) => {
   // layout[y][x]
   let newLayout = [...layout.map((row) => [...row.id])];
-  for (let row = 0; row < widgetsMappedLayout.length; row++) { // rows
-    for (let col = 0; col < widgetsMappedLayout[row].length; col++) { // cols
-      if (newLayout[row][col] === null) { 
+
+  for (let row = 0; row < widgetsMappedLayout.length; row++) {
+    for (let col = 0; col < widgetsMappedLayout[row].length; col++) {
+      // rows
+      console.log("Checking position:", row, col); // Log current position being checked
+      if (newLayout[row][col] === null) {
+        // cols
         let canFit = true;
-      }
+        console.log("Can fit:", canFit); // Log if widget can fit at this position
 
+        // Check if widget size can fit the available size
+        for (let i = 0; i < widget.colSpan; i++) {
+          for (let j = 0; j < widget.rowSpan; j++) {
+            const targetRow = row + i;
+            const targetCol = col + j;
+            if (
+              targetRow >= newLayout.length ||
+              targetCol >= newLayout[row].length ||
+              newLayout[targetRow][targetCol] !== null
+            ) {
+              canFit = false; // If it can't fit, set canFit to false
+              break; // No need to check further if it already doesn't fit
+            }
 
-      // Check if widget size can fit the available size
-      for (let i = 0; i < widget.colSpan; i++) {
-        for (let j = 0; j < widget.rowSpan; j++) {
-          if (
-            row + i >= newLayout.length || // Grid overflow
-            col + j >= newLayout[row].length || // Grid overflow
-            newLayout[i][j] !== null // Collision
-          ) {
-            let canFit = false;
+            console.log("Widget size cannot fit. canFit:", canFit);
           }
+          if (!canFit) break; // If `canFit` is false, break out of the row loop
+        }
+        if(canFit) {
+
+          for(let i = 0; i < widget.rowSpan; i++) {
+            for(let j = 0; i < widget.colSpan; j++) {
+              newLayout[row + i][col + j] = widget.id;
+            }
+          }
+          console.log("New widget places ")
+          return newLayout
         }
       }
     }
   }
+  return newLayout;
 };
 // map the first widget
 // ask widget its position(x: 0) x, y = widgetsMappedLayout[x][y]
