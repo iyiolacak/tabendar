@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useRef, useEffect, useState } from "react";
 import Drawer from "./components/main-drawer/Drawer";
 import { createSwapy } from "swapy";
@@ -9,7 +8,7 @@ import type { Widget } from "./types/types";
 const WidgetManager: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
   const [warnings, setWarnings] = useState<string[]>([]);
-  const columnsPerRow = 6;
+  const columnsPerRow = 6; // 6 slots per row
 
   // Swapy initialization with cleanup
   useEffect(() => {
@@ -17,7 +16,6 @@ const WidgetManager: React.FC = () => {
 
     const swapyInstance = createSwapy(drawerRef.current, {
       animation: "spring",
-      manualSwap: true
     });
 
     // Swap event handler
@@ -33,16 +31,21 @@ const WidgetManager: React.FC = () => {
     };
   }, []);
 
-  // Grid cell generator
+  // Grid cell generator for each slot
   const renderGridCells = () => {
-    return Array.from({ length: columnsPerRow }).map((_, index) => (
-      <div key={index} data-swapy-slot={index}>
-        <OrientationWidget
-          itemId={index.toString()}
-          direction="square"
-        />
-      </div>
-    ));
+    // Loop through 6 slots (you can change the number of slots as needed)
+    return Array.from({ length: columnsPerRow }).map((_, index) => {
+      const uniqueSlotId = `slot-${index}`; // Unique ID for each slot
+
+      return (
+        <div key={uniqueSlotId} data-swapy-slot={uniqueSlotId}>
+          <OrientationWidget
+            itemId={index.toString()} // Assigning itemId to the widget for clarity
+            direction="square"
+          />
+        </div>
+      );
+    });
   };
 
   return (
@@ -60,7 +63,7 @@ const WidgetManager: React.FC = () => {
       )}
 
       <Drawer ref={drawerRef}>
-        {renderGridCells()}
+        {renderGridCells()} {/* This will render the slots with their items */}
       </Drawer>
     </div>
   );
