@@ -4,9 +4,9 @@ import React, { useRef, useEffect, useState } from "react";
 import Drawer from "./components/main-drawer/Drawer";
 import { createSwapy } from "swapy";
 import OrientationWidget from "./components/widgets-display/widget-card-instances,/WidgetInstance";
-import { WidgetLayoutValue } from "./types/types";
+import { WidgetLayoutValue, WidgetsLayout } from "./types/types";
 
-const GlassPage: React.FC = () => {
+const WidgetManager: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -75,36 +75,44 @@ const GlassPage: React.FC = () => {
   useEffect(() => {
     validateLayout(widgetLayout);
   }, [widgetLayout]);
-  
-  const [currentGridLayout, setCurrentGridLayout] = useState<
-    [Record<"column", number>, Record<"row", number>]
-  >([{ column: 0 }, { row: 0 }]);
 
+  const [currentGridLayout, setCurrentGridLayout] = useState<WidgetsLayout>({
+    column: 0,
+    row: 0,
+  });
+
+  const [warningMessages, setWarningMessages] = useState<string[]>([]);
+
+  const { column, row } = currentGridLayout;
   const validateLayout = (layout: WidgetLayoutValue[]) => {
     let rowIdx: number = 0;
-    const warningMessages: string[] = [];
 
     layout.forEach((widget, index) => {
-      const isLastInRow = currentGridLayout[0] === columnsPerRow - 1;
+      const isLastInRow = column === columnsPerRow - 1;
       const isHorizontal = widget === "H";
 
       if (isHorizontal && isLastInRow) {
-        warningMessages.push(
+        setWarningMessages((prev) => [
+          ...prev,
           `Warning: Horizontal widget cannot be placed at index ${
             index + 1
           } (row ${rowIdx + 1}, column ${
-            currentGridLayout + 1
-          }) because it spans 2 columns.`
-        );
+            column + 1
+          }) because it spans 2 columns.`,
+        ]);
       }
       if (widget === "H") {
-        setCurrentGridLayout(currentGridLayout + 2);
+        setCurrentGridLayout((prev) => ({ ...prev, column: prev.column + 2 }));
       } else {
-        setCurrentGridLayout(currentGridLayout + 1);
+        setCurrentGridLayout((prev) => ({ ...prev, column: prev.column + 1 }));
       }
 
-      if (currentGridLayout >= columnsPerRow) {
-        setCurrentGridLayout(0);
+      if (column >= columnsPerRow) {
+        setCurrentGridLayout((prev) => ({
+          ...prev,
+          column: 0,
+          row: prev.row + 1,
+        }));
         rowIdx++;
       }
     });
@@ -116,8 +124,8 @@ const GlassPage: React.FC = () => {
       return (
         <div key={index} data-swapy-slot={index}>
           <OrientationWidget
-            key={widgetIdx}
-            itemId={widgetIdx}
+            key={index}
+            itemId={index}
             direction="horizontal"
           />
         </div>
@@ -127,7 +135,6 @@ const GlassPage: React.FC = () => {
 
   // 18
 
-  const fillAmount = columnIndexTracker - columnsPerRow;
   return (
     <div className="w-screen z-40 flex flex-col flex-grow">
       {warnings.length > 0 && (
@@ -149,4 +156,4 @@ const GlassPage: React.FC = () => {
   );
 };
 
-export default GlassPage;
+export default WidgetManager;
