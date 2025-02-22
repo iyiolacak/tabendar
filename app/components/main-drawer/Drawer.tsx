@@ -11,6 +11,7 @@ type DrawerProps = {
 const Drawer = forwardRef<HTMLDivElement, DrawerProps>(({ children}, ref) => {
 
   return (
+    // todo: add dynamic widgets support, e.g. col-span-3 row-span-1
     <>
       <div className={cn("visible z-30 w-full flex flex-col items-center justify-center gap-12")}>
         <div className="glass-square h-full rounded-[64px] flex flex-col items-center justify-center pt-4">
