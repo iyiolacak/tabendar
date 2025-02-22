@@ -23,7 +23,7 @@ const OrientationWidget = React.memo(
     return (
       <div className={className} data-swapy-item={itemId}>
         {children ?? (
-          <div className="w-full h-full items-center justify-center flex">
+          <div className="w-full cursor-pointer h-full items-center justify-center flex">
             <p className="text-white text-center text-2xl font-medium">
               {(Math.random() * 100).toFixed(0)}
             </p>
