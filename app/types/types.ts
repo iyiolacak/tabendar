@@ -1,9 +1,9 @@
-type WidgetType = "S" | "H" | "V";
+export type WidgetOrientation = "S" | "H" | "V";
 
 export type Widget = {
   id: string;
   // name?: string;
-  type: WidgetType;
+  orientation: WidgetOrientation;
 
   // Grid position information.
   x: number;
