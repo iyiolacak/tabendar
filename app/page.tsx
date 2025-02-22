@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import Drawer from "./components/main-drawer/Drawer";
 import { createSwapy } from "swapy";
 import OrientationWidget from "./components/widgets-display/widget-card-instances,/WidgetInstance";
-import { WidgetLayoutValue, WidgetsLayout } from "./types/types";
+import { Widget, WidgetsLayout } from "./types/types";
 
 const WidgetManager: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -29,12 +29,12 @@ const WidgetManager: React.FC = () => {
     }
   }, []);
 
-  const handleAddWidget = (newWidget: WidgetLayoutValue) => {
+  const handleAddWidget = (newWidget: Widget) => {
     setWidgetLayout((prevLayout) => [...prevLayout, newWidget]);
     console.log(widgetLayout);
   };
 
-  const renderWidgets = (widget: WidgetLayoutValue, widgetIdx: number) => {
+  const renderWidgets = (widget: Widget, widgetIdx: number) => {
     switch (widget) {
       case "H":
         return (
@@ -65,11 +65,11 @@ const WidgetManager: React.FC = () => {
     }
   };
 
-  const widgetsLayout: WidgetLayoutValue[] = ["H", "S", "S"];
+  const widgetsLayout: Widget[] = ["H", "S", "S"];
 
   const columnsPerRow = 6;
   const [widgetLayout, setWidgetLayout] =
-    useState<WidgetLayoutValue[]>(widgetsLayout);
+    useState<Widget[]>(widgetsLayout);
   const [warnings, setWarnings] = useState<string[]>([]);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const WidgetManager: React.FC = () => {
   const [warningMessages, setWarningMessages] = useState<string[]>([]);
 
   const { column, row } = currentGridLayout;
-  const validateLayout = (layout: WidgetLayoutValue[]) => {
+  const validateLayout = (layout: Widget[]) => {
     let rowIdx: number = 0;
 
     layout.forEach((widget, index) => {

@@ -1,9 +1,17 @@
 type WidgetType = "S" | "H" | "V";
 
-export type WidgetLayoutValue = {
+export type Widget = {
+  id: string;
+  // name?: string;
   type: WidgetType;
+
+  // Grid position information.
+  x: number;
+  y: number;
+
   colSpan: number;
   rowSpan: number;
+
 };
 
-export type WidgetsLayout = WidgetLayoutValue[];
+export type WidgetsLayout = Widget[];

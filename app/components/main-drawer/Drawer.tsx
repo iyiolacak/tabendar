@@ -2,11 +2,11 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { forwardRef, Ref } from "react";
 import DrawerHandler from "./DrawerHandler";
-import { WidgetLayoutValue } from "@/app/types/types";
+import { Widget } from "@/app/types/types";
 
 type DrawerProps = {
   children: React.ReactNode;
-  onAddWidget: (widget: WidgetLayoutValue) => void;
+  onAddWidget: (widget: Widget) => void;
 };
 const Drawer = forwardRef<HTMLDivElement, DrawerProps>(({ children, onAddWidget }, ref) => {
   const handleAddWidget = () => {
