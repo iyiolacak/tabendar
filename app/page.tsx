@@ -58,10 +58,7 @@ const WidgetManager: React.FC = () => {
         <div
           key={uniqueSlotId}
           data-swapy-slot={uniqueSlotId}
-          className={cn(
-            `${getGridClasses(
-              createRandomDirection()
-            )} w-full border border-opacity-30 rounded-2xl p-2 h-full`
+          className={cn(`w-full border border-opacity-30 rounded-2xl p-2 h-full`
           )}
         >
           <OrientationWidget
