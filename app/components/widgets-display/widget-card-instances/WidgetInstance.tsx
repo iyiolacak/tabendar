@@ -8,12 +8,12 @@ const OrientationWidget = React.memo(
     direction = "horizontal",
   }: {
     children?: React.ReactNode;
-    itemId: number;
+    itemId: string;
     direction?: "horizontal" | "vertical" | "square";
   }) => {
     const className = useMemo(
       () =>
-        cn("solid-dark-square rounded-[48px] h-full min-w-max", {
+        cn("solid-dark-square rounded-[48px] h-full min-w-max row", {
           "row-span-2 col-span-1": direction === "vertical",
           "row-span-1 col-span-2": direction === "horizontal",
           "row-span-1 col-span-1 aspect-square": direction === "square",
