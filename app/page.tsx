@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const WidgetManager: React.FC = () => {
   const drawerRef = useRef<HTMLDivElement>(null);
   const [warnings, setWarnings] = useState<string[]>([]);
-  const columnsPerRow = 13; // 6 slots per row
+  const columnsPerRow = 3; // 6 slots per row
 
   // Swapy initialization with cleanup
   useEffect(() => {
@@ -49,7 +49,10 @@ console.log(randomDirection)
 const renderGridCells = () => {
   // Loop through 6 slots (you can change the number of slots as needed)
   return Array.from({ length: columnsPerRow }).map((_, index) => {
+    console.log(index)
+    console.log(getGridClasses(randomDirection))
     const uniqueSlotId = `slot-${index}`; // Unique ID for each slot
+
     
       return (
         <div
