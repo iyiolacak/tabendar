@@ -1,94 +1,53 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Responsive, WidthProvider } from "react-grid-layout";
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
 import Drawer from "./components/main-drawer/Drawer";
-import { createSwapy } from "swapy";
-import OrientationWidget from "./components/widgets-display/widget-card-instances/WidgetInstance";
-import type { Widget } from "./types/types";
-import { cn } from "@/lib/utils";
 
-const WidgetManager: React.FC = () => {
-  const drawerRef = useRef<HTMLDivElement>(null);
-  const [warnings, setWarnings] = useState<string[]>([]);
-  const columnsPerRow = 10; // 6 slots per row
+const ResponsiveGridLayout = WidthProvider(Responsive);
 
-  // Swapy initialization with cleanup
-  useEffect(() => {
-    if (!drawerRef.current) return;
+export default function WidgetManager() {
+  const [layouts, setLayouts] = useState({
+    lg: [
+      { i: "1", x: 0, y: 0, w: 1, h: 1 },
+      { i: "2", x: 1, y: 0, w: 2, h: 1 }, // Wider item
+      { i: "3", x: 0, y: 1, w: 1, h: 2 }, // Taller item
+      { i: "4", x: 1, y: 1, w: 1, h: 1 },
+      { i: "5", x: 2, y: 1, w: 1, h: 1 },
+      { i: "6", x: 0, y: 3, w: 3, h: 1 } // Full-width item
+    ]
+  });
 
-    const swapyInstance = createSwapy(drawerRef.current, {
-      animation: "spring",
-    });
-
-    // Swap event handler
-
-    return () => {
-      swapyInstance.destroy();
-    };
-  }, []);
-
-  type Direction = "square" | "horizontal" | "vertical";
-
-  // This function maps a child's "direction" to grid classes
-  const getGridClasses = (direction: Direction) => {
-    switch (direction) {
-      case "vertical":
-        return "row-span-2 col-span-1";
-      case "horizontal":
-        return "row-span-1 col-span-2";
-      case "square":
-      default:
-        return "row-span-1 col-span-1";
-    }
-  };
-  const directions: Direction[] = ["square", "horizontal", "vertical"];
-
-  // Grid cell generator for each slot
-  const renderGridCells = () => {
-    // Loop through 6 slots (you can change the number of slots as needed)
-    return Array.from({ length: columnsPerRow }).map((_, index) => {
-      const createRandomDirection = () => {
-        return directions[Math.floor(Math.random() * directions.length)];
-      };
-      console.log(createRandomDirection());
-      console.log(index);
-      console.log(getGridClasses(createRandomDirection()));
-      const uniqueSlotId = `slot-${index}`; // Unique ID for each slot
-
-      return (
-        <div
-          key={uniqueSlotId}
-          data-swapy-slot={uniqueSlotId}
-          className={cn(`w-full border border-opacity-30 rounded-2xl p-2 h-full`
-          )}
-        >
-          <OrientationWidget
-            itemId={index.toString()} // Assigning itemId to the widget for clarity
-            direction={createRandomDirection()}
-          />
-        </div>
-      );
-    });
+  const handleLayoutChange = (layout: any, allLayouts: any) => {
+    setLayouts(allLayouts);
   };
 
   return (
-    <div className="w-screen z-40 flex flex-col flex-grow">
-      {warnings.length > 0 && (
-        <div className="bg-red-700 p-3 text-white">
-          <ul>
-            {warnings.map((warning, index) => (
-              <li key={index} className="text-xl">
-                {warning}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <Drawer ref={drawerRef}>
-        {renderGridCells()} {/* This will render the slots with their items */}
-      </Drawer>
-    </div>
+    <Drawer>
+      <ResponsiveGridLayout
+        className="layout"
+        layouts={layouts}
+        breakpoints={{ lg: 1200 }}
+        cols={{ lg: 6 }}
+        rowHeight={100}
+        margin={[16, 16]}
+        onLayoutChange={handleLayoutChange}
+        isDraggable
+        isResizable
+      >
+        {layouts.lg.map(item => (
+          <div
+            key={item.i}
+            className="bg-white rounded-lg shadow-lg p-4 border border-gray-200"
+          >
+            <div className="font-semibold mb-2">Widget {item.i}</div>
+            <div className="text-sm text-gray-600">
+              Size: {item.w}×{item.h}
+            </div>
+          </div>
+        ))}
+      </ResponsiveGridLayout>
+    </Drawer>
   );
-};
-
-export default WidgetManager;
+}

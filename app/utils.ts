@@ -6,5 +6,11 @@ export const determineWidgetType = (widget: Widget): WidgetOrientation => {
 };
 
 export const createWidget = (widget: Omit<Widget, "orientation">) => {
-    
-}
+  if (widget.colSpan > widget.rowSpan) {
+    // Widget is Horizontal
+  } else if (widget.colSpan === widget.rowSpan) {
+  } // Widget is Square
+  else {
+    // Widget is Vertical
+  }
+};

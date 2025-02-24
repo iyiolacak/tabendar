@@ -26,7 +26,11 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>(({ children }, ref) => {
             <DrawerHandler />
           </div>
           <div
-            className={`px-8 pt-4 gap-4 overflow-auto grid grid-cols-[repeat(${preferences.layout.columnsPerRow},_280px)] grid-rows-[repeat(${preferences.layout.rows},_280px)] border border-purple-300`}
+            className={cn(
+              //`px-8 pt-4 gap-4 overflow-auto grid grid-cols-[repeat(${preferences.layout.columnsPerRow},_280px)] grid-rows-[repeat(${preferences.layout.rows},_280px)] border border-purple-500 w-full`
+              `px-8 pt-4 gap-4 overflow-auto grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)] border border-purple-500 w-full`
+
+            )}
             ref={ref}
           >
             {children} {/* Render the slot divs here */}
