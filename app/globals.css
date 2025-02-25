@@ -176,8 +176,6 @@ body {
   will-change: transform, opacity;
   transform: translateZ(0); /* Forces GPU acceleration */
 
-  backdrop-filter: blur(12px) saturate(120%) brightness(0.9); /* Reduced blur for performance */
-  -webkit-backdrop-filter: blur(12px) saturate(120%) brightness(0.9); /* Fallback for Safari */
     overflow: hidden;
 }
 

@@ -14,9 +14,11 @@ export default function WidgetManager() {
       { i: "1", x: 0, y: 0, w: 1, h: 1 },
       { i: "2", x: 1, y: 0, w: 2, h: 1 }, // Wider item
       { i: "3", x: 0, y: 1, w: 1, h: 2 }, // Taller item
+
       { i: "4", x: 1, y: 1, w: 1, h: 1 },
       { i: "5", x: 2, y: 1, w: 1, h: 1 },
-      { i: "6", x: 0, y: 3, w: 3, h: 1 }, // Full-width item
+      { i: "6", x: 0, y: 2, w: 3, h: 1 }, // Full-width item
+      { i: "7", x: 4, y: 1, w: 1, h: 2 }, // Taller item
     ],
   });
 
@@ -25,27 +27,29 @@ export default function WidgetManager() {
   };
 
   return (
-    <Drawer>
-      <div className=" w-full h-full">
-        <ResponsiveGridLayout
-          className="layout"
-          layouts={layouts}
-          breakpoints={{ lg: 280 }}
-          cols={{ lg: 6 }}
-          rowHeight={280}
-          margin={[16, 16]}
-          onLayoutChange={handleLayoutChange}
-          isDraggable
-          isResizable
-        >
-          {layouts.lg.map((item) => (
-            <OrientationWidget
-              key={item.i}
-              className="solid-dark-square rounded-[48px]"
+    // Container with fixed width, which is not really good.
+    <Drawer className="w-[1842px]">
+      <div className="px-6">
+      <ResponsiveGridLayout
+        className="layout"
+        layouts={layouts}
+        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+        // Define the number of columns at each breakpoint. These columns determine the base unit.
+        cols={{ lg: 6, md: 3, sm: 2, xs: 1, xxs: 1 }}
+        rowHeight={280}
+        margin={[16, 16]}
+        onLayoutChange={handleLayoutChange}
+        isDraggable
+        isResizable
+      >
+        {layouts.lg.map((item) => (
+          <OrientationWidget
+            key={item.i}
+            className="solid-dark-square rounded-[48px]"
             ></OrientationWidget>
           ))}
-        </ResponsiveGridLayout>
-      </div>
+      </ResponsiveGridLayout>
+          </div>
     </Drawer>
   );
 }

@@ -4,7 +4,7 @@ import React from "react";
 interface OrientationWidgetInterface
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-const OrientationWidget = ({
+export const OrientationWidget = ({
   className,
   style,
   ...props
@@ -12,10 +12,11 @@ const OrientationWidget = ({
   return (
     <div
       {...props}
-      className={cn(`solid-dark-square rounded-[48px]`, className)}
+      className={cn(
+        `solid-dark-square rounded-[48px] aspect-square`,
+        className
+      )}
       style={style}
     ></div>
   );
 };
-
-export default OrientationWidget;
