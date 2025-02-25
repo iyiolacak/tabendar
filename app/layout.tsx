@@ -35,15 +35,13 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <TooltipProvider>
-            <UsernameGate>
               <NotificationsProvider />
-              <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-                <div className="flex flex-col">
-                  <Wallpaper />
-                  {children}
+              <div className="relative min-h-screen  w-full flex items-center justify-center overflow-hidden">
+                <div className="flex flex-col w-full h-full">,
+                  <Wallpaper/>
+                {children}
                 </div>
               </div>
-            </UsernameGate>
           </TooltipProvider>
         </body>
     </html>

@@ -15,10 +15,10 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>(({ children }, ref) => {
     <>
       <div
         className={cn(
-          "visible z-30 w-full flex flex-col items-center justify-center gap-12"
+          "visible w-11/12 flex flex-col items-center justify-center gap-12 mx-auto"
         )}
       >
-        <div className="glass-square h-full rounded-[64px] flex flex-col items-center justify-center pt-4">
+        <div className="glass-square h-full w-full rounded-[64px] flex flex-col items-center justify-center pt-4">
           <div className="flex flex-row w-full items-center justify-center gap-x-8">
             <button className="bg-white/80 text-black text-sm rounded-lg px-3 py-0.5">
               Add a Widget
@@ -28,8 +28,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>(({ children }, ref) => {
           <div
             className={cn(
               //`px-8 pt-4 gap-4 overflow-auto grid grid-cols-[repeat(${preferences.layout.columnsPerRow},_280px)] grid-rows-[repeat(${preferences.layout.rows},_280px)] border border-purple-500 w-full`
-              `px-8 pt-4 gap-4 overflow-auto grid grid-cols-[repeat(6,_280px)] grid-rows-[repeat(3,_280px)] border border-purple-500 w-full`
-
+              `px-8 pt-4 gap-4 overflow-auto flex w-full`
             )}
             ref={ref}
           >

@@ -4,24 +4,14 @@ import React, { useMemo } from "react";
 const OrientationWidget = React.memo(
   ({
     children,
-    itemId,
     direction = "horizontal",
   }: {
     children?: React.ReactNode;
-    itemId: string;
     direction?: "horizontal" | "vertical" | "square";
   }) => {
-    const className = useMemo(
-      () =>
-        cn("solid-dark-square rounded-[48px] h-full min-w-max row", {
-          "row-span-2 col-span-1": direction === "vertical",
-          "row-span-1 col-span-2": direction === "horizontal",
-          "row-span-1 col-span-1 aspect-square": direction === "square",
-        }),
-      [direction]
-    );
+
     return (
-      <div className={className} data-swapy-item={itemId}>
+      <div className={`solid-dark-square rounded-[48px] h-full`}>
         {children ?? (
           <div className="w-full cursor-pointer h-full items-center justify-center flex">
             <p className="text-white text-center text-2xl font-medium">
