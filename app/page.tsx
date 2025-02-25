@@ -30,7 +30,7 @@ export default function WidgetManager() {
         <ResponsiveGridLayout
           className="layout"
           layouts={layouts}
-          breakpoints={{ lg: 1200 }}
+          breakpoints={{ lg: 280 }}
           cols={{ lg: 6 }}
           rowHeight={280}
           margin={[16, 16]}
@@ -39,7 +39,10 @@ export default function WidgetManager() {
           isResizable
         >
           {layouts.lg.map((item) => (
-            <OrientationWidget key={item.i}></OrientationWidget>
+            <OrientationWidget
+              key={item.i}
+              className="solid-dark-square rounded-[48px]"
+            ></OrientationWidget>
           ))}
         </ResponsiveGridLayout>
       </div>
